@@ -834,8 +834,8 @@
 
             <div class="block">
                 <h2 class="subtitle has-text">
-                    <b> Comparison of HQ-SAM with Vanilla and SUM fine-tuned using the same lightweight
-                        scheme as HQ-SAM</b> SUM matches HQ-SAM and outperforms Vanilla in salient-object segmentation
+                    <b> Comparison of HQ-SAM with Vanilla and SUM fine-tuned Using the Same Lightweight
+                        Scheme as HQ-SAM</b> SUM Matches HQ-SAM and outperforms Vanilla in salient-object segmentation
                     and is superior in entity and part segmentation.
                 </h2>
                 <div style="display: grid; place-items: center;">
@@ -846,7 +846,7 @@
 
             <div class="block">
                 <h2 class="subtitle has-text">
-                    <b> Comparison with other light-weight fine-tuning methods</b> single point-prompt segmentation mIoU
+                    <b> Comparison with Other Light-weight Fine-tuning Methods</b> single point-prompt segmentation mIoU
                     for SUM versus models
                     fine-tuned using various strategies on the HQSeg-44K dataset. All competing models improve on the
                     salient-object segmentation task associated with this dataset but deteriorate on other segmentation
@@ -859,7 +859,7 @@
             <hr>
             <div class="block">
                 <h2 class="subtitle has-text">
-                    <b>Comparison with semi-supervised methods</b> 3 point-prompt segmentation evaluation of models
+                    <b>Comparison with Semi-supervised Methods</b> 3 point-prompt segmentation evaluation of models
                     fine-tuned on FT-Small dataset with various strategies. SUM clearly outperforms all other
                     strategies.
                 </h2>
@@ -871,7 +871,7 @@
 
             <div class="block">
                 <h2 class="subtitle has-text">
-                    <b> Comparison of SAM with SUM fine-tuned on Under Different Human Annotation Budget</b> 5
+                    <b> Comparison of SAM with SUM Fine-tuned Under Different Human Annotation Budget</b> 5
                     point-prompt
                     segmentation evaluation. SUM consistently outperforms SAM, showing even greater improvement as the
                     budget of human-annotated data increases.
@@ -883,7 +883,7 @@
 
             <div class="block">
                 <h2 class="subtitle has-text">
-                    <b> Additional evaluation</b> To test the generalization ability of SUM to a broader range of
+                    <b> Additional Evaluation</b> To test the generalization ability of SUM to a broader range of
                     segmentation tasks, we provided 8 additional datasets.
                     The mIoU comparison results, reported in the following tables, confirm that SUM consistently
                     outperforms
@@ -898,7 +898,7 @@
 
             <div class="block">
                 <h2 class="subtitle has-text">
-                    <b>Ablation study</b>. This table reports interactive segmentation mean IoU of different ablated
+                    <b>Ablation Study</b>. This table reports interactive segmentation mean IoU of different ablated
                     versions of SUM fine-tuned on FT-Medium, showing individual gains provided by uncertainty-aware
                     fine-tuning and task prompts.
                 </h2>
@@ -909,6 +909,21 @@
     <!--    </div>-->
 </section>
 
+
+<section class="section" id="BibTeX">
+    <div class="container content is-max-desktop">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@inproceedings{
+liu2024uncertaintyaware,
+title={Uncertainty-aware Fine-tuning of Segmentation Foundation Models},
+author={Kangning Liu and Brian L. Price and Jason Kuen and Yifei Fan and Zijun Wei and Luis Figueroa and Krzysztof J. Geras and Carlos Fernandez-Granda},
+booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems},
+year={2024},
+url={https://openreview.net/forum?id=qNXRXUC90b}
+}
+</code></pre>
+    </div>
+</section>
 
 <!--<section class="section" id="BibTeX">-->
 <!--  <div class="container content is-max-desktop">-->
@@ -921,21 +936,6 @@
 <!--}</code></pre>-->
 <!--  </div>-->
 <!--</section>-->
-
-<section class="section" id="BibTeX">
-    <div class="container content is-max-desktop">
-        <h2 class="title">BibTeX</h2>
-        <pre><code>@inproceedings{
-            liu2024uncertaintyaware,
-            title={Uncertainty-aware Fine-tuning of Segmentation Foundation Models},
-            author={Kangning Liu and Brian L. Price and Jason Kuen and Yifei Fan and Zijun Wei and Luis Figueroa and Krzysztof J. Geras and Carlos Fernandez-Granda},
-            booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems},
-            year={2024},
-            url={https://openreview.net/forum?id=qNXRXUC90b}
-            }
-</code></pre>
-    </div>
-</section>
 
 <section class="hero teaser">
     <div class="hero-body">
