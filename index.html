@@ -599,17 +599,23 @@
             </p>
             <p style="margin-top:3%; text-align:justify;">
                 I am deeply passionate about harnessing the power of machine learning and computer vision to address
-                tangible, real-world challenges. My research particularly centers on learning under imperfect
-                supervision, such as uncertainty-aware fine-tuning of segmentation foundation models (<a href="https://kangning-liu.github.io/SUM_website/">SUM</a>), noise-resilient
+                tangible, real-world challenges. My current work focuses on achieving fine-grained image understanding through flexible vision-language modeling. 
+                Some of my research projects have successfully undergone tech transfer into Adobe products, including the latest selection tools in Adobe Photoshop <a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>. 
+                These tools power the Object Selection feature, enabling users to isolate complex image elements with remarkable speed and precision, significantly reducing manual effort. 
+                My work has also contributed to segmentation enhancements in Adobe Lightroom <a href="https://helpx.adobe.com/lightroom-classic/help/whats-new/2025-3.html">[Feature Summary]</a> and Adobe Express.
+            </p>
+
+            <p style="margin-top:3%; text-align:justify;">
+                During my Ph.D., I contributed to a range of research projects focused on learning under imperfect supervision. These include uncertainty-aware fine-tuning of segmentation foundation models (<a href="https://kangning-liu.github.io/SUM_website/">SUM</a>), noise-resilient
                 deep segmentation (<a href="https://github.com/Kangningthu/ADELE">ADELE</a>), weakly supervised segmentation (<a href="https://github.com/nyukat/GLAM">GLAM</a>), and unsupervised/self-supervised
                 learning (<a href="https://arxiv.org/abs/2210.09452">ItS2CLR</a>). Beyond this, my expertise extends to
                 video analysis (<a href="https://openreview.net/pdf?id=jIIzJaMbfw">StrokeRehab</a>) and video synthesis
                 (<a href="https://arxiv.org/abs/2004.06502">UVIT</a> & <a href="https://arxiv.org/abs/2304.14471">Controllable
                 Face Video Synthesis</a>).
             </p>
-            <p style="margin-top:3%; text-align:justify;">
+            <!-- <p style="margin-top:3%; text-align:justify;">
             I am currently seeking research interns for the Summer of 2025. Please feel free to drop me an email if you are interested.
-            </p>
+            </p> -->
             <!-- Internship and Job Search -->
             <p style="margin-top:3%; text-align:justify;">
 <!--                I was a Research Intern at <a href="https://about.google">Google</a> in Mountain View during the summer-->
@@ -655,6 +661,13 @@
                 </div>
                 <p class="location-time">San Jose, California, USA (April 2024 - present)</p>
                 <p class="position-advisors">Research Scientist</p>
+
+                <ul class="project-list alt justified-text">
+                    <li><strong>Segmentation Foundation Model:</strong> Developed cutting-edge segmentation technologies to enhance Adobe products. 
+                        Contributions include core features deployed in Adobe Photoshop’s newest select tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>, and segmentation enhancements in Adobe Lightroom, Adobe Express</li>
+    
+                    <li><strong>Grounding Multimodal Large Language Model:</strong> Enhance the grounding ability of multimodal large language models by integrating advanced reasoning capabilities and fine-grained understanding.</li>
+                </ul>
             </li>
         </ul>
 
@@ -803,6 +816,29 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
+                        <img src="./Kangning Liu_files/RAS.jpg" alt="Publication Image"
+                             class="img-fluid publication-img" style="width: 100%;">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <p><b>Refer to Any Segmentation Mask Group With Vision-Language Prompts </b></p>
+                        <p>
+                            <b>
+                                [<a href="https://arxiv.org/abs/2506.05342">Paper link</a>]
+                            </b>
+                        </p>
+                        <p>Shengcao Cao, Zijun Wei, Jason Kuen, <u><b>Kangning Liu</b></u>, Lingzhi Zhang, Jiuxiang Gu, HyunJoon Jung, Liang-Yan Gui, Yu-Xiong Wang</p>
+                        <p>
+                            We introduce a novel task of omnimodal referring expression segmentation (ORES). In this task, a model produces a group of masks based on arbitrary prompts specified by text only or text plus reference visual entities. 
+                            We propose a novel framework to "Refer to Any Segmentation Mask Group" (RAS), which augments segmentation models with complex multimodal interactions and comprehension via a mask-centric large multimodal model. 
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="publication-item">
+                <div class="row">
+                    <!-- Publication Details -->
+                    <!-- Image Placeholder -->
+                    <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/approach_v3.png" alt="Publication Image"
                              class="img-fluid publication-img" style="width: 100%;">
                     </div>
@@ -829,6 +865,34 @@
 
         <h3>Published</h3>
         <ul class="vert">
+            <li class="publication-item">
+                <div class="row">
+                    <!-- Publication Details -->
+                    <!-- Image Placeholder -->
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <img src="./Kangning Liu_files/conSAMme.jpg" alt="Publication Image"
+                             class="img-fluid publication-img" style="width: 100%;">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <p><b>ConSAMmé: Achieving Consistent Segmentations with SAM </b></p>
+                        <p>
+                            <b>
+                                [<a>Paper link (TO BE RELEASED)</a>]
+                            </b>
+                        </p>
+                        <p>Josh Myers-Dean, <u><b>Kangning Liu</b></u>, Brian Price, Yifei Fan, Danna Gurari. </p>
+                        <p>  [CVPR 2025 NTIRE Workshop.]</p>
+                        <p class="justified-text">
+                            Multi-output interactive segmentation methods generate multiple binary masks when given user guidance, such as clicks.
+                            However, it is unpredictable whether the order of the masks will match or whether those masks will be the same when given slightly different user guidance. 
+                            To address these issues, we propose conSAMmé, a contrastive learning framework that conditions on explicit hierarchical semantics and leverages weakly supervised part segmentation data and a novel episodic click sampling strategy. 
+                            Evaluation of conSAMmé’s performance, click robustness, and mask ordering show substantial improvements to baselines with less than 1% extra training data compared to the amount of data used for the baseline. 
+                        </p>
+                    </div>
+                </div>
+            </li>
+
+
             <li class="publication-item">
                 <div class="row">
                     <!-- Publication Details -->
