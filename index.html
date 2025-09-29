@@ -265,7 +265,7 @@
             background-color: #89C5EA;
         }
 
-        a.free:hover, a.free:active, {
+        a.free:hover, a.free:active {
             background-color: #89C5EA;
         }
 
@@ -273,7 +273,7 @@
             background-color: #89C5EA;
         }
 
-        a.talk:hover, a.talk:active, {
+        a.talk:hover, a.talk:active {
             background-color: #89C5EA;
         }
 
@@ -366,8 +366,6 @@
 
         .nav-item {
             display: inline-block;
-            *display: inline;
-            zoom: 1;
         }
 
         .nav-item a {
@@ -575,7 +573,7 @@
             </div>
             <br>
             <img class="img-responsive" src="./Kangning Liu_files/kangning.jpeg" alt=""
-                 style="max-width:60%;height:auto;">
+                 style="max-width:90%;height:auto;">
         </div>
 
 
@@ -589,8 +587,8 @@
             <!--            </p><p>Ph.D. student at <a href="https://cds.nyu.edu/">NYU Center for Data Science</a>.-->
             <!-- Introduction -->
             <p style="margin-top:3%; text-align:justify;">
-                Hello! I am Kangning Liu, currently a Research Scientist at <a href=https://www.adobe.com/">Adobe</a>. I earned
-                my Ph.D. at the <a href="https://cds.nyu.edu/">NYU Center for Data Science</a>, where I was advised by <a
+                Hello! I am Kangning Liu, currently a Research Scientist at <a href="https://www.adobe.com/">Adobe</a>. 
+                I earned my Ph.D. at the <a href="https://cds.nyu.edu/">NYU Center for Data Science</a>, where I was advised by <a
                     href="https://cims.nyu.edu/~cfgranda/">Prof. Carlos Fernandez Granda</a> and <a
                     href="https://cs.nyu.edu/~kgeras/">Prof. Krzysztof J. Geras</a>. Before that, I earned my <a
                     href="https://inf.ethz.ch/studies/master/master-ds.html">M.Sc. in Data Science from ETH Zurich</a>
@@ -599,8 +597,10 @@
             </p>
             <p style="margin-top:3%; text-align:justify;">
                 I am deeply passionate about harnessing the power of machine learning and computer vision to address
-                tangible, real-world challenges. My current work focuses on achieving fine-grained image understanding through flexible vision-language modeling. 
-                Some of my research projects have successfully undergone tech transfer into Adobe products, including the latest selection tools in Adobe Photoshop <a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>. 
+                tangible, real-world challenges. My current work focuses on achieving fine-grained image understanding through flexible vision-language modeling. These models enable a wide spectrum of applications, ranging from generative AI data creation and reward modeling for GenAI training to creative workflows such as image editing.
+            </p>
+            <p style="margin-top:3%; text-align:justify;">    
+                Some of my research projects on segmentation foundation models have successfully undergone tech transfer into Adobe products, including the latest selection tools in Adobe Photoshop <a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>. 
                 These tools power the Object Selection feature, enabling users to isolate complex image elements with remarkable speed and precision, significantly reducing manual effort. 
                 My work has also contributed to segmentation enhancements in Adobe Lightroom <a href="https://helpx.adobe.com/lightroom-classic/help/whats-new/2025-3.html">[Feature Summary]</a> and Adobe Express.
             </p>
@@ -664,9 +664,9 @@
 
                 <ul class="project-list alt justified-text">
                     <li><strong>Segmentation Foundation Model:</strong> Developed cutting-edge segmentation technologies to enhance Adobe products. 
-                        Contributions include core features deployed in Adobe Photoshop’s newest select tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>, and segmentation enhancements in Adobe Lightroom, Adobe Express</li>
+                        Contributions include core features deployed in Adobe Photoshop’s newest selection tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in Adobe Lightroom, Adobe Express.</li>
     
-                    <li><strong>Grounding Multimodal Large Language Model:</strong> Enhance the grounding ability of multimodal large language models by integrating advanced reasoning capabilities and fine-grained understanding.</li>
+                    <li><strong>Grounding Multimodal Large Language Model:</strong> Enhance the grounding ability of multimodal large language models by integrating advanced reasoning capabilities and fine-grained understanding. These models enable a wide spectrum of applications, ranging from generative AI data creation and reward modeling for GenAI training to creative workflows such as image editing.</li>
                 </ul>
             </li>
         </ul>
@@ -728,7 +728,7 @@
                         smartphones.
                     </li>
                     <li><strong>Improved Quality:</strong> Innovated a method that enhances both the geometric
-                        correspondence (7% in AKD) and overall quality (%15 in AED) of the face videos produced.
+                        correspondence (7% in AKD) and overall quality (15% in AED) of the face videos produced.
                     </li>
                     <li><strong>Emotion Manipulation:</strong> Incorporated a convenient interface to manipulate the
                         expression and emotion of the generated video in a plug-in manner.
@@ -759,7 +759,7 @@
                     </li>
                     <li><strong>Noise-Resilient Deep Segmentation:</strong> Engineered robust algorithms tailored for
                         segmentation tasks, showing resilience against annotation noise. This ensures the model’s
-                        reliability, especially in real-world scenarios where annotations noise is prevalent.
+                        reliability, especially in real-world scenarios where annotation noise is prevalent.
                     </li>
                     <li><strong>Video Understanding:</strong> Created deep learning models aimed at video action
                         classification and segmentation, applicable in predicting motion primitives.
@@ -812,6 +812,31 @@
         <h3>Preprint</h3>
         <ul class="vert">
 
+            <li class="publication-item">
+                <div class="row">
+                    <!-- Publication Details -->
+                    <!-- Image Placeholder -->
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <img src="./Kangning Liu_files/Lavida-O.png" alt="Publication Image"
+                             class="img-fluid publication-img" style="width: 100%;">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <p><b>LaViDa-O: Elastic Large Masked Diffusion Models for Unified Multimodal Understanding and Generation </b></p>
+                        <p>
+                            <b>
+                                [<a href="https://arxiv.org/abs/2509.19244">Paper link</a>][<a href="https://homepage.jackli.org/projects/lavida_o/index.html">Project Website</a>]
+                            </b>
+                        </p>
+                        <p>Shufan Li, Jiuxiang Gu, <u><b>Kangning Liu</b></u>, Zhe Lin, Zijun Wei, Aditya Grover, Jason Kuen.</p>
+                        <p>
+                            We propose Lavida-O, a unified Masked Diffusion Model (MDM) for multimodal understanding and generation. 
+                            Unlike existing multimodal MDMs such as MMaDa and Muddit which only support simple image-level understanding tasks and low-resolution image generation, Lavida-O presents a single framework that enables image-level understanding, object grounding, image editing, and high-resolution (1024px) text-to-image synthesis. 
+                            Lavida-O incorporates a novel Elastic Mixture-of-Transformers (Elastic-MoT) architecture that couples a lightweight generation branch with a larger understanding branch, supported by token compression, universal text conditioning and stratified sampling for efficient and high-quality generation. 
+                            Lavida-O further incorporates planning and iterative self-reflection in image generation and editing tasks, seamlessly boosting generation quality with its understanding capabilities. Lavida-O achieves state-of-the-art performance on a wide range of benchmarks including RefCOCO object grounding, GenEval text-to-image generation, and ImgEdit image editing, outperforming existing autoregressive models and continuous diffusion models such as Qwen2.5-VL and FluxKontext-dev, while offering considerable speedup at inference. 
+                        </p>
+                    </div>
+                </div>
+            </li>
             <li class="publication-item">
                 <div class="row">
                     <!-- Publication Details -->
@@ -1158,7 +1183,7 @@
                         </p>
                         <p>Shen, Yiqiu, Nan Wu, Jason Phang, Jungkyu Park, <u><b>Kangning Liu</b></u>, Sudarshini Tyagi,
                             Laura Heacock et al.</p>
-                        <p>[Medical image analysis 2021]</p>
+                        <p>[Medical image analysis, 2021]</p>
                         <p class="justified-text">
                             Medical images differ from natural images in significantly higher resolutions and smaller
                             regions of interest.
@@ -1204,11 +1229,11 @@
 <!--                    (2025), AISTATS (2024, 2025), AAAI (2023, 2024, 2025), WACV (2021, 2022, 2023) and MIDL (2022,-->
 <!--                    2023) </p>-->
                 <p><b>Conference Reviewer for</b></p>
-                <p>CVPR, ICCV, ECCV, NeurIPS, ICLR, AISTATS, AAAI, WACV and MIDL</p>
+                <p>CVPR, ICCV, ECCV, NeurIPS, ICLR, ICML, AISTATS, AAAI, WACV</p>
             </li>
             <li>
                 <p><b>Journal Reviewer for</b></p>
-                <p>TPAMI, TNNLS, CVIU</p>
+                <p>TPAMI,TMLR, TNNLS, CVIU</p>
             </li>
         </ul>
 
