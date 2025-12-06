@@ -41,11 +41,28 @@
             padding: 0;
         }
 
+        body {
+            font-family: 'Merriweather', serif;
+            color: #333;
+            line-height: 1.8;
+            background-color: #fcfcfc;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
         /* Basic Styles */
         .navbar {
-            background-color: #333;
+            background-color: #2c3e50;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Lato', sans-serif;
+            border: none;
+            border-radius: 0;
+            margin-bottom: 40px;
         }
 
         /* Style for navbar links */
@@ -54,16 +71,19 @@
         }
 
         .navbar-nav li a {
-            color: white;
+            color: #ecf0f1 !important;
             padding: 15px;
             text-decoration: none;
             display: inline-block;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
 
         /* On Hover */
         .navbar-nav li a:hover {
-            background-color: #555;
-            color: white;
+            background-color: transparent;
+            color: #3498db !important;
         }
 
         /* Container */
@@ -76,100 +96,120 @@
 
         .imgGallery-row {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 15px; /* Space for scrollbar */
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scrollbar-width: thin; /* Firefox */
+        }
+
+        /* Custom Scrollbar for Chrome/Safari/Edge */
+        .imgGallery-row::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .imgGallery-row::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .imgGallery-row::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        .imgGallery-row::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
         }
 
         .imgGallery-column {
-            flex: 33.33%;
-            padding: 5px;
+            flex: 0 0 300px; /* Fixed width for each image card */
+            max-width: 300px;
+            padding: 0;
             box-sizing: border-box;
         }
 
         .imgGallery-column img {
             max-width: 100%;
             height: auto;
-            /*border-radius: 8px;*/
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             transition: transform .2s ease-in-out;
         }
 
         .imgGallery-column img:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .imgGallery-section-title {
-            font-size: 14px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1.1rem;
             font-weight: bold;
             text-align: left;
-            /*margin-bottom: 20px;*/
+            color: #7f8c8d;
+            margin-top: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
         }
 
         .company-header {
-            display: grid;
-            grid-template-columns: auto 1fr; /* Logo takes the space it needs, title takes the rest */
-            align-items: center; /* Vertical centering */
-            gap: 15px; /* Space between the logo and the name */
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 10px;
         }
 
         .company-header img {
-            width: 60px;
+            width: 50px;
             height: auto;
+            object-fit: contain;
         }
 
         .company-title {
-            margin: 0; /* Resetting any default margin */
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2c3e50;
         }
 
-        .collapsible {
-            cursor: pointer;
-            text-decoration: underline;
+        .location-time {
+            font-family: 'Lato', sans-serif;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
         }
-
-        .content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-        }
-
-        .company-title {
-            font-family: "Times New Roman", serif;
-            font-size: 1.2em;
-        }
-
-        .location-time, .position-advisors {
-            font-family: "Times New Roman", serif;
+        
+        .position-advisors {
+            font-family: 'Merriweather', serif;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 15px;
         }
 
         .project-list {
-            font-family: "Times New Roman", serif;
-            margin-top: 3%;
+            font-family: 'Merriweather', serif;
+            margin-top: 15px;
             text-align: justify;
+            padding-left: 20px;
+        }
+        
+        .project-list li {
+            margin-bottom: 12px;
         }
 
-        /*        .publication-img {
-            background-color: white;
-        }*/
-
-        /*.publication-image {*/
-        /* Add white padding */
-        /*padding: 20px;
-            background-color: white;*/
-        /* Rounded corners */
-        /*border-radius: 10px;*/
-        /* Box Shadow */
-        /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-        /* Align with text */
-        /*float: left;*/ /* or you can use 'right' */
-        /*margin-right: 20px;*/ /* Adjust as needed */
-        /*}*/
-
-
         .publication-img {
-            border: 10px solid white; /* This adds 'padding' */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-right: 20px; /* Space between image and text */
-            background-color: white !important;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-right: 25px; 
+            transition: transform 0.2s;
+        }
+        
+        .publication-img:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
         .row {
@@ -180,27 +220,114 @@
         .justified-text {
             text-align: justify;
         }
+        
+        /* Link Styles */
+        a {
+            color: #2980b9;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            color: #c0392b;
+            text-decoration: none;
+        }
+
+        /* Filter Buttons */
+        .filter-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            margin: 6px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #7f8c8d;
+            background-color: white;
+            border: 2px solid #ecf0f1; /* Slightly thicker border */
+            border-radius: 30px; /* More rounded pill */
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            background-color: #f9f9f9;
+            color: #3498db;
+            border-color: #3498db;
+            transform: translateY(-1px);
+        }
+
+        .filter-btn.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Button/Link Badges */
+        .pub-link {
+            display: inline-block;
+            padding: 4px 12px;
+            margin: 5px 5px 5px 0;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #3498db;
+            background-color: transparent;
+            border: 1px solid #3498db;
+            border-radius: 20px; /* Pill shape */
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .pub-link:hover {
+            background-color: #3498db;
+            color: white !important;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .pub-link.disabled {
+            color: #95a5a6;
+            border-color: #bdc3c7;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .pub-link.disabled:hover {
+            background-color: transparent;
+            color: #95a5a6 !important;
+            box-shadow: none;
+            transform: none;
+        }
+        
+        .pub-link i {
+            margin-right: 5px;
+        }
 
         /* Default (Mobile First) */
         .custom-col-img,
         .custom-col-text {
             flex: 0 0 100%;
             max-width: 100%;
-            /*margin-top: 3%;*/
-            /*text-align: justify;*/
         }
 
         /* Landscape */
         @media screen and (orientation: landscape) {
             .custom-col-img {
-                flex: 0 0 38.2%;
-                max-width: 38.2%;
+                flex: 0 0 35%;
+                max-width: 35%;
             }
 
             .custom-col-text {
-                flex: 0 0 61.8%;
-                max-width: 61.8%;
-                margin-top: 3%;
+                flex: 0 0 65%;
+                max-width: 65%;
+                padding-left: 20px;
                 text-align: justify;
             }
         }
@@ -210,206 +337,51 @@
             .custom-col-img {
                 flex: 0 0 100%;
                 max-width: 100%;
+                margin-bottom: 20px;
             }
 
             .custom-col-text {
                 flex: 0 0 100%;
                 max-width: 100%;
-                margin-top: 3%;
                 text-align: justify;
             }
         }
 
 
-        .publication-container {
-            position: relative;
-        }
-
-        .publication-image {
-            float: left;
-            margin-right: 20px;
-        }
-
-        .publication-details {
-        }
-
-        .publication-image img {
-            width: 100%;
-            height: auto;
-        }
-
-        .clearfix {
-            clear: both;
-        }
-
-        a.buttan:link, a.buttan:visited {
-            color: black;
-            padding: 0px 3px;
-            margin: 1px 0px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            border: 1px solid black;
-            position: relative;
-        }
-
-        a.nf:link, a.nf:visited, .nf {
-            background-color: #b1d2ac;
-        }
-
-        a.nf:hover, a.nf:active {
-            background-color: #b1d2ac;
-        }
-
-        a.free:link, a.free:visited, .free {
-            background-color: #89C5EA;
-        }
-
-        a.free:hover, a.free:active {
-            background-color: #89C5EA;
-        }
-
-        a.talk:link, a.talk:visited, .talk {
-            background-color: #89C5EA;
-        }
-
-        a.talk:hover, a.talk:active {
-            background-color: #89C5EA;
-        }
-
-        a.aux:link, a.aux:visited, .aux {
-            background-color: #A08E7A;
-            color: white;
-        }
-
-        a.aux:hover, a.aux:active {
-            background-color: #A08E7A;
-        }
-
         ul.vert {
-            border-left: 0px solid red;
-            background-color: #f1f1f1;
+            padding: 0;
+            background-color: transparent;
             list-style-type: none;
         }
 
         ul.vert > li {
-            border-left: 10px solid #d1d1d1;
-            background-color: #f1f1f1;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            padding: 25px;
+            margin-bottom: 25px;
             list-style-type: none;
-            padding: 10px 20px;
-            margin-bottom: 10px;
-            margin-left: -45px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        ul.vert > li:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
         }
 
-        a.buttan:after {
-            padding: 5px;
-            display: none;
-            position: absolute;
-            text-align: center;
-            color: #111111;
-            top: -30px;
-            right: 30px;
-            width: 200px;
-            background-color: #fef4c5;
-            border: 1px solid #d4b943;
-            -moz-border-radius: 2px;
-            -webkit-border-radius: 2px;
-            -ms-border-radius: 2px;
-            border-radius: 2px;
-            z-index: 98;
-        }
-
-        a.buttan:hover:after {
-            display: block;
-        }
-
+        /* Header Refinements */
         h2 {
-            font-weight: 100;
-        }
-
-        /* LAYOUT CSS */
-        .pure-img-responsive {
-            max-width: 100%;
-            height: auto;
-        }
-
-        #layout {
-            padding: 0;
-        }
-
-        .header {
-            text-align: center;
-            top: auto;
-            margin: 3em auto;
-        }
-
-        .sidebar {
-            background: rgb(61, 79, 93);
-            color: #fff;
-        }
-
-        .brand-title,
-        .brand-tagline {
-            margin: 0;
-        }
-
-        .brand-tagline {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 30px;
             font-weight: 300;
-            color: rgb(176, 202, 219);
-        }
-
-        .nav-list {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .nav-item {
+            color: #2c3e50;
             display: inline-block;
         }
 
-        .nav-item a {
-            background: transparent;
-            border: 2px solid rgb(176, 202, 219);
-            color: #fff;
-            margin-top: 1em;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            font-size: 85%;
-        }
-
-        .nav-item a:hover,
-        .nav-item a:focus {
-            border: 2px solid rgb(61, 146, 201);
-            text-decoration: none;
-        }
-
-        .content-subhead {
-            text-transform: uppercase;
-            color: #aaa;
-            border-bottom: 1px solid #eee;
-            padding: 0.4em 0;
-            font-size: 80%;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-        }
-
-        .content {
-            padding: 2em 1em 0;
-        }
-
-        .post {
-            padding-bottom: 2em;
-        }
-
-        .h2 {
-            font-size: 2em;
-            color: #222;
-            margin-bottom: 0.2em;
-        }
-
         p {
-            font-family: Georgia, "Cambria", serif;
+            font-family: 'Merriweather', serif;
             color: #444;
             line-height: 1.8em;
         }
@@ -506,7 +478,9 @@
     <link rel="stylesheet" href="firstcss.css">
 
     <!-- Load the font from Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
 
     <!-- Load jQuery and Bootstrap JS securely -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -570,6 +544,9 @@
             <!--<div style="font-size: 2rem;"><b>Kangning Liu (刘康宁)</b></div><br>-->
             <div style="font-size: 3rem; color: #000000; font-family: 'Georgia', serif;">
                 <b>Kangning Liu (刘康宁)</b>
+                <div style="font-size: 1.2rem; color: #555; font-family: 'Georgia', serif; margin-top: 10px; line-height: 1.5;">
+                    Research Scientist @ Adobe | MLLM & Vision Foundation Models
+                </div>
             </div>
             <br>
             <img class="img-responsive" src="./Kangning Liu_files/kangning.jpeg" alt=""
@@ -596,13 +573,10 @@
                 University</a>.
             </p>
             <p style="margin-top:3%; text-align:justify;">
-                I am deeply passionate about harnessing the power of machine learning and computer vision to address
-                tangible, real-world challenges. My current work focuses on achieving fine-grained image understanding through flexible vision-language modeling. These models enable a wide spectrum of applications, ranging from generative AI data creation and reward modeling for GenAI training to creative workflows such as image editing.
+                <strong>Research Focus:</strong> My research centers on multimodal large language models, vision foundation models, and large-scale data/annotation systems—bridging cutting-edge research with real-world impact. I have published at top-tier venues (e.g. <strong>NeurIPS, CVPR, ICCV</strong>) and successfully transferred technology into production systems across key Adobe products including <strong>Photoshop</strong>, <strong>Lightroom</strong>, <strong>Express</strong>, and <strong>Firefly</strong>.
             </p>
             <p style="margin-top:3%; text-align:justify;">    
-                Some of my research projects on segmentation foundation models have successfully undergone tech transfer into Adobe products, including the latest selection tools in Adobe Photoshop <a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>. 
-                These tools power the Object Selection feature, enabling users to isolate complex image elements with remarkable speed and precision, significantly reducing manual effort. 
-                My work has also contributed to segmentation enhancements in Adobe Lightroom <a href="https://helpx.adobe.com/lightroom-classic/help/whats-new/2025-3.html">[Feature Summary]</a> and Adobe Express.
+                My current work focuses on fine-grained image understanding through vision-language modeling, enabling applications from generative AI data creation and reward modeling to AI agent tool calling and creative workflows. My research on segmentation foundation models has been deployed in the latest selection tools in <strong>Adobe Photoshop</strong> <a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>, remove background in <strong>Adobe Firefly</strong> <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in <strong>Adobe Lightroom</strong> <a href="https://helpx.adobe.com/lightroom-classic/help/whats-new/2025-3.html">[Feature Summary]</a> and <strong>Adobe Express</strong>—enabling users to isolate complex image elements with remarkable speed and precision.
             </p>
 
             <p style="margin-top:3%; text-align:justify;">
@@ -634,21 +608,10 @@
 
 
         </div>
-
-
-        <div class="col-md-4" style="margin-top:1%">
-            <div class="media">
-                <div>
-                    <!--			<h3>News</h3>
-                <div class="text-justify">
-                -Watch this space.</p> -->
-                </div>
-            </div>
-        </div>
     </div>
 
 
-    <div class="col-md-13">
+    <div class="col-md-12">
         <h2 id="experience">Research Experience</h2>
 
         <ul class="vert">
@@ -663,10 +626,10 @@
                 <p class="position-advisors">Research Scientist</p>
 
                 <ul class="project-list alt justified-text">
-                    <li><strong>Segmentation Foundation Model:</strong> Developed cutting-edge segmentation technologies to enhance Adobe products. 
-                        Contributions include core features deployed in Adobe Photoshop’s newest selection tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in Adobe Lightroom, Adobe Express.</li>
     
-                    <li><strong>Grounding Multimodal Large Language Model:</strong> Enhance the grounding ability of multimodal large language models by integrating advanced reasoning capabilities and fine-grained understanding. These models enable a wide spectrum of applications, ranging from generative AI data creation and reward modeling for GenAI training to creative workflows such as image editing.</li>
+                    <li><strong>Generative AI & MLLMs:</strong> Enhance the grounding ability of multimodal large language models by integrating advanced reasoning capabilities and fine-grained understanding. These models enable a wide spectrum of applications, ranging from generative AI data creation and reward modeling for GenAI training to AI agent tool calling.</li>
+                    <li><strong>Vision Foundation Model:</strong> Developed cutting-edge segmentation technologies to enhance Adobe products. 
+                        Contributions include core features deployed in Adobe Photoshop’s newest selection tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4"> [Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in Adobe Lightroom, Adobe Express.</li>
                 </ul>
             </li>
         </ul>
@@ -684,26 +647,13 @@
                 <p class="position-advisors">Research Intern | Advisors: Dr. Brian Price, Dr. Jason Kuen, Dr. Yifei Fan,
                     Dr. Zijun Wei, Luis Figueroa, Markus Woodson</p>
                 <ul class="project-list alt justified-text">
-                    <li><strong>Segmentation Foundation Model:</strong> Engaged in a large-scale segmentation initiative
-                        that utilizes an expansive dataset of over 100 million diverse images. The work involved a
-                        model-in-the-loop data engine and close collaboration with teams from Adobe Research, Photoshop,
-                        and Lightroom
+                    <li><strong>Foundation Model Development & Scale:</strong> Worked on segmentation foundation model 
+                        research, processing <strong>millions of images</strong> via a model-in-the-loop data engine, potentially influencing the roadmap for features in Adobe products such as Photoshop and Lightroom.
                     </li>
-                    <li><strong>SAM Model Reproducing and Beyond:</strong> Successfully reproduced the large-scale
-                        multi-node training and interactive segmentation capabilities of the <a
-                                href="https://segment-anything.com">SAM (Segment Anything Model)</a>, and further
-                        enhanced its features for accuracy and efficiency, potentially influencing the roadmap for
-                        future products.
-                    </li>
-                    <li><strong>Human-Centric Feedback Loop: </strong> Initiated a human feedback mechanism by designing
-                        meticulous evaluation experiments and coordinating with the labeling team. This ensures that the
-                        models are attuned to nuanced user requirements and can be iteratively improved based on
-                        real-world feedback
-                    </li>
-                    <li><strong>Benchmarking and Quality Assurance:</strong> Elevated model performance through
-                        algorithmic advancements, pushing the boundaries of model performance, achieving
-                        state-of-the-art segmentation accuracy across 20+ diverse test sets. This underscores the
-                        model’s potential for real-world applications.
+                    <li><strong>SOTA Performance & Quality Assurance:</strong> Achieved SOTA segmentation accuracy across 
+                        20+ test sets (5-point IoU: <strong>0.869</strong>, surpassing SAM's 0.828). This work (SUM) was published 
+                        in <strong>NeurIPS 2024</strong> [<a href="https://kangning-liu.github.io/SUM_website/">Project Website</a>] and established scalable feedback loops for iterative model 
+                        refinement and product integration.
                     </li>
                 </ul>
             </li>
@@ -723,15 +673,9 @@
                 <p class="position-advisors">Research Intern | Advisors: Dr. Xuhui Jia, Dr. Yu-Chuan Su, Dr. Ruijin
                     Cang</p>
                 <ul class="project-list alt justified-text">
-                    <li><strong>One-shot Face Video Synthesis:</strong> Developed deep learning algorithms optimized for
-                        real-time face video synthesis, targeting efficient deployment on mobile devices such as
-                        smartphones.
+                    <li><strong>One-shot Face Video Synthesis:</strong> Developed deep learning algorithms optimized for real-time one-shot face video synthesis, targeting efficient deployment on mobile devices.
                     </li>
-                    <li><strong>Improved Quality:</strong> Innovated a method that enhances both the geometric
-                        correspondence (7% in AKD) and overall quality (15% in AED) of the face videos produced.
-                    </li>
-                    <li><strong>Emotion Manipulation:</strong> Incorporated a convenient interface to manipulate the
-                        expression and emotion of the generated video in a plug-in manner.
+                    <li><strong>Quality & Control:</strong> Innovated a method enhancing geometric correspondence (7% in AKD) and overall quality (15% in AED), while incorporating a plug-in interface for flexible emotion manipulation.
                     </li>
                 </ul>
             </li>
@@ -754,23 +698,25 @@
                 <p class="position-advisors">Research Assistant | Advisors: Prof. Carlos Fernandez-Granda, Prof.
                     Krzysztof J. Geras</p>
                 <ul class="project-list alt justified-text">
-                    <li><strong>Weakly Supervised High-Resolution Segmentation:</strong> Pioneered vision-based methods
-                        for weakly supervised object localization in the domain of breast cancer diagnosis.
+                    <li><strong>Robust Deep Learning with Noisy Labels:</strong> Engineered robust algorithms tailored for
+                        segmentation tasks, showing resilience against annotation noise. This ensures the model's
+                        reliability, especially in real-world scenarios where annotation noise is prevalent. This work (ADELE) 
+                        was selected for <strong>CVPR 2022 Oral Presentation</strong> 
+                        [<a href="https://github.com/Kangningthu/ADELE">GitHub</a>].
                     </li>
-                    <li><strong>Noise-Resilient Deep Segmentation:</strong> Engineered robust algorithms tailored for
-                        segmentation tasks, showing resilience against annotation noise. This ensures the model’s
-                        reliability, especially in real-world scenarios where annotation noise is prevalent.
+                    <li><strong>Weakly Supervised Learning:</strong> Proposed an innovative framework for multiple instance 
+                        learning, which iteratively improves instance-level features by jointly estimating latent 
+                        instance-level pseudo labels, and show that it outperforms existing methods on three real-world 
+                        medical datasets. This work (ItS2CLR) was published in <strong>CVPR 2023</strong> 
+                        [<a href="https://github.com/Kangningthu/ItS2CLR">GitHub</a>].
                     </li>
-                    <li><strong>Video Understanding:</strong> Created deep learning models aimed at video action
-                        classification and segmentation, applicable in predicting motion primitives.
+                    <li><strong>Video Understanding:</strong> Investigated and designed novel deep learning models for video 
+                        action classification and segmentation, applied for the motion primitives prediction. This work (StrokeRehab) was published in 
+                        <strong>NeurIPS 2022</strong> [<a href="https://openreview.net/forum?id=jIIzJaMbfw">Paper Link</a>].
                     </li>
-                    <li><strong>Unsupervised Model Finetuning via Weak Supervision:</strong> Devised an innovative
-                        multiple-instance learning framework that iteratively refines instance-level features and
-                        outperforms existing methods across three real-world datasets.
-                    </li>
-                    <li><strong>Inverse Problem for Time Series Data:</strong> Engineered deep learning solutions for
+                    <!-- <li><strong>Inverse Problem for Time Series Data:</strong> Engineered deep learning solutions for
                         MRI parameter estimation.
-                    </li>
+                    </li> -->
                 </ul>
             </li>
         </ul>
@@ -794,7 +740,7 @@
                         urban scene images through GAN models, harnessing weak paired information.
                     </li>
                     <li><strong>Video and Image Synthesis:</strong> Achieved state-of-the-art performance in
-                        unsupervised multimodal video translation through bidirectional recurrent neural networks.
+                        unsupervised multimodal video translation through bidirectional recurrent neural networks. 
                     </li>
                 </ul>
             </li>
@@ -803,16 +749,51 @@
 
     <!-- Links on the Sidebar -->
 
-    <div class="col-md-13">
+    <div class="col-md-12">
         <!-- Old: <div class="col-md-8" style="height: 120vh;"> -->
         <h2 id="publications">Publications</h2>
 
         <p>See also <a href="https://scholar.google.com/citations?user=F3F2qAkAAAAJ&hl=en">Google Scholar</a>.</p>
 
-        <h3>Preprint</h3>
-        <ul class="vert">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="mllm">MLLM</button>
+            <button class="filter-btn" data-filter="foundation">Vision Foundation Model</button>
+            <button class="filter-btn" data-filter="imperfect">Robust Learning</button>
+            <button class="filter-btn" data-filter="video-gen">Video Generation</button>
+            <button class="filter-btn" data-filter="video-understanding">Video Understanding</button>
+            <button class="filter-btn" data-filter="others">Others</button>
+        </div>
 
-            <li class="publication-item">
+        <ul class="vert pub-list">
+
+            <li class="publication-item" data-category="mllm">
+                <div class="row">
+                    <!-- Publication Details -->
+                    <!-- Image Placeholder -->
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <img src="./Kangning Liu_files/crop_vgent_method_v2.png" alt="Publication Image"
+                             class="img-fluid publication-img" style="width: 100%;">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <p><b>VGent: Visual Grounding via Modular Design for Disentangling Reasoning and Prediction</b></p>
+                        <p>
+                            <span class="pub-link disabled"><i class="fas fa-file-pdf"></i> Paper (Coming Soon)</span>
+                        </p>
+                        <p>Weitai Kang, Jason Kuen, Mengwei Ren, Zijun Wei, Yan Yan, <u><b>Kangning Liu*</b></u>. (*project lead)</p>
+                        <p>[Preprint]</p>
+                        <p class="justified-text">
+                            Current visual grounding models either rely on auto-regressive MLLMs (slow with hallucination risks) or re-align LLMs with vision features (potentially undermining reasoning). 
+                            In contrast, we propose <strong>VGent</strong>, a modular encoder-decoder architecture that explicitly disentangles high-level reasoning and low-level bounding box prediction. 
+                            A frozen MLLM serves as the encoder for powerful reasoning, while a decoder selects target box(es) from detector-proposed candidates via cross-attention on encoder hidden states. 
+                            This design leverages advances in both object detection and MLLMs, avoids auto-regressive pitfalls, and enables fast inference. 
+                            We introduce: (i) <strong>QuadThinker</strong>, an RL-based training paradigm for multi-target reasoning; (ii) <strong>mask-aware labels</strong> for resolving detection-segmentation ambiguity; and (iii) <strong>global target recognition</strong> to improve target identification. 
+                            VGent achieves state-of-the-art performance with <strong>+20.6% F1</strong> improvement, <strong>+8.2% gIoU</strong>, and <strong>+5.8% cIoU</strong> gains under visual reference challenges, while maintaining constant, fast inference.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="publication-item" data-category="mllm">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -823,55 +804,23 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>LaViDa-O: Elastic Large Masked Diffusion Models for Unified Multimodal Understanding and Generation </b></p>
                         <p>
-                            <b>
-                                [<a href="https://arxiv.org/abs/2509.19244">Paper link</a>][<a href="https://homepage.jackli.org/projects/lavida_o/index.html">Project Website</a>]
-                            </b>
+                            <a href="https://arxiv.org/abs/2509.19244" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://homepage.jackli.org/projects/lavida_o/index.html" class="pub-link"><i class="fas fa-globe"></i> Project Website</a>
                         </p>
                         <p>Shufan Li, Jiuxiang Gu, <u><b>Kangning Liu</b></u>, Zhe Lin, Zijun Wei, Aditya Grover, Jason Kuen.</p>
+                        <p>[Preprint]</p>
                         <p>
-                            We propose Lavida-O, a unified Masked Diffusion Model (MDM) for multimodal understanding and generation. 
-                            Unlike existing multimodal MDMs such as MMaDa and Muddit which only support simple image-level understanding tasks and low-resolution image generation, Lavida-O presents a single framework that enables image-level understanding, object grounding, image editing, and high-resolution (1024px) text-to-image synthesis. 
-                            Lavida-O incorporates a novel Elastic Mixture-of-Transformers (Elastic-MoT) architecture that couples a lightweight generation branch with a larger understanding branch, supported by token compression, universal text conditioning and stratified sampling for efficient and high-quality generation. 
-                            Lavida-O further incorporates planning and iterative self-reflection in image generation and editing tasks, seamlessly boosting generation quality with its understanding capabilities. Lavida-O achieves state-of-the-art performance on a wide range of benchmarks including RefCOCO object grounding, GenEval text-to-image generation, and ImgEdit image editing, outperforming existing autoregressive models and continuous diffusion models such as Qwen2.5-VL and FluxKontext-dev, while offering considerable speedup at inference. 
+                            We propose <strong>LaViDa-O</strong>, a unified Masked Diffusion Model (MDM) that unifies multimodal understanding and high-resolution generation (1024px) within a single framework. 
+                            By incorporating a novel <strong>Elastic Mixture-of-Transformers (Elastic-MoT)</strong> architecture, LaViDa-O couples a lightweight generation branch with a robust understanding branch, enabling efficient token compression and stratified sampling. 
+                            The model further leverages planning and iterative self-reflection to boost generation quality. 
+                            LaViDa-O achieves state-of-the-art performance across benchmarks for object grounding (RefCOCO), text-to-image generation (GenEval), and image editing (ImgEdit), outperforming leading autoregressive and continuous diffusion models while offering considerable inference speedups. 
                         </p>
                     </div>
                 </div>
             </li>
-            <li class="publication-item">
+            <li class="publication-item" data-category="mllm">
                 <div class="row">
                     <!-- Publication Details -->
-                    <!-- Image Placeholder -->
-                    <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/approach_v3.png" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
-                    </div>
-                    <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Controllable One-Shot Face Video Synthesis With Semantic Aware Prior </b></p>
-                        <p>
-                            <b>
-                                [<a href="https://arxiv.org/abs/2304.14471">Paper link</a>]
-                            </b>
-                        </p>
-                        <p><u><b>Kangning Liu</b></u>, Yu-Chuan Su, Wei(Alex) Hong, Ruijin Cang, Xuhui Jia.</p>
-                        <p>
-                            We propose a method that leverages rich face prior information to generate face videos with
-                            improved semantic consistency and expression preservation.
-                            Our model improves the baseline by 7% in average keypoint distance and outperforms the
-                            baseline by 15% in average emotion embedding distance, while also providing a convenient
-                            interface for highly controllable generation in terms of pose and expression.
-                        </p>
-                    </div>
-                </div>
-            </li>
-        </ul>
-
-
-        <h3>Published</h3>
-        <ul class="vert">
-            <li class="publication-item">
-                <div class="row">
-                    <!-- Publication Details -->
-                    <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/RAS.jpg" alt="Publication Image"
                              class="img-fluid publication-img" style="width: 100%;">
@@ -879,9 +828,8 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Refer to Any Segmentation Mask Group With Vision-Language Prompts </b></p>
                         <p>
-                            <b>
-                                [<a href="https://arxiv.org/abs/2506.05342">Paper link</a>][<a href="https://research.adobe.com/news/adobe-research-breakthroughs-at-iccv-2025/">Featured Demo at Adobe Research ICCV 2025</a>]
-                            </b>
+                            <a href="https://arxiv.org/abs/2506.05342" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://research.adobe.com/news/adobe-research-breakthroughs-at-iccv-2025/" class="pub-link"><i class="fas fa-video"></i> Featured Demo</a>
                         </p>
                         <p>Shengcao Cao, Zijun Wei, Jason Kuen, <u><b>Kangning Liu</b></u>, Lingzhi Zhang, Jiuxiang Gu, HyunJoon Jung, Liang-Yan Gui, Yu-Xiong Wang</p>
                         <p>[ICCV 2025]</p>
@@ -892,7 +840,28 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item">
+
+            <li class="publication-item" data-category="foundation">
+                <div class="row">
+                    <!-- Publication Details -->
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <img src="./Kangning Liu_files/SVE.png" alt="Publication Image"
+                             class="img-fluid publication-img" style="width: 100%;">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <p><b>Leveraging Sparsity for Efficient Inference of High-Resolution Vision Foundation Models. </b></p>
+                        <p>
+                            <a href="https://bmva-archive.org.uk/bmvc/2025/assets/papers/Paper_661/paper.pdf" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                        </p>
+                        <p>Xin Xu, Jason Kuen, Brian L. Price, <u><b>Kangning Liu</b></u>, Zijun Wei, Yu-Xiong Wang.</p>
+                        <p>  [BMVC 2025]</p>
+                        <p class="justified-text">
+                            We introduce Sparse Vision Encoder (SVE), a post-training optimization framework that exploits naturally emerging sparsity in attention maps to accelerate inference of vision encoders. SVE selectively applies sparsity in key layers, performs sparsity distillation, and leverages cross-layer consistency to reuse sparsity structures. Experiments on DINOv2, CLIP, and SAM2 demonstrate up to 80% speedup for high-resolution encoding while preserving model performance
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="publication-item" data-category="foundation">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -903,9 +872,7 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>ConSAMmé: Achieving Consistent Segmentations with SAM </b></p>
                         <p>
-                            <b>
-                                [<a href="https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/html/Myers-Dean_conSAMme_Achieving_Consistent_Segmentations_with_SAM_CVPRW_2025_paper.html">Paper link</a>]
-                            </b>
+                            <a href="https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/html/Myers-Dean_conSAMme_Achieving_Consistent_Segmentations_with_SAM_CVPRW_2025_paper.html" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
                         <p>Josh Myers-Dean, <u><b>Kangning Liu</b></u>, Brian Price, Yifei Fan, Danna Gurari. </p>
                         <p>  [CVPR 2025 NTIRE Workshop.]</p>
@@ -920,7 +887,7 @@
             </li>
 
 
-            <li class="publication-item">
+            <li class="publication-item" data-category="foundation imperfect">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -931,11 +898,9 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Uncertainty-aware Fine-tuning of Segmentation Foundation Models </b></p>
                         <p>
-                            <b>
-                                [<a href="https://openreview.net/pdf?id=qNXRXUC90b">Paper link</a>]
-                                [<a href="https://github.com/Kangningthu/SUM.git">Github Link</span></a>]
-                                [<a href="https://kangning-liu.github.io/SUM_website/">Project Website</a>]
-                            </b>
+                            <a href="https://openreview.net/pdf?id=qNXRXUC90b" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://github.com/Kangningthu/SUM.git" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://kangning-liu.github.io/SUM_website/" class="pub-link"><i class="fas fa-globe"></i> Project Website</a>
                         </p>
                         <p><u><b>Kangning Liu</b></u>, Brian Price, Jason Kuen, Yifei Fan, Zijun Wei, Luis Figueroa,
                             Krzysztof J. Geras, Carlos Fernandez-Granda. </p>
@@ -955,8 +920,33 @@
                 </div>
             </li>
 
+            <li class="publication-item" data-category="video-gen">
+                <div class="row">
+                    <!-- Publication Details -->
+                    <!-- Image Placeholder -->
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <img src="./Kangning Liu_files/approach_v3.png" alt="Publication Image"
+                             class="img-fluid publication-img" style="width: 100%;">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <p><b>Controllable One-Shot Face Video Synthesis With Semantic Aware Prior </b></p>
+                        <p>
+                            <a href="https://arxiv.org/abs/2304.14471" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                        </p>
+                        <p><u><b>Kangning Liu</b></u>, Yu-Chuan Su, Wei(Alex) Hong, Ruijin Cang, Xuhui Jia.</p>
+                        <p>[Preprint]</p>
+                        <p>
+                            We propose a method that leverages rich face prior information to generate face videos with
+                            improved semantic consistency and expression preservation.
+                            Our model improves the baseline by 7% in average keypoint distance and outperforms the
+                            baseline by 15% in average emotion embedding distance, while also providing a convenient
+                            interface for highly controllable generation in terms of pose and expression.
+                        </p>
+                    </div>
+                </div>
+            </li>
 
-            <li class="publication-item">
+            <li class="publication-item" data-category="imperfect">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -966,17 +956,10 @@
                     </div>
 
                     <div class="custom-col-text" style="padding: 10px;">
+                        <p><b>Multiple Instance Learning via Iterative Self-Paced Supervised Contrastive Learning</b></p>
                         <p>
-                            <b>
-                                Multiple Instance Learning via Iterative Self-Paced Supervised Contrastive
-                                Learning
-                            </b>
-                        </p>
-                        <p>
-                            <b>
-                                [<a href="https://arxiv.org/abs/2210.09452">Paper link</a>]
-                                [<a href="https://github.com/Kangningthu/ItS2CLR">Github Link</span></a>]
-                            </b>
+                            <a href="https://arxiv.org/abs/2210.09452" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://github.com/Kangningthu/ItS2CLR" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
                         </p>
                         <p><u><b>Kangning Liu*</b></u>,Weicheng Zhu* <u>(*Equal contribution)</u>, Yiqiu Shen, Sheng
                             Liu, Narges Razavian, Krzysztof J. Geras, Carlos Fernandez-Granda. </p>
@@ -992,7 +975,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item">
+            <li class="publication-item" data-category="imperfect">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -1003,10 +986,8 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Adaptive early-learning correction for segmentation from noisy annotations </b></p>
                         <p>
-                            <b>
-                                [<a href="https://arxiv.org/abs/2110.03740">Paper Link</a>][<a
-                                    href="https://github.com/Kangningthu/ADELE">Github Link</a>]
-                            </b>
+                            <a href="https://arxiv.org/abs/2110.03740" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://github.com/Kangningthu/ADELE" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
                         </p>
                         <p>Sheng Liu*, <u><b>Kangning Liu*</b></u><u> (*Equal contribution, order decided by coin
                             flip.)</u>, Weicheng Zhu, Yiqiu Shen, Carlos Fernandez-Granda. </p>
@@ -1019,7 +1000,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item">
+            <li class="publication-item" data-category="video-understanding">
                 <div class="row">
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
@@ -1031,9 +1012,7 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>StrokeRehab: A Benchmark Dataset for Sub-second Action Identification </b></p>
                         <p>
-                            <b>
-                                [<a href="https://openreview.net/pdf?id=jIIzJaMbfw">Paper Link</a>]
-                            </b>
+                            <a href="https://openreview.net/pdf?id=jIIzJaMbfw" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
                         <p>Aakash Kaku*, <u><b>Kangning Liu*</b></u> <u>(*Equal contribution)</u>, Avinash Parnandi*,
                             Haresh Rengaraj Rajamohan, Anita Venkatesan, Audre Wirtanen, Natasha Pandit, Kannan
@@ -1046,7 +1025,7 @@
                 </div>
             </li>
 
-            <li class="publication-item">
+            <li class="publication-item" data-category="others">
                 <div class="row">
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
@@ -1057,9 +1036,7 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Are All Losses Created Equal: A Neural Collapse Perspective </b></p>
                         <p>
-                            <b>
-                                [<a href="https://openreview.net/pdf?id=8rfYWE3nyXl">Paper Link</a>]
-                            </b>
+                            <a href="https://openreview.net/pdf?id=8rfYWE3nyXl" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
                         <p>Jinxin Zhou, Chong You, Xiao Li, <u><b>Kangning Liu</b></u>, Sheng Liu, Qing Qu, Zhihui Zhu.
                         </p>
@@ -1072,7 +1049,7 @@
             </li>
 
             <!-- Start of the paper: Cramér-Rao bound-informed training of neural networks for quantitative MRI -->
-            <li class="publication-item">
+            <li class="publication-item" data-category="others">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/MRF.jpeg" alt="Publication Image for Cramér-Rao"
@@ -1081,9 +1058,7 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Cramér-Rao bound-informed training of neural networks for quantitative MRI </b></p>
                         <p>
-                            <b>
-                                [<a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.29206">Paper Link</a>]
-                            </b>
+                            <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.29206" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
                         <p>Xiaoxia Zhang*, Quentin Duchemin*, <u><b>Kangning Liu*</b></u> <u>(*Equal contribution)</u>,
                             Sebastian Flassbeck, Cem Gultekin, Carlos Fernandez-Granda, Jakob Asslander.</p>
@@ -1097,7 +1072,7 @@
             </li>
             <!-- End of the paper -->
             <!-- Start of the paper: Weakly-supervised High-resolution Segmentation of Mammography Images -->
-            <li class="publication-item">
+            <li class="publication-item" data-category="imperfect">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
                         <!--<img src="./Kangning Liu_files/Inference_framework.png" alt="Publication Image for Weakly-supervised High-resolution Segmentation" class="img-fluid publication-img" style="width: 100%;">-->
@@ -1106,13 +1081,10 @@
                              class="img-fluid publication-img" style="width: 100%;">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Weakly-supervised High-resolution Segmentation of Mammography Images for Breast Cancer
-                            Diagnosis </b></p>
+                        <p><b>Weakly-supervised High-resolution Segmentation of Mammography Images for Breast Cancer Diagnosis </b></p>
                         <p>
-                            <b>
-                                [<a href="https://arxiv.org/abs/2106.07049">Paper Link</a>][<a
-                                    href="https://github.com/nyukat/GLAM">Github Link</a>]
-                            </b>
+                            <a href="https://arxiv.org/abs/2106.07049" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://github.com/nyukat/GLAM" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
                         </p>
                         <p><u><b>Kangning Liu</b></u>, Yiqiu Shen, Nan Wu, Jakub Piotr Chdowski, Carlos
                             Fernandez-Granda, and Krzysztof J. Geras</p>
@@ -1131,7 +1103,7 @@
             </li>
             <!-- End of the paper -->
             <!-- Start of the paper: Unsupervised Multimodal Video-to-Video Translation -->
-            <li class="publication-item">
+            <li class="publication-item" data-category="video-gen">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/UVIT_HR_multimodal.jpeg"
@@ -1142,11 +1114,8 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Unsupervised Multimodal Video-to-Video Translation via Self-Supervised Learning</b></p>
                         <p>
-                            <b>
-                                [<a href="https://openaccess.thecvf.com/content/WACV2021/papers/Liu_Unsupervised_Multimodal_Video-to-Video_Translation_via_Self-Supervised_Learning_WACV_2021_paper.pdf">Paper
-                                Link</a>]
-                                [<a href="https://uvit.netlify.app">Project Link</a>]
-                            </b>
+                            <a href="https://openaccess.thecvf.com/content/WACV2021/papers/Liu_Unsupervised_Multimodal_Video-to-Video_Translation_via_Self-Supervised_Learning_WACV_2021_paper.pdf" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://uvit.netlify.app" class="pub-link"><i class="fas fa-globe"></i> Project Website</a>
                         </p>
                         <p><u><b>Kangning Liu*</b></u>, Shuhang Gu*<u>(*Equal contribution)</u>, Andrs Romero, and Radu
                             Timofte</p>
@@ -1166,7 +1135,7 @@
             </li>
             <!-- End of the paper -->
             <!-- Start of the paper: An interpretable classifier for high-resolution breast cancer screening images -->
-            <li class="publication-item">
+            <li class="publication-item" data-category="imperfect">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/gmic.jpeg"
@@ -1176,10 +1145,7 @@
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>An interpretable classifier for high-resolution breast cancer screening images </b></p>
                         <p>
-                            <b>
-                                [<a href="https://www.sciencedirect.com/science/article/pii/S1361841520302723">Paper
-                                Link</a>]
-                            </b>
+                            <a href="https://www.sciencedirect.com/science/article/pii/S1361841520302723" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
                         <p>Shen, Yiqiu, Nan Wu, Jason Phang, Jungkyu Park, <u><b>Kangning Liu</b></u>, Sudarshini Tyagi,
                             Laura Heacock et al.</p>
@@ -1201,7 +1167,7 @@
 
     </div>
 
-    <div class="col-md-13">
+    <div class="col-md-12">
         <h2 id="teaching">Teaching</h2>
         <ul class="vert">
             <li>
@@ -1217,7 +1183,7 @@
     </div>
 
 
-    <div class="col-md-13">
+    <div class="col-md-12">
         <h2 id="service">Service</h2>
         <ul class="vert">
             <li>
@@ -1245,13 +1211,14 @@
     <!-- Your existing content here -->
     <ul class="vert">
         <li>
-            <p>I am just starting out with Lightroom Magic using my Sony A7M4:)</p>
+            <p>Capturing moments and exploring light with my Sony A7M4.</p>
         </li>
     </ul>
     <br/>
-    <div class="col-md-13">
-        <p class="imgGallery-section-title">California Style</p>
+    <div class="col-md-12">
+        <p class="imgGallery-section-title">Selected Works</p>
         <div class="imgGallery-row">
+            <!-- California -->
             <div class="imgGallery-column">
                 <img src="./Kangning Liu_files/DSC04444.jpeg" alt="California">
             </div>
@@ -1261,11 +1228,20 @@
             <div class="imgGallery-column">
                 <img src="./Kangning Liu_files/DSC04158-2.jpeg" alt="California">
             </div>
-        </div>
-        <br/>
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC06188.jpeg" alt="California">
+            </div>
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC03609.jpeg" alt="California">
+            </div>
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC07554-2.jpeg" alt="California">
+            </div>
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC08122-2.jpeg" alt="California">
+            </div>
 
-        <p class="imgGallery-section-title">NYC Cityscapes</p>
-        <div class="imgGallery-row">
+            <!-- NYC -->
             <div class="imgGallery-column">
                 <img src="./Kangning Liu_files/8V4B0383.jpg" alt="NYC">
             </div>
@@ -1275,25 +1251,29 @@
             <div class="imgGallery-column">
                 <img src="./Kangning Liu_files/DSC04963-4.jpg" alt="NYC">
             </div>
-        </div>
-        <br/>
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC05142.jpeg" alt="NYC">
+            </div> 
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC07398.jpg" alt="NYC">
+            </div>
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC07301.jpg" alt="NYC">
+            </div> 
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC08667.jpg" alt="NYC">
+            </div>
 
-        <p class="imgGallery-section-title">Light and Night</p>
-        <div class="imgGallery-row">
+            <!-- Industrial & Night -->
             <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC09256.jpeg" alt="SteelRacks">
+                <img src="./Kangning Liu_files/DSC09256.jpeg" alt="Night">
             </div>
             <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC09385.jpeg" alt="SteelRacks">
+                <img src="./Kangning Liu_files/DSC09385.jpeg" alt="Night">
             </div>
             <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC09265.jpeg" alt="SteelRacks">
+                <img src="./Kangning Liu_files/DSC09265.jpeg" alt="Night">
             </div>
-        </div>
-        <br/>
-
-        <p class="imgGallery-section-title">SteelStacks</p>
-        <div class="imgGallery-row">
             <div class="imgGallery-column">
                 <img src="./Kangning Liu_files/DSC06520-3.jpeg" alt="SteelRacks">
             </div>
@@ -1303,11 +1283,8 @@
             <div class="imgGallery-column">
                 <img src="./Kangning Liu_files/DSC06482-4.jpeg" alt="SteelRacks">
             </div>
-        </div>
-        <br/>
 
-        <p class="imgGallery-section-title">Vermont Fall</p>
-        <div class="imgGallery-row">
+            <!-- Nature & Travels -->
             <div class="imgGallery-column">
                 <img src="./Kangning Liu_files/DSC05394.jpg" alt="Vermont">
             </div>
@@ -1316,6 +1293,12 @@
             </div>
             <div class="imgGallery-column">
                 <img src="./Kangning Liu_files/DSC05782.jpg" alt="Vermont">
+            </div>
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC05962.jpg" alt="Oregon">
+            </div>
+            <div class="imgGallery-column">
+                <img src="./Kangning Liu_files/DSC05801.jpg" alt="Oregon">
             </div>
         </div>
     </div>
@@ -1337,6 +1320,32 @@
     <script type="text/javascript" id="clustrmaps"
             src="//clustrmaps.com/map_v2.js?d=nk2suWeO4QvLQb3OSDKbWMWpp_rc2lrGUiGq_rrnFQg&cl=ffffff&w=a"></script>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.filter-btn').click(function() {
+            var filterValue = $(this).attr('data-filter');
+            
+            // Update active button
+            $('.filter-btn').removeClass('active');
+            $(this).addClass('active');
+            
+            // Filter items
+            if(filterValue === 'all') {
+                $('.publication-item').fadeIn('fast');
+            } else {
+                $('.publication-item').each(function() {
+                    var itemCategories = $(this).attr('data-category');
+                    if(itemCategories && itemCategories.includes(filterValue)) {
+                        $(this).fadeIn('fast');
+                    } else {
+                        $(this).fadeOut('fast');
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 </body>
 <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
