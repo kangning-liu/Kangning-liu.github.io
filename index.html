@@ -26,7 +26,6 @@
         f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-W6MLN9P');</script>
     <!-- End Google Tag Manager -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!--    <link rel="stylesheet" href="./Kangning Liu_files/cdnjs.cloudflare.com_ajax_libs_font-awesome_6.0.0-beta3_css_all.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -63,16 +62,21 @@
             border: none;
             border-radius: 0;
             margin-bottom: 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 0.5rem 1rem;
         }
 
         /* Style for navbar links */
-        .navbar-nav li {
+        .navbar-nav .nav-item {
             list-style-type: none;
         }
 
-        .navbar-nav li a {
+        .navbar-nav .nav-link {
             color: #ecf0f1 !important;
-            padding: 15px;
+            padding: 15px !important;
             text-decoration: none;
             display: inline-block;
             font-weight: 400;
@@ -81,7 +85,7 @@
         }
 
         /* On Hover */
-        .navbar-nav li a:hover {
+        .navbar-nav .nav-link:hover {
             background-color: transparent;
             color: #3498db !important;
         }
@@ -94,6 +98,7 @@
         }
 
 
+        /* Masonry Gallery Layout - Reverted to Scroll with Filters */
         .imgGallery-row {
             display: flex;
             overflow-x: auto;
@@ -104,7 +109,7 @@
             scrollbar-width: thin; /* Firefox */
         }
 
-        /* Custom Scrollbar for Chrome/Safari/Edge */
+        /* Custom Scrollbar */
         .imgGallery-row::-webkit-scrollbar {
             height: 8px;
         }
@@ -128,18 +133,83 @@
             max-width: 300px;
             padding: 0;
             box-sizing: border-box;
+            display: block; /* Default to block for visibility */
         }
 
         .imgGallery-column img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0;
+            width: 100%;
+            height: 200px; /* Fixed height for uniformity */
+            object-fit: cover; /* Crop image to fit */
+            border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform .2s ease-in-out;
+            transition: transform .3s ease-in-out, box-shadow .3s ease;
+            display: block;
         }
 
         .imgGallery-column img:hover {
             transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+        
+        /* Photo Filter Buttons */
+        .photo-filter-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .photo-filter-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            margin: 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #7f8c8d;
+            background-color: white;
+            border: 1px solid #ecf0f1;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .photo-filter-btn:hover {
+            background-color: #f9f9f9;
+            color: #3498db;
+            border-color: #3498db;
+        }
+
+        .photo-filter-btn.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        
+        /* Back to Top Button */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, transform 0.3s;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 20px;
+        }
+        
+        #backToTop:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
         }
 
         .imgGallery-section-title {
@@ -212,10 +282,6 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
-        .row {
-            display: flex;
-            flex-wrap: wrap; /* updated from nowrap to wrap */
-        }
 
         .justified-text {
             text-align: justify;
@@ -356,17 +422,18 @@
 
         ul.vert > li {
             background-color: white;
-            border-radius: 8px;
-            border: 1px solid #eee;
-            padding: 25px;
-            margin-bottom: 25px;
+            border-radius: 12px;
+            border: none;
+            padding: 30px;
+            margin-bottom: 30px;
             list-style-type: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            transition: box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         ul.vert > li:hover {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
         }
 
         /* Header Refinements */
@@ -467,12 +534,8 @@
 
     </style>
 
-    <link rel="stylesheet" href="./Kangning Liu_files/pure-min.css">
-    <link rel="stylesheet" href="./Kangning Liu_files/grids-responsive-min.css">
-
-
-    <!-- Load Bootstrap CSS securely -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Load your custom CSS -->
     <link rel="stylesheet" href="firstcss.css">
@@ -482,36 +545,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <!-- Load jQuery and Bootstrap JS securely -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- SimpleLightbox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css" rel="stylesheet">
 
-    <title>Kangning Liu</title>
+    <title>Kangning Liu - Research Scientist | Computer Vision & AI</title>
 
+    <meta name="description" content="Personal website of Kangning Liu, Research Scientist at Adobe. PhD from NYU Center for Data Science. Research focus: MLLMs, Vision Foundation Models, and Robust Deep Learning.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="./Kangning Liu_files/firstcss.css">
-    <script src="./Kangning Liu_files/jquery.min.js"></script>
-    <script src="./Kangning Liu_files/bootstrap.min.js"></script>
-    <link href="./Kangning Liu_files/css" rel="stylesheet" type="text/css">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        .column {
-            float: left;
-            width: 33.33%;
-            padding: 5px;
-        }
-
-        /* Clearfix (clear floats) */
-        .row::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-    </style>
 </head>
 <body data-new-gr-c-s-check-loaded="14.1088.0" data-gr-ext-installed="">
 <!-- Google Tag Manager (noscript) -->
@@ -522,16 +562,21 @@
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- Navigation -->
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container" id="home">
-        <ul class="nav navbar-nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#experience">Research Experience</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#teaching">Teaching</a></li>
-            <li><a href="#service">Service</a></li>
-            <li><a href="#photography">Miscellaneous</a></li>
-        </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#experience">Research Experience</a></li>
+                <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+                <li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>
+                <li class="nav-item"><a class="nav-link" href="#service">Service</a></li>
+                <li class="nav-item"><a class="nav-link" href="#photography">Miscellaneous</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -549,8 +594,8 @@
                 </div>
             </div>
             <br>
-            <img class="img-responsive" src="./Kangning Liu_files/kangning.jpeg" alt=""
-                 style="max-width:90%;height:auto;">
+            <img class="img-fluid" src="./Kangning Liu_files/kangning.jpeg" alt="Kangning Liu Profile Picture"
+                 style="max-width:90%;height:auto;" loading="lazy">
         </div>
 
 
@@ -617,7 +662,7 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/Adobe.png" alt="Adobe Logo">
+                    <img src="./Kangning Liu_files/Adobe.png" alt="Adobe Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Adobe</strong>
                     </p>
@@ -638,7 +683,7 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/Adobe.png" alt="Adobe Logo">
+                    <img src="./Kangning Liu_files/Adobe.png" alt="Adobe Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Adobe</strong>
                     </p>
@@ -664,7 +709,7 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/Google.png" alt="Google Logo">
+                    <img src="./Kangning Liu_files/Google.png" alt="Google Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Google</strong>
                     </p>
@@ -687,7 +732,7 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/NYU.png" alt="CDS Logo">
+                    <img src="./Kangning Liu_files/NYU.png" alt="CDS Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Center for Data Science,
                             New York University</strong>
@@ -727,7 +772,7 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/cvl2.png" alt="CVL Logo">
+                    <img src="./Kangning Liu_files/cvl2.png" alt="CVL Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Computer Vision Laboratory, ETH Zurich</strong>
                     </p>
@@ -763,6 +808,7 @@
             <button class="filter-btn" data-filter="video-gen">Video Generation</button>
             <button class="filter-btn" data-filter="video-understanding">Video Understanding</button>
             <button class="filter-btn" data-filter="others">Others</button>
+            <div id="filter-count" style="margin-top: 10px; color: #7f8c8d; font-size: 0.9rem; font-style: italic;"></div>
         </div>
 
         <ul class="vert pub-list">
@@ -773,7 +819,7 @@
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/crop_vgent_method_v2.png" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>VGent: Visual Grounding via Modular Design for Disentangling Reasoning and Prediction</b></p>
@@ -799,7 +845,7 @@
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/LaViDa-O.png" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>LaViDa-O: Elastic Large Masked Diffusion Models for Unified Multimodal Understanding and Generation </b></p>
@@ -823,7 +869,7 @@
                     <!-- Publication Details -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/RAS.jpg" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Refer to Any Segmentation Mask Group With Vision-Language Prompts </b></p>
@@ -846,7 +892,7 @@
                     <!-- Publication Details -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/SVE.png" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Leveraging Sparsity for Efficient Inference of High-Resolution Vision Foundation Models. </b></p>
@@ -867,7 +913,7 @@
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/conSAMme.jpg" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>ConSAMmé: Achieving Consistent Segmentations with SAM </b></p>
@@ -893,7 +939,7 @@
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/SUM_framework.png" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Uncertainty-aware Fine-tuning of Segmentation Foundation Models </b></p>
@@ -926,7 +972,7 @@
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/approach_v3.png" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Controllable One-Shot Face Video Synthesis With Semantic Aware Prior </b></p>
@@ -952,7 +998,7 @@
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/contrastive_learning_illustration.png" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
 
                     <div class="custom-col-text" style="padding: 10px;">
@@ -981,7 +1027,7 @@
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/ADELE.jpeg" alt="Publication Image"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Adaptive early-learning correction for segmentation from noisy annotations </b></p>
@@ -1005,9 +1051,9 @@
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/Strokerehab.jpeg" alt="Publication Image for StrokeRehab"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                         <img src="./Kangning Liu_files/StrokeRehab2.jpeg" alt="Publication Image for StrokeRehab"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>StrokeRehab: A Benchmark Dataset for Sub-second Action Identification </b></p>
@@ -1030,7 +1076,7 @@
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/Equal.jpeg" alt="Publication Image for Neural Collapse"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
 
                     <div class="custom-col-text" style="padding: 10px;">
@@ -1053,7 +1099,7 @@
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/MRF.jpeg" alt="Publication Image for Cramér-Rao"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Cramér-Rao bound-informed training of neural networks for quantitative MRI </b></p>
@@ -1075,10 +1121,10 @@
             <li class="publication-item" data-category="imperfect">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
-                        <!--<img src="./Kangning Liu_files/Inference_framework.png" alt="Publication Image for Weakly-supervised High-resolution Segmentation" class="img-fluid publication-img" style="width: 100%;">-->
+                        <!--<img src="./Kangning Liu_files/Inference_framework.png" alt="Publication Image for Weakly-supervised High-resolution Segmentation" class="img-fluid publication-img" style="width: 100%;" loading="lazy">-->
                         <img src="./Kangning Liu_files/Visualization_example.png"
                              alt="Publication Image for Weakly-supervised High-resolution Segmentation"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Weakly-supervised High-resolution Segmentation of Mammography Images for Breast Cancer Diagnosis </b></p>
@@ -1108,8 +1154,8 @@
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/UVIT_HR_multimodal.jpeg"
                              alt="Publication Image for Unsupervised Multimodal Video-to-Video Translation"
-                             class="img-fluid publication-img" style="width: 100%;">
-                        <!--<img src="./Kangning Liu_files/UVIT_overview.png" alt="Publication Image for Unsupervised Multimodal Video-to-Video Translation" class="img-fluid publication-img" style="width: 100%;">-->
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
+                        <!--<img src="./Kangning Liu_files/UVIT_overview.png" alt="Publication Image for Unsupervised Multimodal Video-to-Video Translation" class="img-fluid publication-img" style="width: 100%;" loading="lazy">-->
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>Unsupervised Multimodal Video-to-Video Translation via Self-Supervised Learning</b></p>
@@ -1140,7 +1186,7 @@
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/gmic.jpeg"
                              alt="Publication Image for An interpretable classifier for high-resolution breast cancer screening images"
-                             class="img-fluid publication-img" style="width: 100%;">
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
                         <p><b>An interpretable classifier for high-resolution breast cancer screening images </b></p>
@@ -1208,7 +1254,6 @@
 
     <h2 id="photography">Miscellaneous</h2>
 
-    <!-- Your existing content here -->
     <ul class="vert">
         <li>
             <p>Capturing moments and exploring light with my Sony A7M4.</p>
@@ -1216,89 +1261,149 @@
     </ul>
     <br/>
     <div class="col-md-12">
-        <p class="imgGallery-section-title">Selected Works</p>
+        <p class="imgGallery-section-title">Visual Fragments</p>
+        
+        <div class="photo-filter-container">
+            <button class="photo-filter-btn active" data-filter="all">All</button>
+            <button class="photo-filter-btn" data-filter="california">California Style</button>
+            <button class="photo-filter-btn" data-filter="nyc">NYC Moments</button>
+            <button class="photo-filter-btn" data-filter="night">Night and Light</button>
+            <button class="photo-filter-btn" data-filter="industrial">Industrial</button>
+            <button class="photo-filter-btn" data-filter="nature">Nature & Travels</button>
+        </div>
+
         <div class="imgGallery-row">
             <!-- California -->
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC04444.jpeg" alt="California">
+            <div class="imgGallery-column" data-category="california">
+                <a href="./Kangning Liu_files/DSC04444.jpeg" class="lightbox-gallery" title="California">
+                    <img src="./Kangning Liu_files/DSC04444.jpeg" alt="California" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC04257.jpeg" alt="California">
+            <div class="imgGallery-column" data-category="california">
+                <a href="./Kangning Liu_files/DSC04257.jpeg" class="lightbox-gallery" title="California">
+                    <img src="./Kangning Liu_files/DSC04257.jpeg" alt="California" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC04158-2.jpeg" alt="California">
+            <div class="imgGallery-column" data-category="california">
+                <a href="./Kangning Liu_files/DSC04158-2.jpeg" class="lightbox-gallery" title="California">
+                    <img src="./Kangning Liu_files/DSC04158-2.jpeg" alt="California" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC06188.jpeg" alt="California">
+            <div class="imgGallery-column" data-category="california">
+                <a href="./Kangning Liu_files/DSC06188.jpeg" class="lightbox-gallery" title="California">
+                    <img src="./Kangning Liu_files/DSC06188.jpeg" alt="California" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC03609.jpeg" alt="California">
+            <div class="imgGallery-column" data-category="california">
+                <a href="./Kangning Liu_files/DSC03609.jpeg" class="lightbox-gallery" title="California">
+                    <img src="./Kangning Liu_files/DSC03609.jpeg" alt="California" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC07554-2.jpeg" alt="California">
+            <div class="imgGallery-column" data-category="california">
+                <a href="./Kangning Liu_files/DSC07554-2.jpeg" class="lightbox-gallery" title="California">
+                    <img src="./Kangning Liu_files/DSC07554-2.jpeg" alt="California" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC08122-2.jpeg" alt="California">
+            <div class="imgGallery-column" data-category="california">
+                <a href="./Kangning Liu_files/DSC08122-2.jpeg" class="lightbox-gallery" title="California">
+                    <img src="./Kangning Liu_files/DSC08122-2.jpeg" alt="California" loading="lazy">
+                </a>
             </div>
 
             <!-- NYC -->
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/8V4B0383.jpg" alt="NYC">
+            <div class="imgGallery-column" data-category="nyc">
+                <a href="./Kangning Liu_files/8V4B0383.jpg" class="lightbox-gallery" title="NYC">
+                    <img src="./Kangning Liu_files/8V4B0383.jpg" alt="NYC" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/8V4B0444-2.jpg" alt="NYC">
+            <div class="imgGallery-column" data-category="nyc">
+                <a href="./Kangning Liu_files/8V4B0444-2.jpg" class="lightbox-gallery" title="NYC">
+                    <img src="./Kangning Liu_files/8V4B0444-2.jpg" alt="NYC" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC04963-4.jpg" alt="NYC">
+            <div class="imgGallery-column" data-category="nyc">
+                <a href="./Kangning Liu_files/DSC04963-4.jpg" class="lightbox-gallery" title="NYC">
+                    <img src="./Kangning Liu_files/DSC04963-4.jpg" alt="NYC" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC05142.jpeg" alt="NYC">
+            <div class="imgGallery-column" data-category="nyc">
+                <a href="./Kangning Liu_files/DSC05142.jpeg" class="lightbox-gallery" title="NYC">
+                    <img src="./Kangning Liu_files/DSC05142.jpeg" alt="NYC" loading="lazy">
+                </a>
             </div> 
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC07398.jpg" alt="NYC">
+            <div class="imgGallery-column" data-category="nyc">
+                <a href="./Kangning Liu_files/DSC07398.jpg" class="lightbox-gallery" title="NYC">
+                    <img src="./Kangning Liu_files/DSC07398.jpg" alt="NYC" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC07301.jpg" alt="NYC">
+            <div class="imgGallery-column" data-category="nyc">
+                <a href="./Kangning Liu_files/DSC07301.jpg" class="lightbox-gallery" title="NYC">
+                    <img src="./Kangning Liu_files/DSC07301.jpg" alt="NYC" loading="lazy">
+                </a>
             </div> 
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC08667.jpg" alt="NYC">
+            <div class="imgGallery-column" data-category="nyc">
+                <a href="./Kangning Liu_files/DSC08667.jpg" class="lightbox-gallery" title="NYC">
+                    <img src="./Kangning Liu_files/DSC08667.jpg" alt="NYC" loading="lazy">
+                </a>
             </div>
 
             <!-- Industrial & Night -->
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC09256.jpeg" alt="Night">
+            <div class="imgGallery-column" data-category="night">
+                <a href="./Kangning Liu_files/DSC09256.jpeg" class="lightbox-gallery" title="Night">
+                    <img src="./Kangning Liu_files/DSC09256.jpeg" alt="Night" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC09385.jpeg" alt="Night">
+            <div class="imgGallery-column" data-category="night">
+                <a href="./Kangning Liu_files/DSC09385.jpeg" class="lightbox-gallery" title="Night">
+                    <img src="./Kangning Liu_files/DSC09385.jpeg" alt="Night" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC09265.jpeg" alt="Night">
+            <div class="imgGallery-column" data-category="night">
+                <a href="./Kangning Liu_files/DSC09265.jpeg" class="lightbox-gallery" title="Night">
+                    <img src="./Kangning Liu_files/DSC09265.jpeg" alt="Night" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC06520-3.jpeg" alt="SteelRacks">
+            <div class="imgGallery-column" data-category="industrial">
+                <a href="./Kangning Liu_files/DSC06520-3.jpeg" class="lightbox-gallery" title="SteelRacks">
+                    <img src="./Kangning Liu_files/DSC06520-3.jpeg" alt="SteelRacks" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC06601-2.jpeg" alt="SteelRacks">
+            <div class="imgGallery-column" data-category="industrial">
+                <a href="./Kangning Liu_files/DSC06601-2.jpeg" class="lightbox-gallery" title="SteelRacks">
+                    <img src="./Kangning Liu_files/DSC06601-2.jpeg" alt="SteelRacks" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC06482-4.jpeg" alt="SteelRacks">
+            <div class="imgGallery-column" data-category="industrial">
+                <a href="./Kangning Liu_files/DSC06482-4.jpeg" class="lightbox-gallery" title="SteelRacks">
+                    <img src="./Kangning Liu_files/DSC06482-4.jpeg" alt="SteelRacks" loading="lazy">
+                </a>
             </div>
 
             <!-- Nature & Travels -->
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC05394.jpg" alt="Vermont">
+            <div class="imgGallery-column" data-category="nature">
+                <a href="./Kangning Liu_files/DSC05394.jpg" class="lightbox-gallery" title="Vermont">
+                    <img src="./Kangning Liu_files/DSC05394.jpg" alt="Vermont" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC05554-2.jpg" alt="Vermont">
+            <div class="imgGallery-column" data-category="nature">
+                <a href="./Kangning Liu_files/DSC05554-2.jpg" class="lightbox-gallery" title="Vermont">
+                    <img src="./Kangning Liu_files/DSC05554-2.jpg" alt="Vermont" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC05782.jpg" alt="Vermont">
+            <div class="imgGallery-column" data-category="nature">
+                <a href="./Kangning Liu_files/DSC05782.jpg" class="lightbox-gallery" title="Vermont">
+                    <img src="./Kangning Liu_files/DSC05782.jpg" alt="Vermont" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC05962.jpg" alt="Oregon">
+            <div class="imgGallery-column" data-category="nature">
+                <a href="./Kangning Liu_files/DSC05962.jpg" class="lightbox-gallery" title="Oregon">
+                    <img src="./Kangning Liu_files/DSC05962.jpg" alt="Oregon" loading="lazy">
+                </a>
             </div>
-            <div class="imgGallery-column">
-                <img src="./Kangning Liu_files/DSC05801.jpg" alt="Oregon">
+            <div class="imgGallery-column" data-category="nature">
+                <a href="./Kangning Liu_files/DSC05801.jpg" class="lightbox-gallery" title="Oregon">
+                    <img src="./Kangning Liu_files/DSC05801.jpg" alt="Oregon" loading="lazy">
+                </a>
             </div>
         </div>
     </div>
@@ -1321,8 +1426,25 @@
             src="//clustrmaps.com/map_v2.js?d=nk2suWeO4QvLQb3OSDKbWMWpp_rc2lrGUiGq_rrnFQg&cl=ffffff&w=a"></script>
 </div>
 
-<script>
+<!-- Back to Top Button -->
+<button id="backToTop" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery (required for custom script) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.js"></script>
+
+    <script>
     $(document).ready(function() {
+        // Publication Filter Logic with Counter
+        function updateFilterCount() {
+            var visibleCount = $('.publication-item:visible').length;
+            var totalCount = $('.publication-item').length;
+            $('#filter-count').text(`Showing ${visibleCount} of ${totalCount} papers`);
+        }
+
         $('.filter-btn').click(function() {
             var filterValue = $(this).attr('data-filter');
             
@@ -1332,7 +1454,9 @@
             
             // Filter items
             if(filterValue === 'all') {
-                $('.publication-item').fadeIn('fast');
+                $('.publication-item').fadeIn('fast', function() {
+                    updateFilterCount();
+                });
             } else {
                 $('.publication-item').each(function() {
                     var itemCategories = $(this).attr('data-category');
@@ -1341,8 +1465,67 @@
                     } else {
                         $(this).fadeOut('fast');
                     }
+                }).promise().done(function() {
+                    updateFilterCount();
                 });
             }
+        });
+
+        // Initialize Publication Counter
+        updateFilterCount();
+
+        // Photography Filter Logic
+        $('.photo-filter-btn').click(function() {
+            var filterValue = $(this).attr('data-filter');
+            
+            // Update active button
+            $('.photo-filter-btn').removeClass('active');
+            $(this).addClass('active');
+            
+            // Filter items
+            if(filterValue === 'all') {
+                $('.imgGallery-column').fadeIn('fast');
+            } else {
+                $('.imgGallery-column').each(function() {
+                    var itemCategory = $(this).attr('data-category');
+                    if(itemCategory === filterValue) {
+                        $(this).fadeIn('fast');
+                    } else {
+                        $(this).fadeOut('fast');
+                    }
+                });
+            }
+        });
+
+        // Lightbox Initialization
+        var lightbox = new SimpleLightbox('.imgGallery-column:visible a', { 
+            captionsData: 'alt',
+            captionDelay: 250,
+            animationSpeed: 250,
+            fadeSpeed: 200
+        });
+        
+        // Refresh Lightbox on filter change
+        $('.photo-filter-btn').on('click', function() {
+             setTimeout(function(){
+                 lightbox.refresh();
+             }, 300); 
+        });
+
+        // Back to Top Button
+        var btn = $('#backToTop');
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > 300) {
+                btn.fadeIn();
+            } else {
+                btn.fadeOut();
+            }
+        });
+
+        btn.on('click', function(e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop:0}, '300');
         });
     });
 </script>
