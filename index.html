@@ -33,6 +33,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
 
+        html {
+            /* Prevent in-page anchor targets from being hidden under the sticky navbar */
+            scroll-padding-top: 90px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
 
         /* Reset */
         body, h1, h2, h3, p {
@@ -675,7 +692,6 @@
             I am currently seeking research interns for the Summer of 2025. Please feel free to drop me an email if you are interested.
             </p> -->
             <!-- Internship and Job Search -->
-            <p style="margin-top:3%; text-align:justify;">
 <!--                I was a Research Intern at <a href="https://about.google">Google</a> in Mountain View during the summer-->
 <!--                of 2022. During the summer of 2023, I was a Research Scientist Intern at <a-->
 <!--                    href="https://www.adobe.com/">Adobe</a> in San Jose, working on advancing the segmentation-->
@@ -1049,8 +1065,7 @@
                         <p><u><b>Kangning Liu*</b></u>,Weicheng Zhu* <u>(*Equal contribution)</u>, Yiqiu Shen, Sheng
                             Liu, Narges Razavian, Krzysztof J. Geras, Carlos Fernandez-Granda. </p>
                         <p> [CVPR 2023]</p>
-                        <p class="justified-text">
-                        <p>In this paper, we introduce Iterative Self-Paced Supervised Contrastive Learning (Its2CLR), a
+                        <p class="justified-text">In this paper, we introduce Iterative Self-Paced Supervised Contrastive Learning (Its2CLR), a
                             novel method for learning high-quality instance-level representations in Multiple Instance
                             Learning (MIL). Key features of our method: 1) self-paced learning to handle label noise and
                             uncertainty; 2) supervised contrastive learning to learn discriminative instance-level
@@ -1477,6 +1492,14 @@
 
     <script>
     $(document).ready(function() {
+        // Button accessibility: mirror "active" visual state with aria-pressed
+        function syncAriaPressed($buttons) {
+            $buttons.each(function() {
+                var isActive = $(this).hasClass('active');
+                $(this).attr('aria-pressed', isActive ? 'true' : 'false');
+            });
+        }
+
         // Publication Filter Logic with Counter
         function updateFilterCount() {
             var visibleCount = $('.publication-item:visible').length;
@@ -1490,10 +1513,11 @@
             // Update active button
             $('.filter-btn').removeClass('active');
             $(this).addClass('active');
+            syncAriaPressed($('.filter-btn'));
             
             // Filter items
             if(filterValue === 'all') {
-                $('.publication-item').fadeIn('fast', function() {
+                $('.publication-item').fadeIn('fast').promise().done(function() {
                     updateFilterCount();
                 });
             } else {
@@ -1512,6 +1536,7 @@
 
         // Initialize Publication Counter
         updateFilterCount();
+        syncAriaPressed($('.filter-btn'));
 
         // Photography Filter Logic
         $('.photo-filter-btn').click(function() {
@@ -1520,6 +1545,7 @@
             // Update active button
             $('.photo-filter-btn').removeClass('active');
             $(this).addClass('active');
+            syncAriaPressed($('.photo-filter-btn'));
             
             // Filter items
             if(filterValue === 'all') {
@@ -1535,9 +1561,10 @@
                 });
             }
         });
+        syncAriaPressed($('.photo-filter-btn'));
 
         // Lightbox Initialization
-        var lightbox = new SimpleLightbox('.imgGallery-column:visible a', { 
+        var lightbox = new SimpleLightbox('.imgGallery-row a.lightbox-gallery', { 
             captionsData: 'alt',
             captionDelay: 250,
             animationSpeed: 250,
