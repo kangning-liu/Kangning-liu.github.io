@@ -727,9 +727,13 @@
 
                 <ul class="project-list alt justified-text">
     
-                    <li><strong>Generative AI & MLLMs:</strong> Enhance the grounding ability of multimodal large language models by integrating advanced reasoning capabilities and fine-grained understanding. These models enable a wide spectrum of applications, ranging from generative AI data creation and reward modeling for GenAI training to AI agent tool calling. For example, our "selectionByPrompt" feature <a href="https://blog.adobe.com/en/publish/2025/12/10/edit-photoshop-chatgpt">[Adobe Blog]</a> enables users to select things in an image using natural language with <strong>Adobe Photoshop</strong> in <a href="https://chatgpt.com/">ChatGPT</a>.</li>
+                    <li><strong>Multimodal Grounding &amp; Reasoning:</strong> Enhance the grounding ability of multimodal large language models by integrating advanced reasoning capabilities and fine-grained understanding. These models enable a wide spectrum of applications, ranging from generative AI data creation and reward modeling for GenAI training to AI agent tool calling. For example, our "selectionByPrompt" feature <a href="https://blog.adobe.com/en/publish/2025/12/10/edit-photoshop-chatgpt">[Adobe Blog]</a> enables users to select things in an image using natural language with <strong>Adobe Photoshop</strong> in <a href="https://chatgpt.com/">ChatGPT</a>.
+                        <br><span style="font-size: 0.9em; color: #7f8c8d; margin-right: 5px;">Related publications:</span> <a href="#pub-vgent" class="pub-link"><i class="fas fa-file-alt"></i> VGent</a> <a href="#pub-ras" class="pub-link"><i class="fas fa-file-alt"></i> RAS</a></li>
+                    <li><strong>Unified Understanding &amp; Generation:</strong> Working on unified frameworks that bring powerful visual comprehension—reasoning, grounding, and fine-grained perception—into generative models, enabling a single architecture to both understand and create visual content.
+                        <br><span style="font-size: 0.9em; color: #7f8c8d; margin-right: 5px;">Related publications:</span> <a href="#pub-lavida-o" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-O</a> <a href="#pub-lavida-r1" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-R1</a> <a href="#pub-sparse-lavida" class="pub-link"><i class="fas fa-file-alt"></i> Sparse-LaViDa</a></li>
                     <li><strong>Vision Foundation Model:</strong> Developed cutting-edge segmentation technologies to enhance Adobe products. 
-                        Contributions include core features deployed in Adobe Photoshop’s newest selection tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4"> [Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in Adobe Lightroom, Adobe Express.</li>
+                        Contributions include core features deployed in Adobe Photoshop's newest selection tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4"> [Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in Adobe Lightroom, Adobe Express.
+                        <br><span style="font-size: 0.9em; color: #7f8c8d; margin-right: 5px;">Related publications:</span> <a href="#pub-sum" class="pub-link"><i class="fas fa-file-alt"></i> SUM</a> <a href="#pub-sve" class="pub-link"><i class="fas fa-file-alt"></i> SVE</a> <a href="#pub-consamme" class="pub-link"><i class="fas fa-file-alt"></i> conSAMmé</a></li>
                 </ul>
             </li>
         </ul>
@@ -867,7 +871,7 @@
         </div>
 
         <ul class="vert pub-list">
-            <li class="publication-item" data-category="mllm">
+            <li class="publication-item" id="pub-lavida-r1" data-category="mllm">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -893,7 +897,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" data-category="mllm">
+            <li class="publication-item" id="pub-vgent" data-category="mllm">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -920,7 +924,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" data-category="mllm">
+            <li class="publication-item" id="pub-sparse-lavida" data-category="mllm">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -944,7 +948,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" data-category="mllm">
+            <li class="publication-item" id="pub-lavida-o" data-category="mllm">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -969,7 +973,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" data-category="mllm">
+            <li class="publication-item" id="pub-ras" data-category="mllm">
                 <div class="row">
                     <!-- Publication Details -->
                     <div class="custom-col-img" style="padding: 10px;">
@@ -992,7 +996,7 @@
                 </div>
             </li>
 
-            <li class="publication-item" data-category="foundation">
+            <li class="publication-item" id="pub-sve" data-category="foundation">
                 <div class="row">
                     <!-- Publication Details -->
                     <div class="custom-col-img" style="padding: 10px;">
@@ -1012,7 +1016,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" data-category="foundation">
+            <li class="publication-item" id="pub-consamme" data-category="foundation">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -1038,7 +1042,7 @@
             </li>
 
 
-            <li class="publication-item" data-category="foundation imperfect">
+            <li class="publication-item" id="pub-sum" data-category="foundation imperfect">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -1587,6 +1591,33 @@
         // Initialize Publication Counter
         updateFilterCount();
         syncAriaPressed($('.filter-btn'));
+
+        // Handle in-page anchor clicks to publication items
+        // Reset filter to "All" so the target is visible, then scroll to it
+        $('a[href^="#pub-"]').on('click', function(e) {
+            e.preventDefault();
+            var targetId = $(this).attr('href');
+            var $target = $(targetId);
+            if ($target.length) {
+                // Reset filter to "All"
+                $('.filter-btn').removeClass('active');
+                $('.filter-btn[data-filter="all"]').addClass('active');
+                syncAriaPressed($('.filter-btn'));
+                $('.publication-item').show();
+                updateFilterCount();
+                // Scroll to the target publication, then briefly highlight it
+                $('html, body').animate({
+                    scrollTop: $target.offset().top - 100
+                }, 400, function() {
+                    $target.css('transition', 'box-shadow 0.3s ease');
+                    $target.css('box-shadow', '0 0 0 3px #3498db');
+                    setTimeout(function() {
+                        $target.css('box-shadow', '');
+                        setTimeout(function() { $target.css('transition', ''); }, 300);
+                    }, 1500);
+                });
+            }
+        });
 
         // Photography Filter Logic
         $('.photo-filter-btn').click(function() {
