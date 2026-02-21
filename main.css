@@ -72,7 +72,7 @@ body, h1, h2, h3, p {
 body {
     font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
     color: var(--text-color);
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.75;
     background-color: var(--bg-color);
     transition: background-color 0.3s ease, color 0.3s ease;
