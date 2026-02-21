@@ -31,568 +31,12 @@
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <style>
-
-        html {
-            /* Prevent in-page anchor targets from being hidden under the sticky navbar */
-            scroll-padding-top: 90px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* Reset */
-        body, h1, h2, h3, p {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Merriweather', serif;
-            color: #333;
-            font-size: 17px;
-            line-height: 1.8;
-            background-color: #fcfcfc;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        /* Basic Styles */
-        .navbar {
-            background-color: #2c3e50;
-            color: white;
-            font-family: 'Lato', sans-serif;
-            border: none;
-            border-radius: 0;
-            margin-bottom: 40px;
-            position: sticky;
-            top: 0;
-            z-index: 1030;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 0.5rem 1rem;
-        }
-
-        /* Style for navbar links */
-        .navbar-nav .nav-item {
-            list-style-type: none;
-        }
-
-        .navbar-nav .nav-link {
-            color: #ecf0f1 !important;
-            padding: 15px !important;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            transition: color 0.3s ease;
-        }
-
-        /* On Hover */
-        .navbar-nav .nav-link:hover {
-            background-color: transparent;
-            color: #3498db !important;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 0 20px;
-        }
-
-
-        /* Masonry Gallery Layout - Reverted to Scroll with Filters */
-        .imgGallery-row {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding-bottom: 15px; /* Space for scrollbar */
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            scrollbar-width: thin; /* Firefox */
-        }
-
-        /* Custom Scrollbar */
-        .imgGallery-row::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .imgGallery-row::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-
-        .imgGallery-row::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 4px;
-        }
-
-        .imgGallery-row::-webkit-scrollbar-thumb:hover {
-            background: #aaa;
-        }
-
-        .imgGallery-column {
-            flex: 0 0 300px; /* Fixed width for each image card */
-            max-width: 300px;
-            padding: 0;
-            box-sizing: border-box;
-            display: block; /* Default to block for visibility */
-        }
-
-        .imgGallery-column img {
-            width: 100%;
-            height: 200px; /* Fixed height for uniformity */
-            object-fit: cover; /* Crop image to fit */
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform .3s ease-in-out, box-shadow .3s ease;
-            display: block;
-        }
-
-        .imgGallery-column img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-        }
-        
-        /* Photo Filter Buttons */
-        .photo-filter-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .photo-filter-btn {
-            display: inline-block;
-            padding: 10px 22px;
-            margin: 4px;
-            font-family: 'Lato', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #7f8c8d;
-            background-color: white;
-            border: 1px solid #ecf0f1;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .photo-filter-btn:hover {
-            background-color: #f9f9f9;
-            color: #3498db;
-            border-color: #3498db;
-        }
-
-        .photo-filter-btn.active {
-            background-color: #3498db;
-            color: white;
-            border-color: #3498db;
-        }
-        
-        /* Back to Top Button */
-        #backToTop {
-            display: none;
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 99;
-            border: none;
-            outline: none;
-            background-color: #3498db;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: background-color 0.3s, transform 0.3s;
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            line-height: 20px;
-        }
-        
-        #backToTop:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
-        }
-
-        .imgGallery-section-title {
-            font-family: 'Lato', sans-serif;
-            font-size: 1.3rem;
-            font-weight: bold;
-            text-align: left;
-            color: #7f8c8d;
-            margin-top: 20px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
-
-        .company-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 10px;
-        }
-
-        .company-header img {
-            width: 50px;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .company-title {
-            margin: 0;
-            font-family: 'Lato', sans-serif;
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        .location-time {
-            font-family: 'Lato', sans-serif;
-            color: #7f8c8d;
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        
-        .position-advisors {
-            font-family: 'Merriweather', serif;
-            font-weight: bold;
-            color: #34495e;
-            margin-bottom: 15px;
-        }
-
-        .project-list {
-            font-family: 'Merriweather', serif;
-            margin-top: 15px;
-            text-align: justify;
-            padding-left: 20px;
-        }
-        
-        .project-list li {
-            margin-bottom: 12px;
-        }
-
-        .publication-img {
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            margin-right: 25px; 
-            transition: transform 0.2s;
-        }
-        
-        .publication-img:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-
-
-        .justified-text {
-            text-align: justify;
-        }
-        
-        /* Link Styles */
-        a {
-            color: #2980b9;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        a:hover {
-            color: #c0392b;
-            text-decoration: none;
-        }
-
-        /* Filter Buttons */
-        .filter-container {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .filter-btn {
-            display: inline-block;
-            padding: 11px 26px;
-            margin: 6px;
-            font-family: 'Lato', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #7f8c8d;
-            background-color: white;
-            border: 2px solid #ecf0f1; /* Slightly thicker border */
-            border-radius: 30px; /* More rounded pill */
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .filter-btn:hover {
-            background-color: #f9f9f9;
-            color: #3498db;
-            border-color: #3498db;
-            transform: translateY(-1px);
-        }
-
-        .filter-btn.active {
-            background-color: #3498db;
-            color: white;
-            border-color: #3498db;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-        }
-
-        /* Button/Link Badges */
-        .pub-link {
-            display: inline-block;
-            padding: 8px 18px;
-            margin: 5px 5px 5px 0;
-            font-family: 'Lato', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #3498db;
-            background-color: transparent;
-            border: 1px solid #3498db;
-            border-radius: 20px; /* Pill shape */
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .pub-link:hover {
-            background-color: #3498db;
-            color: white !important;
-            text-decoration: none;
-            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
-            transform: translateY(-1px);
-        }
-        
-        .pub-link.disabled {
-            color: #95a5a6;
-            border-color: #bdc3c7;
-            cursor: default;
-            pointer-events: none;
-        }
-
-        .pub-link.disabled:hover {
-            background-color: transparent;
-            color: #95a5a6 !important;
-            box-shadow: none;
-            transform: none;
-        }
-        
-        .pub-link i {
-            margin-right: 5px;
-        }
-
-        /* Publication text spacing */
-        .pub-list .custom-col-text p {
-            margin-bottom: 0.45rem;
-        }
-
-        .pub-list .custom-col-text p.justified-text {
-            margin-top: 0.8rem;
-        }
-
-        /* Default (Mobile First) */
-        .custom-col-img,
-        .custom-col-text {
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
-
-        /* Landscape / wider screens */
-        @media screen and (orientation: landscape) {
-            .custom-col-img {
-                flex: 0 0 45%;
-                max-width: 45%;
-            }
-
-            .custom-col-text {
-                flex: 0 0 55%;
-                max-width: 55%;
-                padding-left: 20px;
-                text-align: justify;
-            }
-        }
-
-        /* Portrait */
-        @media screen and (orientation: portrait) {
-            .custom-col-img {
-                flex: 0 0 100%;
-                max-width: 100%;
-                margin-bottom: 20px;
-            }
-
-            .custom-col-text {
-                flex: 0 0 100%;
-                max-width: 100%;
-                text-align: justify;
-            }
-        }
-
-
-        ul.vert {
-            padding: 0;
-            background-color: transparent;
-            list-style-type: none;
-        }
-
-        ul.vert > li {
-            background-color: white;
-            border-radius: 12px;
-            border: none;
-            padding: 30px;
-            margin-bottom: 30px;
-            list-style-type: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        ul.vert > li:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
-        }
-
-        /* Header Refinements */
-        h2 {
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-top: 50px;
-            margin-bottom: 30px;
-            font-weight: 300;
-            color: #2c3e50;
-            display: inline-block;
-        }
-
-        p {
-            font-family: 'Merriweather', serif;
-            color: #444;
-            line-height: 1.8em;
-        }
-
-        .post-meta {
-            color: #999;
-            font-size: 90%;
-            margin: 0;
-        }
-
-        .post-category {
-            margin: 0 0.1em;
-            padding: 0.3em 1em;
-            color: #fff;
-            background: #999;
-            font-size: 80%;
-        }
-
-        .post-category-design {
-            background: #5aba59;
-        }
-
-        .post-category-pure {
-            background: #4d85d1;
-        }
-
-        .post-category-yui {
-            background: #8156a7;
-        }
-
-        .post-category-js {
-            background: #df2d4f;
-        }
-
-        .post-images {
-            margin: 1em 0;
-        }
-
-        .post-image-meta {
-            margin-top: -3.5em;
-            margin-left: 1em;
-            color: #fff;
-            text-shadow: 0 1px 1px #333;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 1em 0;
-        }
-
-        .footer a {
-            color: #ccc;
-            font-size: 80%;
-        }
-
-        .footer .pure-menu a:hover,
-        .footer .pure-menu a:focus {
-            background: none;
-        }
-
-        @media (min-width: 48em) {
-            .content {
-                padding: 2em 3em 0;
-                margin-left: 25%;
-            }
-
-            .header {
-                margin: 80% 2em 0;
-                text-align: right;
-            }
-
-            .sidebar {
-                position: fixed;
-                top: 0;
-                bottom: 0;
-            }
-
-            .nav-item {
-                display: block;
-            }
-        }
-
-
-        /* Refinements for Profile and Mobile */
-        .profile-name {
-            font-size: 3rem;
-            color: #000000;
-            font-family: 'Merriweather', serif;
-            line-height: 1.2;
-            margin-bottom: 10px;
-        }
-
-        .profile-subtitle {
-            font-size: 1.2rem;
-            color: #555;
-            font-family: 'Merriweather', serif;
-            margin-top: 10px;
-            line-height: 1.5;
-        }
-
-        @media (max-width: 768px) {
-            .profile-name {
-                font-size: 2.2rem;
-            }
-            
-            .justified-text {
-                text-align: left;
-            }
-        }
-
-    </style>
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Load your custom CSS -->
-    <link rel="stylesheet" href="firstcss.css">
+    <link rel="stylesheet" href="main.css">
 
     <!-- Load the font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -604,10 +48,60 @@
 
     <title>Kangning Liu - Research Scientist | Computer Vision & AI</title>
 
+    <!-- JSON-LD Person Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Kangning Liu",
+        "alternateName": "刘康宁",
+        "url": "https://kangning-liu.github.io/",
+        "image": "https://kangning-liu.github.io/Kangning Liu_files/kangning.jpeg",
+        "jobTitle": "Research Scientist",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Adobe",
+            "url": "https://www.adobe.com/"
+        },
+        "alumniOf": [
+            {
+                "@type": "CollegeOrUniversity",
+                "name": "New York University",
+                "department": "Center for Data Science"
+            },
+            {
+                "@type": "CollegeOrUniversity",
+                "name": "ETH Zurich"
+            },
+            {
+                "@type": "CollegeOrUniversity",
+                "name": "Tsinghua University"
+            }
+        ],
+        "knowsAbout": ["Multimodal Large Language Models", "Vision Foundation Models", "Computer Vision", "Deep Learning", "Image Segmentation"],
+        "sameAs": [
+            "https://scholar.google.com/citations?user=F3F2qAkAAAAJ&hl=en",
+            "https://github.com/Kangningthu",
+            "https://www.linkedin.com/in/kangning-liu-14600282/"
+        ]
+    }
+    </script>
+
     <meta name="description" content="Personal website of Kangning Liu, Research Scientist at Adobe. PhD from NYU Center for Data Science. Research focus: MLLMs, Vision Foundation Models, and Robust Deep Learning.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Kangning Liu - Research Scientist | Computer Vision & AI">
+    <meta property="og:description" content="Research Scientist at Adobe. PhD from NYU. Research focus: Multimodal Large Language Models, Vision Foundation Models, and Robust Deep Learning.">
+    <meta property="og:image" content="https://kangning-liu.github.io/Kangning Liu_files/kangning.jpeg">
+    <meta property="og:url" content="https://kangning-liu.github.io/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kangning Liu - Research Scientist | Computer Vision & AI">
+    <meta name="twitter:description" content="Research Scientist at Adobe. PhD from NYU. Research focus: MLLMs, Vision Foundation Models, and Robust Deep Learning.">
+    <meta name="twitter:image" content="https://kangning-liu.github.io/Kangning Liu_files/kangning.jpeg">
 </head>
-<body data-new-gr-c-s-check-loaded="14.1088.0" data-gr-ext-installed="">
+<body>
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6MLN9P"
@@ -628,7 +122,14 @@
                 <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
                 <li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>
                 <li class="nav-item"><a class="nav-link" href="#service">Service</a></li>
-                <li class="nav-item"><a class="nav-link" href="#photography">Miscellaneous</a></li>
+                <li class="nav-item"><a class="nav-link" href="#photography">Photography</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <button id="theme-toggle" class="nav-link" style="background: none; border: none; cursor: pointer; padding: 15px !important;" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                    </button>
+                </li>
             </ul>
         </div>
     </div>
@@ -636,10 +137,10 @@
 
 
 <!-- Page Content -->
-<div class="container">
+<main class="container">
 
-    <div class="row">
-        <div class="col-md-4 col-sm-12 custom-col-img">
+    <section class="row align-items-center" id="about" style="margin-bottom: 50px;">
+        <div class="col-md-4 col-sm-12" style="text-align: center;">
             <!--<div style="font-size: 2rem;"><b>Kangning Liu (刘康宁)</b></div><br>-->
             <div class="profile-name">
                 <b>Kangning Liu (刘康宁)</b>
@@ -649,12 +150,20 @@
             </div>
             <br>
             <img class="img-fluid" src="./Kangning Liu_files/kangning.jpeg" alt="Kangning Liu Profile Picture"
-                 style="max-width:90%;height:auto;" loading="lazy">
+                 style="max-width:90%;height:auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" loading="lazy">
+                 
+            <!-- Social Icons & CV -->
+            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="https://scholar.google.com/citations?user=F3F2qAkAAAAJ&hl=en" target="_blank" style="font-size: 15px; color: var(--heading-color); transition: color 0.3s;"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://github.com/Kangningthu" target="_blank" style="font-size: 15px; color: var(--heading-color); transition: color 0.3s;"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/kangning-liu-14600282/" target="_blank" style="font-size: 15px; color: var(--heading-color); transition: color 0.3s;"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:kangning.liu@nyu.edu" style="font-size: 15px; color: var(--heading-color); transition: color 0.3s;"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
 
 
         <!-- Entries Column -->
-        <div class="col-md-8 col-sm-12 custom-col-text">
+        <div class="col-md-8 col-sm-12" style="padding-left: 30px;">
 
             <!-- Main Image -->
             <!--              -->
@@ -671,23 +180,44 @@
                 and my B.E. in Electrical Engineering from <a href="https://www.tsinghua.edu.cn/en/">Tsinghua
                 University</a>.
             </p>
-            <p style="margin-top:3%; text-align:justify;">
-                <strong>Research Focus:</strong> My research centers on multimodal large language models, vision foundation models, and large-scale data/annotation systems—bridging cutting-edge research with real-world impact.
-                <!-- I have published at top-tier venues (e.g. <strong>NeurIPS, CVPR, ICCV</strong>) and successfully transferred technology into production systems across key Adobe products including <strong>Photoshop</strong>, <strong>Lightroom</strong>, <strong>Express</strong>, and <strong>Firefly</strong>. -->
-            </p>
-            <p style="margin-top:3%; text-align:justify;">    
-                My current work focuses on fine-grained image understanding through vision-language modeling, enabling applications from generative AI data creation and reward modeling to AI agent tool calling and creative workflows. For example, the "selectionByPrompt" feature <a href="https://blog.adobe.com/en/publish/2025/12/10/edit-photoshop-chatgpt">[Adobe Blog]</a> enables users to select things in an image using natural language with <strong>Adobe Photoshop</strong> in <a href="https://chatgpt.com/">ChatGPT</a>.
-                My previous research on segmentation foundation models has been deployed in the latest selection tools in <strong>Adobe Photoshop</strong> <a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>, remove background in <strong>Adobe Firefly</strong> <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in <strong>Adobe Lightroom</strong> <a href="https://helpx.adobe.com/lightroom-classic/help/whats-new/2025-3.html">[Feature Summary]</a> and <strong>Adobe Express</strong>—enabling users to isolate complex image elements with remarkable speed and precision.
-            </p>
 
             <p style="margin-top:3%; text-align:justify;">
+                <strong>Research Focus:</strong> I build large-scale vision and multimodal foundation models that bridge cutting-edge research with real-world industrial impact. 
+            </p>
+            <p style="margin-top:3%; text-align:justify;">    
+                My current work focuses on advancing multimodal understanding and integrating powerful visual comprehension into generative models. These frameworks enable a wide spectrum of applications, from GenAI data creation and reward modeling to equipping intelligent agents with complex tool-calling capabilities.
+                My research has been published at top-tier venues (e.g., <strong>NeurIPS, CVPR, ICCV, ICLR</strong>) and deployed in production features across <strong>Adobe Photoshop</strong>, <strong>Lightroom</strong>, <strong>Express</strong>, and <strong>Firefly</strong>, impacting millions of users worldwide.
+            </p>
+ 
+
+            <!-- <p style="margin-top:3%; text-align:justify;">
+                <strong>Research Focus:</strong> My research centers on multimodal large language models, vision foundation models, and large-scale data/annotation systems—bridging cutting-edge research with real-world impact.
+                <!-- I have published at top-tier venues (e.g. <strong>NeurIPS, CVPR, ICCV</strong>) and successfully transferred technology into production systems across key Adobe products including <strong>Photoshop</strong>, <strong>Lightroom</strong>, <strong>Express</strong>, and <strong>Firefly</strong>. -->
+            <!-- </p> -->
+            <!-- <p style="margin-top:3%; text-align:justify;">    
+                My current work focuses on fine-grained image understanding through vision-language modeling, enabling applications from generative AI data creation and reward modeling to AI agent tool calling and creative workflows. For example, the "selectionByPrompt" feature <a href="https://blog.adobe.com/en/publish/2025/12/10/edit-photoshop-chatgpt">[Adobe Blog]</a> enables users to select things in an image using natural language with <strong>Adobe Photoshop</strong> in <a href="https://chatgpt.com/">ChatGPT</a>.
+                My previous research on segmentation foundation models has been deployed in the latest selection tools in <strong>Adobe Photoshop</strong> <a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4">[Media Review]</a>, remove background in <strong>Adobe Firefly</strong> <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in <strong>Adobe Lightroom</strong> <a href="https://helpx.adobe.com/lightroom-classic/help/whats-new/2025-3.html">[Feature Summary]</a> and <strong>Adobe Express</strong>—enabling users to isolate complex image elements with remarkable speed and precision.
+            </p> -->
+
+            <!-- <p style="margin-top:3%; text-align:justify;">
                 During my Ph.D., I contributed to a range of research projects focused on learning under imperfect supervision. These include uncertainty-aware fine-tuning of segmentation foundation models (<a href="https://kangning-liu.github.io/SUM_website/">SUM</a>), noise-resilient
                 deep segmentation (<a href="https://github.com/Kangningthu/ADELE">ADELE</a>), weakly supervised segmentation (<a href="https://github.com/nyukat/GLAM">GLAM</a>), and unsupervised/self-supervised
                 learning (<a href="https://arxiv.org/abs/2210.09452">ItS2CLR</a>). Beyond this, my expertise extends to
                 video analysis (<a href="https://openreview.net/pdf?id=jIIzJaMbfw">StrokeRehab</a>) and video synthesis
                 (<a href="https://arxiv.org/abs/2004.06502">UVIT</a> & <a href="https://arxiv.org/abs/2304.14471">Controllable
                 Face Video Synthesis</a>).
-            </p>
+            </p> -->
+
+            <!-- News / Recent Updates Section -->
+            <div style="margin-top: 3%; background-color: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid var(--nav-hover);">
+                <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 14px;">Recent Updates</h3>
+                <ul style="margin-bottom: 0; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;"><b>Feb 2026:</b> Our paper "VGent" and "Sparse-LaViDa" were accepted to <strong>CVPR 2026</strong>!</li>
+                    <li style="margin-bottom: 8px;"><b>Jan 2026:</b> Our paper "LaViDa-O" was accepted to <strong>ICLR 2026</strong>!</li>
+                    <li style="margin-bottom: 8px;"><b>Dec 2025:</b> Released "selectionByPrompt" feature in <strong>Adobe Photoshop</strong> integrating into ChatGPT.</li>
+                    <li><b>July 2025:</b> Our paper "RAS" was accepted to <strong>ICCV 2025</strong>!</li>
+                </ul>
+            </div>
             <!-- <p style="margin-top:3%; text-align:justify;">
             I am currently seeking research interns for the Summer of 2025. Please feel free to drop me an email if you are interested.
             </p> -->
@@ -699,7 +229,7 @@
 
                 <!-- Contact Info and Links -->
             <p style="margin-top:3%; text-align:justify;">
-                For more details, feel free to contact me at <b>kangning.liu[at]nyu.edu</b>. You can also find me on <a
+                For more details, feel free to reach out via email at <b>kangning.liu[at]nyu.edu</b> (still active). You can also find me on <a
                     href="https://scholar.google.com/citations?user=F3F2qAkAAAAJ&hl=en">Google Scholar <i
                     class="fas fa-graduation-cap"></i></a> and <a
                     href="https://www.linkedin.com/in/kangning-liu-14600282/">LinkedIn <i
@@ -708,10 +238,10 @@
 
 
         </div>
-    </div>
+    </section>
 
 
-    <div class="col-md-12">
+    <section class="col-md-12">
         <h2 id="experience">Research Experience</h2>
 
         <ul class="vert">
@@ -731,8 +261,8 @@
                         <br><span style="font-size: 0.9em; color: #7f8c8d; margin-right: 5px;">Related publications:</span> <a href="#pub-vgent" class="pub-link"><i class="fas fa-file-alt"></i> VGent [CVPR 2026]</a> <a href="#pub-ras" class="pub-link"><i class="fas fa-file-alt"></i> RAS [ICCV 2025]</a></li>
                     <li><strong>Unified Understanding &amp; Generation:</strong> Working on unified frameworks that bring powerful visual comprehension—reasoning, grounding, and fine-grained perception—into generative models, enabling a single architecture to both understand and create visual content.
                         <br><span style="font-size: 0.9em; color: #7f8c8d; margin-right: 5px;">Related publications:</span> <a href="#pub-lavida-o" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-O [ICLR 2026]</a>  <a href="#pub-sparse-lavida" class="pub-link"><i class="fas fa-file-alt"></i> Sparse-LaViDa [CVPR 2026]</a> <a href="#pub-lavida-r1" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-R1 [Preprint]</a> </li>
-                    <li><strong>Vision Foundation Model:</strong> Developed cutting-edge segmentation technologies to enhance Adobe products. 
-                        Contributions include core features deployed in Adobe Photoshop's newest selection tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4"> [Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in Adobe Lightroom, Adobe Express.
+                    <li><strong>Vision Foundation Model:</strong> Developed cutting-edge segmentation foundation models to enhance Adobe products. 
+                        Contributions include core features deployed in Adobe Photoshop's newest selection tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4"> [Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in Adobe Lightroom <a href="https://helpx.adobe.com/lightroom-classic/help/whats-new/2025-3.html">[Feature Summary]</a> , Adobe Express.
                         <br><span style="font-size: 0.9em; color: #7f8c8d; margin-right: 5px;">Related publications:</span> <a href="#pub-sum" class="pub-link"><i class="fas fa-file-alt"></i> SUM [NeurIPS 2024]</a> <a href="#pub-sve" class="pub-link"><i class="fas fa-file-alt"></i> SVE [BMVC 2025]</a> <a href="#pub-consamme" class="pub-link"><i class="fas fa-file-alt"></i> conSAMmé [CVPRW 2025]</a></li>
                 </ul>
             </li>
@@ -849,17 +379,17 @@
                 </ul>
             </li>
         </ul>
-    </div>
+    </section>
 
     <!-- Links on the Sidebar -->
 
-    <div class="col-md-12">
+    <section class="col-md-12">
         <!-- Old: <div class="col-md-8" style="height: 120vh;"> -->
         <h2 id="publications">Publications</h2>
 
         <p>See also <a href="https://scholar.google.com/citations?user=F3F2qAkAAAAJ&hl=en">Google Scholar</a>.</p>
 
-        <div class="filter-container">
+        <div class="filter-container" role="toolbar" aria-label="Filter publications by category">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="mllm">MLLM</button>
             <button class="filter-btn" data-filter="foundation">Vision Foundation Model</button>
@@ -867,7 +397,7 @@
             <button class="filter-btn" data-filter="video-gen">Video Generation</button>
             <button class="filter-btn" data-filter="video-understanding">Video Understanding</button>
             <button class="filter-btn" data-filter="others">Others</button>
-            <div id="filter-count" style="margin-top: 10px; color: #7f8c8d; font-size: 1.2rem; font-style: italic;"></div>
+            <div id="filter-count" style="margin-top: 10px; color: #7f8c8d; font-size: 12px; font-style: italic;"></div>
         </div>
 
         <ul class="vert pub-list">
@@ -876,7 +406,7 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/Lavida-R1.png" alt="Publication Image"
+                        <img src="./Kangning Liu_files/Lavida-R1.png" alt="LaViDa-R1 framework for unified multimodal reasoning with diffusion language models"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -902,7 +432,7 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/crop_vgent_method_v2.png" alt="Publication Image"
+                        <img src="./Kangning Liu_files/crop_vgent_method_v2.png" alt="VGent modular architecture for disentangling reasoning and prediction in visual grounding"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -929,7 +459,7 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/Sparse-LaVida.png" alt="Publication Image"
+                        <img src="./Kangning Liu_files/Sparse-LaVida.png" alt="Sparse-LaViDa framework for accelerating masked discrete diffusion model sampling"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -953,7 +483,7 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/LaViDa-O.png" alt="Publication Image"
+                        <img src="./Kangning Liu_files/LaViDa-O.png" alt="LaViDa-O elastic masked diffusion model for unified multimodal understanding and generation"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -977,7 +507,7 @@
                 <div class="row">
                     <!-- Publication Details -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/RAS.jpg" alt="Publication Image"
+                        <img src="./Kangning Liu_files/RAS.jpg" alt="RAS framework for referring to segmentation mask groups with vision-language prompts"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -1000,7 +530,7 @@
                 <div class="row">
                     <!-- Publication Details -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/SVE.png" alt="Publication Image"
+                        <img src="./Kangning Liu_files/SVE.png" alt="SVE sparse vision encoder framework for efficient high-resolution inference"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -1021,7 +551,7 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/conSAMme.jpg" alt="Publication Image"
+                        <img src="./Kangning Liu_files/conSAMme.jpg" alt="conSAMme contrastive learning framework for consistent SAM segmentations"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -1047,7 +577,7 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/SUM_framework.png" alt="Publication Image"
+                        <img src="./Kangning Liu_files/SUM_framework.png" alt="SUM uncertainty-aware fine-tuning framework for segmentation foundation models"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -1080,7 +610,7 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/approach_v3.png" alt="Publication Image"
+                        <img src="./Kangning Liu_files/approach_v3.png" alt="Controllable one-shot face video synthesis approach with semantic aware prior"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -1106,7 +636,7 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/contrastive_learning_illustration.png" alt="Publication Image"
+                        <img src="./Kangning Liu_files/contrastive_learning_illustration.png" alt="ItS2CLR iterative self-paced supervised contrastive learning for multiple instance learning"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
 
@@ -1134,7 +664,7 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/ADELE.jpeg" alt="Publication Image"
+                        <img src="./Kangning Liu_files/ADELE.jpeg" alt="ADELE adaptive early-learning correction for segmentation from noisy annotations"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
@@ -1145,7 +675,7 @@
                         </p>
                         <p>Sheng Liu*, <u><b>Kangning Liu*</b></u><u> (*Equal contribution, order decided by coin
                             flip.)</u>, Weicheng Zhu, Yiqiu Shen, Carlos Fernandez-Granda. </p>
-                        <p> [CVPR 2022. <font color="#c0392b">Oral 4.2% acceptance rate</font>]</p>
+                        <p> [CVPR 2022. <span style="color: #c0392b;">Oral 4.2% acceptance rate</span>]</p>
                         <p class="justified-text">Deep learning in the presence of noisy annotations has been studied
                             extensively in classification, but much less in segmentation tasks. In this project, we
                             study the learning dynamics of deep segmentation networks trained on inaccurately-annotated
@@ -1319,59 +849,84 @@
 
         </ul>
 
-    </div>
+    </section>
 
-    <div class="col-md-12">
+    <section class="col-md-12">
         <h2 id="teaching">Teaching</h2>
         <ul class="vert">
             <li>
-                <p><b>Probability and Statistics for Data Science, NYU, Center for Data Science</b></p>
-                <p>Teaching Assistant (Sept - Dec 2021)</p>
+                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div style="font-size: 20px; color: var(--nav-hover); margin-top: 5px;"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div>
+                        <p style="margin-bottom: 5px; font-size: 11px; color: var(--heading-color);"><b>Probability and Statistics for Data Science</b></p>
+                        <p style="margin-bottom: 5px; color: var(--muted-text);">NYU, Center for Data Science</p>
+                        <p style="color: var(--heading-color);"><em>Teaching Assistant (Sept - Dec 2021)</em></p>
+                    </div>
+                </div>
             </li>
             <li>
-                <p><b>Advanced Machine Learning, ETH Zurich, Department of Computer Science</b></p>
-                <p>Teaching Assistant (Sept - Dec 2018)</p>
+                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div style="font-size: 20px; color: var(--nav-hover); margin-top: 5px;"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div>
+                        <p style="margin-bottom: 5px; font-size: 11px; color: var(--heading-color);"><b>Advanced Machine Learning</b></p>
+                        <p style="margin-bottom: 5px; color: var(--muted-text);">ETH Zurich, Department of Computer Science</p>
+                        <p style="color: var(--heading-color);"><em>Teaching Assistant (Sept - Dec 2018)</em></p>
+                    </div>
+                </div>
             </li>
         </ul>
+    </section>
 
-    </div>
-
-
-    <div class="col-md-12">
+    <section class="col-md-12">
         <h2 id="service">Service</h2>
         <ul class="vert">
             <li>
-                <p><b>Award</b></p>
-                <p> <a href="https://neurips.cc/Conferences/2024/ProgramCommittee#top-reviewers">Top Reviewer</a> for NeurIPS 2024</p>
+                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div style="font-size: 20px; color: #f1c40f; margin-top: 5px;"><i class="fas fa-trophy"></i></div>
+                    <div>
+                        <p style="margin-bottom: 5px; font-size: 11px; color: var(--heading-color);"><b>Awards</b></p>
+                        <ul class="project-list alt">
+                            <li><a href="https://neurips.cc/Conferences/2024/ProgramCommittee#top-reviewers">Top Reviewer</a> for NeurIPS 2024</li>
+                        </ul>
+                    </div>
+                </div>
             </li>
             <li>
-<!--                <p>Conference Reviewer for CVPR (2022, 2023, 2024), ICCV (2023), ECCV (2024), NeurIPS (2022, 2023, 2024), ICLR-->
+                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div style="font-size: 20px; color: #2ecc71; margin-top: 5px;"><i class="fas fa-clipboard-check"></i></div>
+                    <div>
+                        <p style="margin-bottom: 5px; font-size: 11px; color: var(--heading-color);"><b>Conference Reviewer</b></p>
+                        <p style="color: var(--text-color); line-height: 1.6;">CVPR, ICCV, ECCV, NeurIPS, ICLR, ICML, AISTATS, AAAI, WACV</p>
+                    </div>
+                </div>
+            </li>
+            <!--                <p>Conference Reviewer for CVPR (2022, 2023, 2024), ICCV (2023), ECCV (2024), NeurIPS (2022, 2023, 2024), ICLR-->
 <!--                    (2025), AISTATS (2024, 2025), AAAI (2023, 2024, 2025), WACV (2021, 2022, 2023) and MIDL (2022,-->
 <!--                    2023) </p>-->
-                <p><b>Conference Reviewer for</b></p>
-                <p>CVPR, ICCV, ECCV, NeurIPS, ICLR, ICML, AISTATS, AAAI, WACV</p>
-            </li>
             <li>
-                <p><b>Journal Reviewer for</b></p>
-                <p>TPAMI,TMLR, TNNLS, CVIU</p>
+                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div style="font-size: 20px; color: #e74c3c; margin-top: 5px;"><i class="fas fa-book-open"></i></div>
+                    <div>
+                        <p style="margin-bottom: 5px; font-size: 11px; color: var(--heading-color);"><b>Journal Reviewer</b></p>
+                        <p style="color: var(--text-color); line-height: 1.6;">TPAMI, TMLR, TNNLS, CVIU</p>
+                    </div>
+                </div>
             </li>
         </ul>
+    </section>
 
-    </div>
+    <section class="col-md-12">
+        <h2 id="photography">Photography</h2>
 
-
-    <h2 id="photography">Miscellaneous</h2>
-
-    <ul class="vert">
-        <li>
-            <p>Capturing moments and exploring light with my Sony A7M4.</p>
-        </li>
-    </ul>
-    <br/>
-    <div class="col-md-12">
+        <ul class="vert">
+            <li>
+                <p>Capturing moments and exploring light with my Sony A7M4.</p>
+            </li>
+        </ul>
+        <br/>
         <p class="imgGallery-section-title">Visual Fragments</p>
         
-        <div class="photo-filter-container">
+        <div class="photo-filter-container" role="toolbar" aria-label="Filter photos by category">
             <button class="photo-filter-btn active" data-filter="all">All</button>
             <button class="photo-filter-btn" data-filter="california">California Style</button>
             <button class="photo-filter-btn" data-filter="nyc">NYC Moments</button>
@@ -1514,8 +1069,7 @@
                 </a>
             </div>
         </div>
-    </div>
-
+    </section>
 
     <!-- /.container -->
     <!-- Other people may like it too! -->
@@ -1529,10 +1083,17 @@
             <p>Pageviews</p>
         </li>
     </ul> -->
-    <p>Pageviews</p>
-    <script type="text/javascript" id="clustrmaps"
-            src="//clustrmaps.com/map_v2.js?d=nk2suWeO4QvLQb3OSDKbWMWpp_rc2lrGUiGq_rrnFQg&cl=ffffff&w=a"></script>
-</div>
+    <div style="margin-top: 40px; padding: 20px; background-color: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center;">
+        <p style="margin-bottom: 10px; color: var(--muted-text); font-size: 0.95rem;">Pageviews</p>
+        <script type="text/javascript" id="clustrmaps"
+                src="//clustrmaps.com/map_v2.js?d=nk2suWeO4QvLQb3OSDKbWMWpp_rc2lrGUiGq_rrnFQg&cl=ffffff&w=a"></script>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer style="text-align: center; padding: 30px 20px; margin-top: 40px; border-top: 1px solid var(--border-color); color: var(--muted-text); font-family: 'Lato', sans-serif; font-size: 0.9rem;">
+    <p>&copy; 2026 Kangning Liu. All rights reserved.</p>
+</footer>
 
 <!-- Back to Top Button -->
 <button id="backToTop" title="Go to top"><i class="fas fa-arrow-up"></i></button>
@@ -1674,10 +1235,41 @@
             e.preventDefault();
             $('html, body').animate({scrollTop:0}, '300');
         });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const root = document.documentElement;
+
+        // Check for saved user preference or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        root.setAttribute('data-theme', initialTheme);
+        updateIcon(initialTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
     });
 </script>
 
 </body>
-<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 </html>
 
