@@ -830,6 +830,19 @@ p {
     background-color: var(--accent-light);
 }
 
+.pub-tldr {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--muted-text);
+    margin: 6px 0 8px 0;
+    line-height: 1.5;
+}
+
+.pub-tldr strong {
+    font-style: normal;
+    color: var(--accent);
+}
+
 .abstract-content {
     max-height: 0;
     overflow: hidden;
