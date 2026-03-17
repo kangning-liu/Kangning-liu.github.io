@@ -360,6 +360,31 @@
         </div>
 
         <ul class="vert pub-list">
+            <li class="publication-item" id="pub-snce" data-category="mllm">
+                <div class="row">
+                    <!-- Publication Details -->
+                    <!-- Image Placeholder -->
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <img src="./Kangning Liu_files/SNCE.png" alt="SNCE geometry-aware supervision for scalable discrete image generation"
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <p><b>SNCE: Geometry-Aware Supervision for Scalable Discrete Image Generation</b></p>
+                        <p>
+                            <a href="https://arxiv.org/abs/2603.15150" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                        </p>
+                        <p>Shufan Li, Jiuxiang Gu, <u><b>Kangning Liu</b></u>, Zhe Lin, Aditya Grover, Jason Kuen</p>
+                        <p><span class="venue-badge">Preprint</span></p>
+                        <p class="pub-tldr"><strong>TL;DR:</strong> A geometry-aware soft supervision objective (SNCE) that significantly improves convergence and generation quality for large-codebook discrete image generators.</p>
+                        <button class="abstract-toggle">Show abstract</button>
+                        <div class="abstract-content">
+                        <p class="justified-text">
+                            Recent advancements in discrete image generation showed that scaling the VQ codebook size significantly improves reconstruction fidelity. However, training generative models with a large VQ codebook remains challenging, typically requiring larger model size and a longer training schedule. In this work, we propose Stochastic Neighbor Cross Entropy Minimization (SNCE), a novel training objective designed to address the optimization challenges of large-codebook discrete image generators. Instead of supervising the model with a hard one-hot target, SNCE constructs a soft categorical distribution over a set of neighboring tokens. The probability assigned to each token is proportional to the proximity between its code embedding and the ground-truth image embedding, encouraging the model to capture semantically meaningful geometric structure in the quantized embedding space. We conduct extensive experiments across class-conditional ImageNet-256 generation, large-scale text-to-image synthesis, and image editing tasks. Results show that SNCE significantly improves convergence speed and overall generation quality compared to standard cross-entropy objectives.
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
             <li class="publication-item" id="pub-lavida-r1" data-category="mllm">
                 <div class="row">
                     <!-- Publication Details -->
