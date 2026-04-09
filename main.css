@@ -806,6 +806,12 @@ p {
     border-color: rgba(184, 134, 11, 0.25);
 }
 
+.venue-badge.highlight {
+    color: #6B21A8;
+    background-color: rgba(147, 51, 234, 0.12);
+    border-color: rgba(147, 51, 234, 0.25);
+}
+
 /* Collapsible Abstract */
 .abstract-toggle {
     display: inline-block;
