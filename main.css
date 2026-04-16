@@ -441,6 +441,12 @@ a:hover {
     margin-right: 4px;
 }
 
+.related-pubs-label {
+    font-size: 0.9em;
+    color: var(--muted-text);
+    margin-right: 5px;
+}
+
 /* Publication text spacing */
 .pub-list .custom-col-text p {
     margin-bottom: 0.5rem;
