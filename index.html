@@ -351,16 +351,15 @@
         <div class="filter-container" role="toolbar" aria-label="Filter publications by category">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="mllm">MLLM</button>
+            <button class="filter-btn" data-filter="genai">Generative AI</button>
             <button class="filter-btn" data-filter="foundation">Vision Foundation Model</button>
             <button class="filter-btn" data-filter="imperfect">Robust Learning</button>
-            <button class="filter-btn" data-filter="video-gen">Video Generation</button>
-            <button class="filter-btn" data-filter="video-understanding">Video Understanding</button>
             <button class="filter-btn" data-filter="others">Others</button>
             <div id="filter-count" style="margin-top: 10px; color: #7f8c8d; font-size: 12px; font-style: italic;"></div>
         </div>
 
         <ul class="vert pub-list">
-            <li class="publication-item" id="pub-snce" data-category="mllm">
+            <li class="publication-item" id="pub-snce" data-category="genai">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -385,7 +384,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" id="pub-lavida-r1" data-category="mllm">
+            <li class="publication-item" id="pub-lavida-r1" data-category="mllm genai">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -446,7 +445,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" id="pub-sparse-lavida" data-category="mllm">
+            <li class="publication-item" id="pub-sparse-lavida" data-category="mllm genai">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -474,7 +473,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" id="pub-lavida-o" data-category="mllm">
+            <li class="publication-item" id="pub-lavida-o" data-category="mllm genai">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -621,7 +620,7 @@
                 </div>
             </li>
 
-            <li class="publication-item" data-category="video-gen">
+            <li class="publication-item" data-category="genai">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -711,7 +710,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" data-category="video-understanding">
+            <li class="publication-item" data-category="others">
                 <div class="row">
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
@@ -830,7 +829,7 @@
             </li>
             <!-- End of the paper -->
             <!-- Start of the paper: Unsupervised Multimodal Video-to-Video Translation -->
-            <li class="publication-item" data-category="video-gen">
+            <li class="publication-item" data-category="genai">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/UVIT_HR_multimodal.jpeg"
@@ -1141,7 +1140,7 @@
         <a href="https://www.linkedin.com/in/kangning-liu-14600282/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="mailto:kangning.liu@nyu.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
     </div>
-    <p>&copy; 2026 Kangning Liu. Last updated Feb 2026.</p>
+    <p>&copy; 2026 Kangning Liu. Last updated <span id="last-updated">Feb 2026</span>.</p>
 </footer>
 
 <!-- Back to Top Button -->
@@ -1156,6 +1155,14 @@
 
     <script>
     $(document).ready(function() {
+        var lastUpdatedEl = document.getElementById('last-updated');
+        if (lastUpdatedEl && document.lastModified) {
+            var d = new Date(document.lastModified);
+            if (!isNaN(d.getTime())) {
+                lastUpdatedEl.textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+            }
+        }
+
         // Button accessibility: mirror "active" visual state with aria-pressed
         function syncAriaPressed($buttons) {
             $buttons.each(function() {
