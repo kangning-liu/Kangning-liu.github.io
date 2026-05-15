@@ -239,7 +239,9 @@
                     <li><strong>Multimodal Grounding &amp; Reasoning:</strong> Enhance the grounding ability of multimodal large language models by integrating advanced reasoning capabilities and fine-grained understanding. These models enable a wide spectrum of applications, ranging from generative AI data creation and reward modeling for GenAI training to AI agent tool calling. For example, our "selectionByPrompt" feature <a href="https://blog.adobe.com/en/publish/2025/12/10/edit-photoshop-chatgpt">[Adobe Blog]</a> enables users to select content in an image using natural language with <strong>Adobe Photoshop</strong> in <a href="https://chatgpt.com/">ChatGPT</a>, and has since been integrated into <a href="https://blog.adobe.com/en/publish/2026/03/10/image-editing-just-got-smarter-with-ai-photoshop-firefly">AI Assistant in Photoshop</a> for smarter image editing.
                         <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-vgent" class="pub-link"><i class="fas fa-file-alt"></i> VGent [CVPR 2026]</a> <a href="#pub-ras" class="pub-link"><i class="fas fa-file-alt"></i> RAS [ICCV 2025]</a></li>
                     <li><strong>Unified Understanding &amp; Generation:</strong> Working on unified frameworks that bring powerful visual comprehension—reasoning, grounding, and fine-grained perception—into generative models, enabling a single architecture to both understand and create visual content.
-                        <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-lavida-o" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-O [ICLR 2026]</a>  <a href="#pub-sparse-lavida" class="pub-link"><i class="fas fa-file-alt"></i> Sparse-LaViDa [CVPR 2026]</a> <a href="#pub-lavida-r1" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-R1 [Preprint]</a> </li>
+                        <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-lavida-o" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-O [ICLR 2026]</a>  <a href="#pub-sparse-lavida" class="pub-link"><i class="fas fa-file-alt"></i> Sparse-LaViDa [CVPR 2026]</a> <a href="#pub-lavida-r1" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-R1 [ICML 2026]</a> </li>
+                    <li><strong>Generative Modeling &amp; Image Editing:</strong> Improving generative quality from two angles: geometry-aware training objectives for scalable discrete image generators (SNCE), and a trainable inline critic that steers frozen image-editing models by correcting hidden states mid forward-pass (Inline Critic).
+                        <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-inline-critic" class="pub-link"><i class="fas fa-file-alt"></i> Inline Critic [Preprint]</a> <a href="#pub-snce" class="pub-link"><i class="fas fa-file-alt"></i> SNCE [Preprint]</a></li>
                     <li><strong>Vision Foundation Model:</strong> Developed cutting-edge segmentation foundation models to enhance Adobe products. 
                         Contributions include core features deployed in Adobe Photoshop's newest selection tools<a href="https://www.youtube.com/watch?v=ZJdmZ10I4H4"> [Media Review]</a>, remove background in Adobe Firefly <a href="https://helpx.adobe.com/firefly/web/edit-images/transform-images-using-generative-fill/replace-background.html">[Feature Summary]</a>, and segmentation enhancements in Adobe Lightroom <a href="https://helpx.adobe.com/lightroom-classic/help/whats-new/2025-3.html">[Feature Summary]</a> , Adobe Express.
                         <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-sum" class="pub-link"><i class="fas fa-file-alt"></i> SUM [NeurIPS 2024]</a> <a href="#pub-sve" class="pub-link"><i class="fas fa-file-alt"></i> SVE [BMVC 2025]</a> <a href="#pub-consamme" class="pub-link"><i class="fas fa-file-alt"></i> conSAMmé [CVPRW 2025]</a></li>
@@ -394,6 +396,31 @@
                         <div class="abstract-content">
                         <p class="justified-text">
                             Recent advancements in discrete image generation showed that scaling the VQ codebook size significantly improves reconstruction fidelity. However, training generative models with a large VQ codebook remains challenging, typically requiring larger model size and a longer training schedule. In this work, we propose Stochastic Neighbor Cross Entropy Minimization (SNCE), a novel training objective designed to address the optimization challenges of large-codebook discrete image generators. Instead of supervising the model with a hard one-hot target, SNCE constructs a soft categorical distribution over a set of neighboring tokens. The probability assigned to each token is proportional to the proximity between its code embedding and the ground-truth image embedding, encouraging the model to capture semantically meaningful geometric structure in the quantized embedding space. We conduct extensive experiments across class-conditional ImageNet-256 generation, large-scale text-to-image synthesis, and image editing tasks. Results show that SNCE significantly improves convergence speed and overall generation quality compared to standard cross-entropy objectives.
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="publication-item" id="pub-inline-critic" data-category="genai">
+                <div class="row">
+                    <!-- Publication Details -->
+                    <!-- Image Placeholder -->
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <img src="./Kangning Liu_files/InlineCritic.png" alt="Inline Critic three-stage training pipeline for image editing"
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <p><b>Inline Critic Steers Image Editing</b></p>
+                        <p>
+                            <a href="https://arxiv.org/abs/2605.12724" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                        </p>
+                        <p>Weitai Kang, Xiaohang Zhan, Yizhou Wang, Mang Tik Chiu, Jason Kuen, <u><b>Kangning Liu</b></u>, Yan Yan</p>
+                        <p><span class="venue-badge">Preprint</span></p>
+                        <p class="pub-tldr"><strong>TL;DR:</strong> A trainable inline critic token that steers frozen image-editing models by correcting hidden states mid forward-pass, leveraging the finding that error patterns are set in early layers.</p>
+                        <button class="abstract-toggle">Show abstract</button>
+                        <div class="abstract-content">
+                        <p class="justified-text">
+                            Instruction-based image editing faces varying difficulty levels across different image regions. We observe that error patterns are already set in early layers even though generation capability emerges later, with a 0.83 rank correlation to final errors—suggesting early intervention is viable. Based on this finding, we propose Inline Critic, a trainable token that evaluates a frozen editing model's intermediate predictions and adjusts hidden states during the forward pass to improve results. Combined with a three-stage training recipe that stabilizes the procedure, Inline Critic achieves state-of-the-art performance across multiple benchmarks (GEdit-Bench: 7.89; RISEBench: +9.4 improvement; KRIS-Bench: 81.92, surpassing GPT-4o). This work demonstrates how intermediate model critique can steer generation quality in real-time, offering a more efficient refinement strategy than post-hoc approaches.
                         </p>
                         </div>
                     </div>
