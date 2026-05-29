@@ -1159,10 +1159,10 @@
         </div>
     </section>
 
-    <div style="margin-top: 48px; padding: 24px; background-color: var(--card-bg); border-radius: 6px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center;">
+    <div id="clustrmaps-widget" style="margin-top: 48px; padding: 24px; background-color: var(--card-bg); border-radius: 6px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center;">
         <p style="margin-bottom: 12px; color: var(--muted-text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;">Pageviews</p>
-        <script type="text/javascript" id="clustrmaps"
-                src="//clustrmaps.com/map_v2.js?d=nk2suWeO4QvLQb3OSDKbWMWpp_rc2lrGUiGq_rrnFQg&cl=ffffff&w=a"></script>
+        <div id="clustrmaps-container"
+             data-src="https://clustrmaps.com/map_v2.js?d=nk2suWeO4QvLQb3OSDKbWMWpp_rc2lrGUiGq_rrnFQg&cl=ffffff&w=a"></div>
     </div>
 </main>
 
@@ -1182,7 +1182,7 @@
         <a href="https://www.linkedin.com/in/kangning-liu-14600282/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="mailto:kangning.liu@nyu.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
     </div>
-    <p>&copy; 2026 Kangning Liu. Last updated April 2026.</p>
+    <p>&copy; 2026 Kangning Liu. Last updated May 2026.</p>
 </footer>
 
 <!-- Back to Top Button -->
@@ -1385,9 +1385,120 @@
                 themeIcon.classList.add('fa-moon');
             }
         }
+
+        // Load the visitor map only after the page is usable and the widget is near view.
+        // If ClustrMaps is unreachable, remove the isolated iframe to cancel the attempt.
+        function setupClustrmapsLazyLoad() {
+            var widget = document.getElementById('clustrmaps-widget');
+            var container = document.getElementById('clustrmaps-container');
+            if (!widget || !container) {
+                return;
+            }
+
+            var scriptSrc = container.getAttribute('data-src');
+            var hasAttemptedLoad = false;
+            var loadTimeoutMs = 4000;
+
+            function hideWidget() {
+                widget.style.display = 'none';
+            }
+
+            function loadClustrmaps() {
+                if (hasAttemptedLoad) {
+                    return;
+                }
+                hasAttemptedLoad = true;
+
+                var iframe = document.createElement('iframe');
+                iframe.title = 'Pageview map';
+                iframe.loading = 'lazy';
+                iframe.referrerPolicy = 'no-referrer-when-downgrade';
+                iframe.scrolling = 'no';
+                iframe.style.width = '100%';
+                iframe.style.height = '150px';
+                iframe.style.border = '0';
+                iframe.style.overflow = 'hidden';
+
+                var timeoutId = window.setTimeout(function() {
+                    iframe.remove();
+                    hideWidget();
+                }, loadTimeoutMs);
+
+                function handleMessage(event) {
+                    if (event.source !== iframe.contentWindow || !event.data || event.data.source !== 'clustrmaps-loader') {
+                        return;
+                    }
+
+                    window.clearTimeout(timeoutId);
+                    window.removeEventListener('message', handleMessage);
+
+                    if (event.data.status === 'error' || event.data.status === 'timeout') {
+                        iframe.remove();
+                        hideWidget();
+                    }
+                }
+
+                window.addEventListener('message', handleMessage);
+
+                iframe.srcdoc = [
+                    '<!doctype html>',
+                    '<html>',
+                    '<head>',
+                    '<meta charset="utf-8">',
+                    '<base target="_blank">',
+                    '<style>html,body{margin:0;padding:0;background:transparent;text-align:center;overflow:hidden;}</style>',
+                    '</head>',
+                    '<body>',
+                    '<script>',
+                    '(function(){',
+                    'var done=false;',
+                    'function notify(status){if(done){return;}done=true;parent.postMessage({source:"clustrmaps-loader",status:status},"*");}',
+                    'var timer=setTimeout(function(){notify("timeout");},' + loadTimeoutMs + ');',
+                    'var script=document.createElement("script");',
+                    'script.id="clustrmaps";',
+                    'script.async=true;',
+                    'script.src=' + JSON.stringify(scriptSrc) + ';',
+                    'script.onload=function(){clearTimeout(timer);notify("loaded");};',
+                    'script.onerror=function(){clearTimeout(timer);notify("error");};',
+                    'document.body.appendChild(script);',
+                    '}());',
+                    '<\/script>',
+                    '</body>',
+                    '</html>'
+                ].join('');
+
+                container.appendChild(iframe);
+            }
+
+            function scheduleLoad() {
+                if ('requestIdleCallback' in window) {
+                    window.requestIdleCallback(loadClustrmaps, { timeout: 1000 });
+                } else {
+                    window.setTimeout(loadClustrmaps, 250);
+                }
+            }
+
+            window.addEventListener('load', function() {
+                if ('IntersectionObserver' in window) {
+                    var observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                observer.disconnect();
+                                scheduleLoad();
+                            }
+                        });
+                    }, { rootMargin: '300px 0px' });
+
+                    observer.observe(widget);
+                } else {
+                    window.setTimeout(loadClustrmaps, 1500);
+                }
+            });
+        }
+
+        setupClustrmapsLazyLoad();
     });
 </script>
 
 </body>
 </html>
-
