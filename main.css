@@ -34,7 +34,8 @@ html {
     --btn-bg: #FFFFFF;
     --btn-hover-bg: #F8F6F2;
     --accent: #1E3A5F;             /* Scholarly navy */
-    --accent-secondary: #B8860B;   /* Muted gold */
+    --accent-secondary: #B8860B;   /* Muted gold — decoration only (3.15:1 on paper) */
+    --accent-secondary-text: #8C6508; /* Same gold darkened for text (5.11:1, passes AA) */
     --accent-light: rgba(30, 58, 95, 0.08);
     --scrollbar-track: #F5F3EF;
     --scrollbar-thumb: #C8C4BC;
@@ -64,6 +65,7 @@ html {
     --btn-hover-bg: #30363D;
     --accent: #7BA3C9;
     --accent-secondary: #D4A84B;
+    --accent-secondary-text: #D4A84B; /* already 8.56:1 on the dark ground */
     --accent-light: rgba(123, 163, 201, 0.12);
     --scrollbar-track: #161B22;
     --scrollbar-thumb: #30363D;
@@ -256,7 +258,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .photo-filter-btn:hover {
     background-color: var(--btn-hover-bg);
-    color: var(--accent-secondary);
+    color: var(--accent-secondary-text);
     border-color: var(--accent-secondary);
 }
 
@@ -423,7 +425,7 @@ a:hover {
 
 .filter-btn:hover {
     background-color: var(--btn-hover-bg);
-    color: var(--accent-secondary);
+    color: var(--accent-secondary-text);
     border-color: var(--accent-secondary);
 }
 
@@ -813,7 +815,7 @@ p {
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--accent-secondary);
+    color: var(--accent-secondary-text);
     white-space: nowrap;
 }
 
@@ -853,7 +855,7 @@ p {
 }
 
 .bio-text a:hover {
-    color: var(--accent-secondary);
+    color: var(--accent-secondary-text);
     border-bottom-color: var(--accent-secondary);
 }
 
@@ -1255,7 +1257,7 @@ button:focus-visible,
 }
 
 .site-footer .footer-links a:hover {
-    color: var(--accent-secondary);
+    color: var(--accent-secondary-text);
 }
 
 .site-footer .footer-social {
