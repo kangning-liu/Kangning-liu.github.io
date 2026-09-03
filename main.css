@@ -39,6 +39,12 @@ html {
     --scrollbar-track: #F5F3EF;
     --scrollbar-thumb: #C8C4BC;
     --scrollbar-thumb-hover: #A8A49C;
+
+    /* Pill geometry — shared by every control; see "Pill System" below */
+    --pill-radius: 4px;
+    --pill-pad: 7px 16px;
+    --pill-font: 12px;
+    --pill-tracking: 0.02em;
 }
 
 [data-theme="dark"] {
@@ -214,20 +220,38 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 24px;
 }
 
-.photo-filter-btn {
+/* ========================================
+   Pill System
+
+   Two tokens, not five. Every interactive pill — section filters, paper
+   links, abstract toggles — shares ONE geometry and differs only by colour.
+   .venue-badge is the single deliberate exception: it is a label, not a
+   control, so it is filled, uppercase and one step smaller.
+   ======================================== */
+.photo-filter-btn,
+.filter-btn,
+.pub-link,
+.abstract-toggle {
     display: inline-block;
-    padding: 8px 18px;
-    margin: 4px;
+    padding: var(--pill-pad);
     font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    font-size: 12px;
+    font-size: var(--pill-font);
     font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: var(--pill-tracking);
     color: var(--muted-text);
-    background-color: var(--btn-bg);
+    background-color: transparent;
     border: 1px solid var(--btn-border);
-    border-radius: 4px;
+    border-radius: var(--pill-radius);
+    text-decoration: none;
+    text-transform: none;
     cursor: pointer;
-    transition: all 0.2s ease;
-    letter-spacing: 0.02em;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.photo-filter-btn,
+.filter-btn {
+    margin: 4px;
 }
 
 .photo-filter-btn:hover {
@@ -377,15 +401,17 @@ a:hover {
     text-decoration: none;
 }
 
-/* Underline links in body text for better accessibility */
-.project-list a,
-.updates-card a {
+/* Underline links in body text for better accessibility.
+   Pills are excluded: they already read as controls, and the extra rule was
+   doubling their bottom border and breaking the shared pill geometry. */
+.project-list a:not(.pub-link),
+.updates-card a:not(.pub-link) {
     border-bottom: 1px solid currentColor;
     padding-bottom: 1px;
 }
 
-.project-list a:hover,
-.updates-card a:hover {
+.project-list a:not(.pub-link):hover,
+.updates-card a:not(.pub-link):hover {
     border-bottom-color: var(--accent-secondary);
 }
 
@@ -393,22 +419,6 @@ a:hover {
 .filter-container {
     text-align: center;
     margin-bottom: 32px;
-}
-
-.filter-btn {
-    display: inline-block;
-    padding: 10px 22px;
-    margin: 5px;
-    font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--muted-text);
-    background-color: var(--btn-bg);
-    border: 1px solid var(--btn-border);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    letter-spacing: 0.02em;
 }
 
 .filter-btn:hover {
@@ -421,7 +431,6 @@ a:hover {
     background-color: var(--accent);
     color: #fff;
     border-color: var(--accent);
-    box-shadow: 0 2px 8px var(--accent-light);
 }
 
 #filter-count {
@@ -433,18 +442,8 @@ a:hover {
 
 /* Button/Link Badges */
 .pub-link {
-    display: inline-block;
-    padding: 6px 14px;
     margin: 4px 6px 4px 0;
-    font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
     color: var(--accent);
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
 }
 
 .pub-link:hover {
@@ -452,7 +451,6 @@ a:hover {
     color: white !important;
     border-color: var(--accent);
     text-decoration: none;
-    box-shadow: 0 2px 6px var(--accent-light);
 }
 
 .pub-link.disabled {
@@ -956,6 +954,7 @@ p {
 /* ========================================
    Publication Venue Badges
    ======================================== */
+/* The one intentional exception to the pill geometry: a label, not a control. */
 .venue-badge {
     display: inline-block;
     padding: 5px 12px;
@@ -964,7 +963,7 @@ p {
     font-weight: 700;
     color: var(--accent);
     background-color: var(--accent-light);
-    border-radius: 4px;
+    border-radius: var(--pill-radius);
     letter-spacing: 0.05em;
     vertical-align: middle;
     text-transform: uppercase;
@@ -989,20 +988,7 @@ p {
 
 /* Collapsible Abstract */
 .abstract-toggle {
-    display: inline-block;
-    padding: 5px 14px;
     margin-top: 8px;
-    font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--muted-text);
-    background: none;
-    border: 1px solid var(--border-color);
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
 .abstract-toggle:hover {
