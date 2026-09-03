@@ -937,6 +937,100 @@ p {
     margin: 0 auto;
 }
 
+/* The vendor ships a saturated blue plate with flat-white landmass, white Arial
+   counters and a red marker — the one block on the page that ignored both the
+   colour system and the theme.
+
+   Ocean and land both live inside a single flat PNG on the vendor's domain, so
+   neither can be set with background-color. Two approaches were tried and
+   rejected: masking the PNG (mask images are CORS-restricted and it sends no
+   CORS headers, so the continents vanish) and filtering the element (the filter
+   also greys out the marker, which is a child of the same element).
+
+   What works is background-blend-mode: it recolours the background image alone
+   and leaves child SVG untouched, so the map goes monochrome in a palette tint
+   while the marker keeps its gold. A brightness/contrast filter then sets the
+   overall weight per theme — brightness is the one filter the marker survives.
+
+   If the vendor script fails the widget hides itself; if a class is renamed
+   these rules stop applying and the vendor's own look returns. */
+#visitor-map-widget {
+    --map-tint: #8E8578;
+    --map-adjust: brightness(1.52) contrast(0.72);
+    --map-plate: #F1EDE5;
+
+    margin: 56px auto 0;
+    max-width: 560px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+[data-theme="dark"] #visitor-map-widget {
+    --map-tint: #4A5462;
+    --map-adjust: brightness(0.78) contrast(0.9);
+    --map-plate: #12171E;
+}
+
+.visitor-map-label {
+    margin: 0 0 18px;
+    color: var(--muted-text);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+/* The plate: page-coloured rather than vendor-blue, and laid out so the
+   counters sit below the map instead of floating on top of it. */
+#visitor-map-widget .mapmyvisitors-map-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--map-plate) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    padding-bottom: 8px;
+}
+
+#visitor-map-widget .mapmyvisitors-map {
+    order: 1;
+    background-color: var(--map-tint);
+    background-blend-mode: luminosity;
+    filter: var(--map-adjust);
+}
+
+/* Counter and date in the site's own type, not white Arial. */
+#visitor-map-widget .mpmvs.mapmyvisitors-visitors,
+#visitor-map-widget .mpmvs.mapmyvisitors-date {
+    order: 2;
+    color: var(--muted-text) !important;
+    font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif !important;
+    font-size: 12px !important;
+    letter-spacing: 0.02em;
+    text-shadow: none !important;
+}
+
+#visitor-map-widget .mpmvs.mapmyvisitors-visitors {
+    font-weight: 600;
+    padding-top: 12px;
+}
+
+/* Marker in the site's gold, not the vendor's red. */
+#visitor-map-widget .jvectormap-marker {
+    fill: var(--accent-secondary) !important;
+    fill-opacity: 1 !important;
+    stroke: none !important;
+    r: 5px;
+}
+
+@media (max-width: 767px) {
+    #visitor-map-widget {
+        margin-top: 40px;
+        padding-top: 24px;
+    }
+}
+
 #visitor-map-container #mapmyvisitors-widget {
     border-radius: 4px;
     overflow: hidden;
