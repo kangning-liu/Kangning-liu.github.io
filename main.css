@@ -754,6 +754,23 @@ p {
     text-align: center;
 }
 
+/* The bio runs ~165px past the bottom of the profile rail, leaving a dead
+   gutter on the left. Pinning the rail fills it and keeps the name, role and
+   links on screen while the bio is being read.
+
+   Gated on height as well as width: the rail is ~636px tall, so on a short
+   viewport pinning it would push the social links below the fold. Under
+   740px it simply scrolls away as before. align-self keeps the column from
+   stretching to the row's full height, which would leave sticky nothing to
+   travel against. */
+@media (min-width: 768px) and (min-height: 740px) {
+    .profile-column {
+        position: sticky;
+        top: 88px;              /* navbar (72px) + breathing room */
+        align-self: flex-start;
+    }
+}
+
 .bio-column {
     padding-left: 30px;
 }
