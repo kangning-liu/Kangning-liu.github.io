@@ -991,6 +991,11 @@ p {
     --map-plate: #12171E;
 }
 
+/* out = ((in * 0.78) - 0.5) * 0.9 + 0.5, inverted for the dark-mode gold. */
+[data-theme="dark"] #visitor-map-widget .jvectormap-marker {
+    fill: #FFDD59 !important;
+}
+
 .visitor-map-label {
     margin: 0 0 18px;
     color: var(--muted-text);
@@ -1035,9 +1040,16 @@ p {
     padding-top: 12px;
 }
 
-/* Marker in the site's gold, not the vendor's red. */
+/* Marker in the site's gold, not the vendor's red.
+
+   The marker is a child of .mapmyvisitors-map, so the brightness/contrast
+   filter above lands on it too and washes plain #B8860B out to pale tan
+   against a pale tan ocean. The fill is therefore pre-compensated: inverting
+   out = ((in * 1.52) - 0.5) * 0.72 + 0.5 for each channel gives #885A00,
+   which renders as ~#B88624 once the filter has been applied. Change
+   --map-adjust and this value has to be recomputed with it. */
 #visitor-map-widget .jvectormap-marker {
-    fill: var(--accent-secondary) !important;
+    fill: #885A00 !important;
     fill-opacity: 1 !important;
     stroke: none !important;
     r: 5px;
