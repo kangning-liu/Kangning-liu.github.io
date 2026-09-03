@@ -34,11 +34,18 @@ html {
     --btn-bg: #FFFFFF;
     --btn-hover-bg: #F8F6F2;
     --accent: #1E3A5F;             /* Scholarly navy */
-    --accent-secondary: #B8860B;   /* Muted gold */
+    --accent-secondary: #B8860B;   /* Muted gold — decoration only (3.15:1 on paper) */
+    --accent-secondary-text: #8C6508; /* Same gold darkened for text (5.11:1, passes AA) */
     --accent-light: rgba(30, 58, 95, 0.08);
     --scrollbar-track: #F5F3EF;
     --scrollbar-thumb: #C8C4BC;
     --scrollbar-thumb-hover: #A8A49C;
+
+    /* Pill geometry — shared by every control; see "Pill System" below */
+    --pill-radius: 4px;
+    --pill-pad: 7px 16px;
+    --pill-font: 12px;
+    --pill-tracking: 0.02em;
 }
 
 [data-theme="dark"] {
@@ -58,6 +65,7 @@ html {
     --btn-hover-bg: #30363D;
     --accent: #7BA3C9;
     --accent-secondary: #D4A84B;
+    --accent-secondary-text: #D4A84B; /* already 8.56:1 on the dark ground */
     --accent-light: rgba(123, 163, 201, 0.12);
     --scrollbar-track: #161B22;
     --scrollbar-thumb: #30363D;
@@ -105,6 +113,21 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(10px);
 }
 
+.navbar-brand {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--nav-text) !important;
+    letter-spacing: 0.01em;
+    margin-right: 32px;
+    opacity: 0.95;
+    transition: color 0.2s ease;
+}
+
+.navbar-brand:hover {
+    color: var(--nav-hover) !important;
+}
+
 /* Style for navbar links */
 .navbar-nav .nav-item {
     list-style-type: none;
@@ -132,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Container */
 .container {
-    max-width: 1300px;
+    max-width: 1140px;
     margin: auto;
     padding: 0 20px;
 }
@@ -199,25 +222,43 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 24px;
 }
 
-.photo-filter-btn {
+/* ========================================
+   Pill System
+
+   Two tokens, not five. Every interactive pill — section filters, paper
+   links, abstract toggles — shares ONE geometry and differs only by colour.
+   .venue-badge is the single deliberate exception: it is a label, not a
+   control, so it is filled, uppercase and one step smaller.
+   ======================================== */
+.photo-filter-btn,
+.filter-btn,
+.pub-link,
+.abstract-toggle {
     display: inline-block;
-    padding: 8px 18px;
-    margin: 4px;
+    padding: var(--pill-pad);
     font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    font-size: 12px;
+    font-size: var(--pill-font);
     font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: var(--pill-tracking);
     color: var(--muted-text);
-    background-color: var(--btn-bg);
+    background-color: transparent;
     border: 1px solid var(--btn-border);
-    border-radius: 4px;
+    border-radius: var(--pill-radius);
+    text-decoration: none;
+    text-transform: none;
     cursor: pointer;
-    transition: all 0.2s ease;
-    letter-spacing: 0.02em;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.photo-filter-btn,
+.filter-btn {
+    margin: 4px;
 }
 
 .photo-filter-btn:hover {
     background-color: var(--btn-hover-bg);
-    color: var(--accent-secondary);
+    color: var(--accent-secondary-text);
     border-color: var(--accent-secondary);
 }
 
@@ -312,7 +353,6 @@ h1, h2, h3, h4, h5, h6 {
 .project-list {
     font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
     margin-top: 16px;
-    text-align: justify;
     padding-left: 20px;
     line-height: 1.7;
 }
@@ -321,10 +361,15 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 14px;
 }
 
+/* Figures vary wildly in aspect ratio; a fixed frame with `contain` keeps every
+   publication card the same shape without cropping the diagrams. */
 .publication-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    padding: 10px;
     border-radius: 6px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    margin-right: 20px;
     border: 1px solid var(--border-color);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     background-color: #FFFFFF;
@@ -335,8 +380,15 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Two stacked figures in one column (StrokeRehab) need breathing room */
+.custom-col-img .publication-img + .publication-img {
+    margin-top: 12px;
+}
+
+/* Left-aligned rather than justified: justification opens rivers of whitespace
+   at these column widths. Class name kept because the markup uses it widely. */
 .justified-text {
-    text-align: justify;
+    text-align: left;
 }
 
 /* Link Styles */
@@ -351,15 +403,17 @@ a:hover {
     text-decoration: none;
 }
 
-/* Underline links in body text for better accessibility */
-.project-list a,
-.updates-card a {
+/* Underline links in body text for better accessibility.
+   Pills are excluded: they already read as controls, and the extra rule was
+   doubling their bottom border and breaking the shared pill geometry. */
+.project-list a:not(.pub-link),
+.updates-card a:not(.pub-link) {
     border-bottom: 1px solid currentColor;
     padding-bottom: 1px;
 }
 
-.project-list a:hover,
-.updates-card a:hover {
+.project-list a:not(.pub-link):hover,
+.updates-card a:not(.pub-link):hover {
     border-bottom-color: var(--accent-secondary);
 }
 
@@ -369,25 +423,9 @@ a:hover {
     margin-bottom: 32px;
 }
 
-.filter-btn {
-    display: inline-block;
-    padding: 10px 22px;
-    margin: 5px;
-    font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--muted-text);
-    background-color: var(--btn-bg);
-    border: 1px solid var(--btn-border);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    letter-spacing: 0.02em;
-}
-
 .filter-btn:hover {
     background-color: var(--btn-hover-bg);
-    color: var(--accent-secondary);
+    color: var(--accent-secondary-text);
     border-color: var(--accent-secondary);
 }
 
@@ -395,23 +433,19 @@ a:hover {
     background-color: var(--accent);
     color: #fff;
     border-color: var(--accent);
-    box-shadow: 0 2px 8px var(--accent-light);
+}
+
+#filter-count {
+    margin-top: 12px;
+    color: var(--muted-text);
+    font-size: 12px;
+    font-style: italic;
 }
 
 /* Button/Link Badges */
 .pub-link {
-    display: inline-block;
-    padding: 6px 14px;
     margin: 4px 6px 4px 0;
-    font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
     color: var(--accent);
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
 }
 
 .pub-link:hover {
@@ -419,7 +453,6 @@ a:hover {
     color: white !important;
     border-color: var(--accent);
     text-decoration: none;
-    box-shadow: 0 2px 6px var(--accent-light);
 }
 
 .pub-link.disabled {
@@ -467,12 +500,15 @@ a:hover {
 }
 
 /* Publication title styling */
-.pub-list .custom-col-text > p:first-child b {
+.pub-title {
     font-family: 'Source Serif 4', 'Georgia', serif;
     font-size: 1.15rem;
     font-weight: 600;
+    line-height: 1.35;
     letter-spacing: 0.01em;
     color: var(--heading-color);
+    text-align: left;
+    margin-bottom: 0.6rem;
 }
 
 /* Default (Mobile First) */
@@ -485,15 +521,14 @@ a:hover {
 /* Wider screens (768px+) */
 @media screen and (min-width: 768px) {
     .custom-col-img {
-        flex: 0 0 45%;
-        max-width: 45%;
+        flex: 0 0 40%;
+        max-width: 40%;
     }
 
     .custom-col-text {
-        flex: 0 0 55%;
-        max-width: 55%;
+        flex: 0 0 60%;
+        max-width: 60%;
         padding-left: 20px;
-        text-align: justify;
     }
 }
 
@@ -508,7 +543,6 @@ a:hover {
     .custom-col-text {
         flex: 0 0 100%;
         max-width: 100%;
-        text-align: justify;
     }
 }
 
@@ -518,6 +552,10 @@ ul.vert {
     list-style-type: none;
 }
 
+/* Cards are reserved for entries with real internal structure — a role at an
+   employer, a paper. They sit flat on the page: a hairline and the card ground
+   are enough to group, and dropping the shadow + hover-lift keeps the reading
+   surface calm instead of dashboard-like. */
 ul.vert > li {
     background-color: var(--card-bg);
     border-radius: 8px;
@@ -525,14 +563,43 @@ ul.vert > li {
     padding: 32px;
     margin-bottom: 28px;
     list-style-type: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-ul.vert > li:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    border-color: var(--accent);
+/* Short, uniform entries (Teaching, Service) read better as a typographic
+   list separated by rules than as a stack of near-empty boxes. */
+ul.vert.vert-plain > li {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    padding: 22px 4px;
+    margin-bottom: 0;
+    box-shadow: none;
+}
+
+ul.vert.vert-plain > li:last-child {
+    border-bottom: none;
+}
+
+/* Lede line under a section heading, where a one-sentence note would
+   otherwise be marooned inside a full-size card. */
+.section-lede {
+    max-width: 62ch;
+    margin: 0 0 28px;
+    color: var(--muted-text);
+}
+
+@media (max-width: 767px) {
+    ul.vert > li {
+        padding: 20px 18px;
+        margin-bottom: 18px;
+    }
+
+    ul.vert.vert-plain > li {
+        padding: 18px 0;
+        margin-bottom: 0;
+    }
 }
 
 /* Header Refinements */
@@ -542,10 +609,17 @@ h2 {
     margin-top: 60px;
     margin-bottom: 36px;
     font-weight: 500;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     color: var(--heading-color);
     display: inline-block;
     letter-spacing: 0.02em;
+}
+
+@media (max-width: 767px) {
+    h2 {
+        margin-top: 44px;
+        margin-bottom: 24px;
+    }
 }
 
 p {
@@ -557,49 +631,74 @@ p {
 
 /* Refinements for Profile and Mobile */
 .profile-name {
-    font-size: 1.8rem;
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
     color: var(--heading-color);
     font-family: 'Source Serif 4', 'Georgia', serif;
     font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: 8px;
+    line-height: 1.25;
+    margin-bottom: 10px;
     letter-spacing: 0.01em;
 }
 
-.profile-subtitle {
-    font-size: 13px;
+.profile-name-cn {
+    display: block;
+    font-size: 0.62em;
+    font-weight: 500;
+    color: var(--muted-text);
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+}
+
+.profile-role {
+    font-size: 12px;
     color: var(--muted-text);
     font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    margin-top: 12px;
     line-height: 1.6;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
+}
+
+.profile-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 14px;
+}
+
+.profile-tag {
+    padding: 4px 11px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background-color: var(--accent-light);
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+    white-space: nowrap;
 }
 
 /* Profile photo styling */
 .profile-photo {
-    max-width: 90%;
+    width: 100%;
+    max-width: 300px;
     height: auto;
-    border-radius: 8px;
-    border: 3px solid var(--border-color);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px var(--border-color), 0 10px 30px rgba(0,0,0,0.10);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    margin-top: 16px;
+    margin-top: 24px;
 }
 
 .profile-photo:hover {
-    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    box-shadow: 0 0 0 1px var(--accent-secondary), 0 14px 36px rgba(0,0,0,0.14);
     transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-    .profile-name {
-        font-size: 1.5rem;
-    }
-
-    .justified-text {
-        text-align: left;
+@media (max-width: 767px) {
+    .profile-photo {
+        max-width: 240px;
+        margin-top: 20px;
     }
 }
 
@@ -636,30 +735,63 @@ p {
 /* Hero Section */
 #about {
     position: relative;
-    padding: 40px 0;
-    margin-bottom: 50px;
+    padding: 48px 0 40px;
+    margin-bottom: 40px;
+}
+
+/* Hairline rule closing the hero, so it reads as its own band without a panel */
+#about::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color) 15%, var(--border-color) 85%, transparent);
 }
 
 .profile-column {
     text-align: center;
 }
 
+/* The bio runs ~165px past the bottom of the profile rail, leaving a dead
+   gutter on the left. Pinning the rail fills it and keeps the name, role and
+   links on screen while the bio is being read.
+
+   Gated on height as well as width: the rail is ~636px tall, so on a short
+   viewport pinning it would push the social links below the fold. Under
+   740px it simply scrolls away as before. align-self keeps the column from
+   stretching to the row's full height, which would leave sticky nothing to
+   travel against. */
+@media (min-width: 768px) and (min-height: 740px) {
+    .profile-column {
+        position: sticky;
+        top: 88px;              /* navbar (72px) + breathing room */
+        align-self: flex-start;
+    }
+}
+
 .bio-column {
     padding-left: 30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .bio-column {
         padding-left: 15px;
+    }
+
+    #about {
+        padding: 24px 0 20px;
+        margin-bottom: 20px;
     }
 }
 
 /* Recent Updates Card */
 .updates-card {
-    margin-top: 3%;
+    margin-top: 28px;
     background-color: var(--card-bg);
-    padding: 24px;
-    border-radius: 6px;
+    padding: 24px 26px;
+    border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     border: 1px solid var(--border-color);
     border-left: 3px solid var(--accent-secondary);
@@ -675,25 +807,56 @@ p {
     letter-spacing: 0.02em;
 }
 
-.updates-card ul {
+.updates-list {
     margin-bottom: 0;
-    padding-left: 20px;
+    padding-left: 0;
+    list-style: none;
 }
 
-.updates-card li {
-    margin-bottom: 8px;
+/* Dates in their own aligned column so the entries read as a timeline */
+.updates-list li {
+    display: grid;
+    grid-template-columns: 78px 1fr;
+    gap: 14px;
+    align-items: baseline;
+    margin-bottom: 12px;
+    font-size: 14.5px;
 }
 
-.updates-card li:last-child {
+.updates-list li:last-child {
     margin-bottom: 0;
+}
+
+.update-date {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-secondary-text);
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .updates-list li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
 }
 
 /* Section Spacing */
+.bio-text:not(:first-child) {
+    margin-top: 20px;
+}
+
 .bio-text {
-    margin-top: 3%;
-    text-align: justify;
-    font-size: 15px;
+    font-size: 15.5px;
     line-height: 1.8;
+}
+
+/* One shared measure for the whole column, so the paragraphs and the
+   Recent Updates card line up on the same right edge. */
+.bio-column > * {
+    max-width: 660px;
 }
 
 .bio-text strong {
@@ -709,7 +872,7 @@ p {
 }
 
 .bio-text a:hover {
-    color: var(--accent-secondary);
+    color: var(--accent-secondary-text);
     border-bottom-color: var(--accent-secondary);
 }
 
@@ -785,8 +948,153 @@ p {
 }
 
 /* ========================================
+   Visitor Map (MapMyVisitors)
+   w=a makes the map fill its container, so cap the container to keep it a widget
+   ======================================== */
+#visitor-map-container {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* The vendor ships a saturated blue plate with flat-white landmass, white Arial
+   counters and a red marker — the one block on the page that ignored both the
+   colour system and the theme.
+
+   Ocean and land both live inside a single flat PNG on the vendor's domain, so
+   neither can be set with background-color. Two approaches were tried and
+   rejected: masking the PNG (mask images are CORS-restricted and it sends no
+   CORS headers, so the continents vanish) and filtering the element (the filter
+   also greys out the marker, which is a child of the same element).
+
+   What works is background-blend-mode: it recolours the background image alone
+   and leaves child SVG untouched, so the map goes monochrome in a palette tint
+   while the marker keeps its gold. A brightness/contrast filter then sets the
+   overall weight per theme — brightness is the one filter the marker survives.
+
+   If the vendor script fails the widget hides itself; if a class is renamed
+   these rules stop applying and the vendor's own look returns. */
+#visitor-map-widget {
+    --map-tint: #8E8578;
+    --map-adjust: brightness(1.52) contrast(0.72);
+    --map-plate: #F1EDE5;
+
+    margin: 56px auto 0;
+    max-width: 560px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+[data-theme="dark"] #visitor-map-widget {
+    --map-tint: #4A5462;
+    --map-adjust: brightness(0.78) contrast(0.9);
+    --map-plate: #12171E;
+}
+
+.visitor-map-label {
+    margin: 0 0 18px;
+    color: var(--muted-text);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+/* The plate: page-coloured rather than vendor-blue, and laid out so the
+   counters sit below the map instead of floating on top of it. */
+#visitor-map-widget .mapmyvisitors-map-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--map-plate) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    padding-bottom: 8px;
+}
+
+#visitor-map-widget .mapmyvisitors-map {
+    order: 1;
+    background-color: var(--map-tint);
+    background-blend-mode: luminosity;
+    filter: var(--map-adjust);
+}
+
+/* Counter and date in the site's own type, not white Arial. */
+#visitor-map-widget .mpmvs.mapmyvisitors-visitors,
+#visitor-map-widget .mpmvs.mapmyvisitors-date {
+    order: 2;
+    color: var(--muted-text) !important;
+    font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif !important;
+    font-size: 12px !important;
+    letter-spacing: 0.02em;
+    text-shadow: none !important;
+}
+
+#visitor-map-widget .mpmvs.mapmyvisitors-visitors {
+    font-weight: 600;
+    padding-top: 12px;
+}
+
+/* Marker in the site's gold, not the vendor's red. */
+#visitor-map-widget .jvectormap-marker {
+    fill: var(--accent-secondary) !important;
+    fill-opacity: 1 !important;
+    stroke: none !important;
+    r: 5px;
+}
+
+@media (max-width: 767px) {
+    #visitor-map-widget {
+        margin-top: 40px;
+        padding-top: 24px;
+    }
+}
+
+#visitor-map-container #mapmyvisitors-widget {
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* ========================================
+   Dark Mode Contrast Corrections
+   In dark mode --accent is a light blue, so white text on it fails contrast.
+   Filled controls use dark ink on the accent instead.
+   ======================================== */
+[data-theme="dark"] .filter-btn.active,
+[data-theme="dark"] .photo-filter-btn.active,
+[data-theme="dark"] .pub-link:hover,
+[data-theme="dark"] #backToTop:hover {
+    color: #0D1117 !important;
+}
+
+[data-theme="dark"] .venue-badge.oral {
+    color: #E0B34D;
+    background-color: rgba(212, 168, 75, 0.15);
+    border-color: rgba(212, 168, 75, 0.3);
+}
+
+[data-theme="dark"] .venue-badge.highlight {
+    color: #C89BF5;
+    background-color: rgba(147, 51, 234, 0.18);
+    border-color: rgba(147, 51, 234, 0.35);
+}
+
+/* Publication figures are mostly light-background diagrams; keep their white
+   plate in dark mode but dim it so it doesn't glare. */
+[data-theme="dark"] .publication-img {
+    background-color: #E8E6E1;
+}
+
+[data-theme="dark"] .company-header img {
+    background-color: #F5F3EF;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+/* ========================================
    Publication Venue Badges
    ======================================== */
+/* The one intentional exception to the pill geometry: a label, not a control. */
 .venue-badge {
     display: inline-block;
     padding: 5px 12px;
@@ -795,7 +1103,7 @@ p {
     font-weight: 700;
     color: var(--accent);
     background-color: var(--accent-light);
-    border-radius: 4px;
+    border-radius: var(--pill-radius);
     letter-spacing: 0.05em;
     vertical-align: middle;
     text-transform: uppercase;
@@ -820,20 +1128,7 @@ p {
 
 /* Collapsible Abstract */
 .abstract-toggle {
-    display: inline-block;
-    padding: 5px 14px;
     margin-top: 8px;
-    font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--muted-text);
-    background: none;
-    border: 1px solid var(--border-color);
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
 .abstract-toggle:hover {
@@ -979,7 +1274,7 @@ button:focus-visible,
 }
 
 .site-footer .footer-links a:hover {
-    color: var(--accent-secondary);
+    color: var(--accent-secondary-text);
 }
 
 .site-footer .footer-social {

@@ -45,7 +45,22 @@
     <!-- SimpleLightbox CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css" rel="stylesheet">
 
+    <!-- Scroll-reveal starts sections at opacity 0; without JS they must still show -->
+    <noscript>
+        <style>.fade-in-up { opacity: 1 !important; }</style>
+    </noscript>
+
     <title>Kangning Liu - Research Scientist | Computer Vision & AI</title>
+    <!-- Set the theme before first paint so dark mode never flashes light -->
+    <script>(function () {
+        try {
+            var saved = localStorage.getItem('theme');
+            var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    })();</script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='8' fill='%231E3A5F'/><text x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='bold' fill='white' text-anchor='middle'>KL</text></svg>">
 
     <!-- JSON-LD Person Schema -->
@@ -56,12 +71,12 @@
         "name": "Kangning Liu",
         "alternateName": "刘康宁",
         "url": "https://kangning-liu.github.io/",
-        "image": "https://kangning-liu.github.io/Kangning Liu_files/kangning.jpeg",
-        "jobTitle": "Research Scientist",
+        "image": "https://kangning-liu.github.io/Kangning%20Liu_files/kangning.jpeg",
+        "jobTitle": "Senior Research Scientist",
         "worksFor": {
             "@type": "Organization",
-            "name": "Adobe",
-            "url": "https://www.adobe.com/"
+            "name": "Meta",
+            "url": "https://about.meta.com/"
         },
         "alumniOf": [
             {
@@ -87,19 +102,19 @@
     }
     </script>
 
-    <meta name="description" content="Personal website of Kangning Liu, Research Scientist at Adobe. PhD from NYU Center for Data Science. Research focus: MLLMs, Generative AI, Vision Foundation Models, and Robust Deep Learning.">
+    <meta name="description" content="Personal website of Kangning Liu, AI Research Scientist at Meta. PhD from NYU Center for Data Science. Research focus: MLLMs, Generative AI, Vision Foundation Models, and Robust Deep Learning.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Open Graph / Social Sharing -->
     <meta property="og:title" content="Kangning Liu - Research Scientist | Computer Vision & AI">
-    <meta property="og:description" content="Research Scientist at Adobe. PhD from NYU. Research focus: Multimodal Large Language Models, Generative AI, Vision Foundation Models, and Robust Deep Learning.">
-    <meta property="og:image" content="https://kangning-liu.github.io/Kangning Liu_files/kangning.jpeg">
+    <meta property="og:description" content="AI Research Scientist at Meta. PhD from NYU. Research focus: Multimodal Large Language Models, Generative AI, Vision Foundation Models, and Robust Deep Learning.">
+    <meta property="og:image" content="https://kangning-liu.github.io/Kangning%20Liu_files/kangning.jpeg">
     <meta property="og:url" content="https://kangning-liu.github.io/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kangning Liu - Research Scientist | Computer Vision & AI">
     <meta name="twitter:description" content="Research Scientist at Adobe. PhD from NYU. Research focus: MLLMs, Generative AI, Vision Foundation Models, and Robust Deep Learning.">
-    <meta name="twitter:image" content="https://kangning-liu.github.io/Kangning Liu_files/kangning.jpeg">
+    <meta name="twitter:image" content="https://kangning-liu.github.io/Kangning%20Liu_files/kangning.jpeg">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -112,6 +127,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
+        <a class="navbar-brand" href="#home">Kangning&nbsp;Liu</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -139,16 +155,17 @@
 <!-- Page Content -->
 <main class="container" id="home">
 
-    <section class="row align-items-center" id="about">
+    <section class="row align-items-start" id="about">
         <div class="col-md-4 col-sm-12 profile-column">
-            <div class="profile-name">
-                <b>Kangning Liu (刘康宁)</b>
-                <div class="profile-subtitle">
-                    AI Research Scientist @ Meta | MLLM & GenAI & Vision Foundation Models
-                </div>
+            <h1 class="profile-name">Kangning Liu <span class="profile-name-cn">刘康宁</span></h1>
+            <p class="profile-role">AI Research Scientist @ Meta</p>
+            <div class="profile-tags">
+                <span class="profile-tag">Multimodal LLM</span>
+                <span class="profile-tag">Generative AI</span>
+                <span class="profile-tag">Reward Modeling &amp; RL</span>
             </div>
-            <img class="img-fluid profile-photo" src="./Kangning Liu_files/kangning.jpeg" alt="Kangning Liu Profile Picture" loading="lazy">
-                 
+            <img class="img-fluid profile-photo" src="./Kangning Liu_files/opt/kangning.webp" alt="Kangning Liu" fetchpriority="high" width="600" height="800">
+
             <!-- Social Icons & CV -->
             <div class="social-icons">
                 <a href="https://scholar.google.com/citations?user=F3F2qAkAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
@@ -164,16 +181,16 @@
 
             <!-- Introduction -->
             <p class="bio-text">
-                I am Kangning Liu, a AI Research Scientist at <a href="https://about.meta.com/">Meta</a>.
-                I build large-scale vision and multimodal foundation models that bridge cutting-edge research with real-world industrial impact.
+                I am Kangning Liu, an AI Research Scientist at <a href="https://about.meta.com/">Meta</a>.
+                I build large-scale image-generation and multimodal foundation models that bridge cutting-edge research with real-world industrial impact.
             </p>
             <p class="bio-text">
-                My work focuses on advancing multimodal understanding and integrating powerful visual comprehension into generative models—enabling applications from GenAI data creation and reward modeling to AI agent tool calling.
-                My research has been published at top-tier venues (<strong>NeurIPS, CVPR, ICCV, ICLR, ICML</strong>). Previously at Adobe, my work was deployed in <strong>Adobe Photoshop</strong>, <strong>Lightroom</strong>, <strong>Express</strong>, and <strong>Firefly</strong>, reaching tens of millions of users.
+                My work spans two closely connected threads: <strong>image-generation foundation models</strong>—reward modeling and reinforcement learning for generation quality, alignment, and controllability—and <strong>multimodal understanding</strong>, bringing reasoning and fine-grained visual comprehension into generative models for GenAI data creation and AI agent tool calling.
+                My research has been published at top-tier venues (<strong>NeurIPS, CVPR, ICCV, ICLR, ICML, SIGGRAPH</strong>). Previously at Adobe, my work was deployed in <strong>Adobe Photoshop</strong>, <strong>Lightroom</strong>, <strong>Express</strong>, and <strong>Firefly</strong>, reaching tens of millions of users.
             </p>
             <p class="bio-text">
                 I earned my Ph.D. at the <a href="https://cds.nyu.edu/">NYU Center for Data Science</a>, where I was advised by <a
-                    href="https://cims.nyu.edu/~cfgranda/">Prof. Carlos Fernandez Granda</a> and <a
+                    href="https://cims.nyu.edu/~cfgranda/">Prof. Carlos Fernandez-Granda</a> and <a
                     href="https://cs.nyu.edu/~kgeras/">Prof. Krzysztof J. Geras</a>. Before that, I earned my <a
                     href="https://inf.ethz.ch/studies/master/master-ds.html">M.Sc. in Data Science from ETH Zurich</a>
                 and my B.E. in Electrical Engineering from <a href="https://www.tsinghua.edu.cn/en/">Tsinghua
@@ -184,12 +201,13 @@
             <!-- News / Recent Updates Section -->
             <div class="updates-card">
                 <h3>Recent Updates</h3>
-                <ul>
-                    <li><b>Apr 2026:</b> Our paper "LaViDa-R1" was accepted to <strong>ICML 2026</strong>!</li>
-                    <li><b>Feb 2026:</b> Our papers "VGent" and "Sparse-LaViDa" were accepted to <strong>CVPR 2026</strong>!</li>
-                    <li><b>Jan 2026:</b> Our paper "LaViDa-O" was accepted to <strong>ICLR 2026</strong>!</li>
-                    <li><b>Dec 2025:</b> "selectionByPrompt" feature shipped in <strong>Adobe Photoshop</strong> integrating into ChatGPT; served as research lead.</li>
-                    <li><b>July 2025:</b> Our paper "RAS" was accepted to <strong>ICCV 2025</strong>!</li>
+                <ul class="updates-list">
+                    <li><span class="update-date">May 2026</span><span class="update-text">Our paper "MAOAM" was accepted to <strong>SIGGRAPH 2026</strong>!</span></li>
+                    <li><span class="update-date">Apr 2026</span><span class="update-text">Joined <strong>Meta</strong> as an AI Research Scientist, working on multimodal LLMs and image-generation foundation models.</span></li>
+                    <li><span class="update-date">Apr 2026</span><span class="update-text">Our paper "LaViDa-R1" was accepted to <strong>ICML 2026</strong>!</span></li>
+                    <li><span class="update-date">Feb 2026</span><span class="update-text">Our papers "VGent" and "Sparse-LaViDa" were accepted to <strong>CVPR 2026</strong>!</span></li>
+                    <li><span class="update-date">Jan 2026</span><span class="update-text">Our paper "LaViDa-O" was accepted to <strong>ICLR 2026</strong>!</span></li>
+                    <li><span class="update-date">Dec 2025</span><span class="update-text">"selectionByPrompt" feature shipped in <strong>Adobe Photoshop</strong> integrating into ChatGPT; served as research lead.</span></li>
                 </ul>
             </div>
                 <!-- Contact Info and Links -->
@@ -212,7 +230,7 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/Meta.png" alt="Meta Logo" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/Meta.webp" width="128" height="128" alt="Meta Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Meta</strong>
                     </p>
@@ -221,12 +239,12 @@
                 <p class="position-advisors">Senior Research Scientist</p>
 
                 <ul class="project-list alt justified-text">
-                    <li><strong>Multimodal LLM & Generative AI:</strong> Working on multimodal large language models and generative AI.</li>
+                    <li><strong>Multimodal LLMs &amp; Generative AI:</strong> Research on large-scale multimodal foundation models &mdash; strengthening visual understanding (reasoning, grounding, fine-grained perception) and bringing those capabilities into generative systems. Current work spans unified understanding-and-generation architectures, reward modeling and data creation for GenAI training, and evaluation of multimodal models at scale. Publications and public releases from this work will be listed here as they appear.</li>
                 </ul>
             </li>
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/Adobe.png" alt="Adobe Logo" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/Adobe.webp" width="240" height="135" alt="Adobe Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Adobe</strong>
                     </p>
@@ -237,7 +255,7 @@
                 <ul class="project-list alt justified-text">
     
                     <li><strong>Multimodal Grounding &amp; Reasoning:</strong> Enhance the grounding ability of multimodal large language models by integrating advanced reasoning capabilities and fine-grained understanding. These models enable a wide spectrum of applications, ranging from generative AI data creation and reward modeling for GenAI training to AI agent tool calling. For example, our "selectionByPrompt" feature <a href="https://blog.adobe.com/en/publish/2025/12/10/edit-photoshop-chatgpt">[Adobe Blog]</a> enables users to select content in an image using natural language with <strong>Adobe Photoshop</strong> in <a href="https://chatgpt.com/">ChatGPT</a>, and has since been integrated into <a href="https://blog.adobe.com/en/publish/2026/03/10/image-editing-just-got-smarter-with-ai-photoshop-firefly">AI Assistant in Photoshop</a> for smarter image editing.
-                        <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-vgent" class="pub-link"><i class="fas fa-file-alt"></i> VGent [CVPR 2026]</a> <a href="#pub-ras" class="pub-link"><i class="fas fa-file-alt"></i> RAS [ICCV 2025]</a></li>
+                        <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-vgent" class="pub-link"><i class="fas fa-file-alt"></i> VGent [CVPR 2026]</a> <a href="#pub-maoam" class="pub-link"><i class="fas fa-file-alt"></i> MAOAM [SIGGRAPH 2026]</a> <a href="#pub-ras" class="pub-link"><i class="fas fa-file-alt"></i> RAS [ICCV 2025]</a></li>
                     <li><strong>Unified Understanding &amp; Generation:</strong> Working on unified frameworks that bring powerful visual comprehension—reasoning, grounding, and fine-grained perception—into generative models, enabling a single architecture to both understand and create visual content.
                         <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-lavida-o" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-O [ICLR 2026]</a>  <a href="#pub-sparse-lavida" class="pub-link"><i class="fas fa-file-alt"></i> Sparse-LaViDa [CVPR 2026]</a> <a href="#pub-lavida-r1" class="pub-link"><i class="fas fa-file-alt"></i> LaViDa-R1 [ICML 2026]</a> </li>
                     <li><strong>Generative Modeling &amp; Image Editing:</strong> Improving generative quality from two angles: geometry-aware training objectives for scalable discrete image generators (SNCE), and a trainable inline critic that steers frozen image-editing models by correcting hidden states mid forward-pass (Inline Critic).
@@ -253,7 +271,7 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/Adobe.png" alt="Adobe Logo" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/Adobe.webp" width="240" height="135" alt="Adobe Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Adobe</strong>
                     </p>
@@ -279,7 +297,7 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/Google.png" alt="Google Logo" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/Google.webp" width="240" height="135" alt="Google Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Google</strong>
                     </p>
@@ -299,7 +317,7 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/NYU.png" alt="CDS Logo" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/NYU.webp" width="240" height="82" alt="CDS Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Center for Data Science,
                             New York University</strong>
@@ -337,14 +355,14 @@
         <ul class="vert">
             <li>
                 <div class="company-header">
-                    <img src="./Kangning Liu_files/cvl2.png" alt="CVL Logo" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/cvl2.webp" width="240" height="98" alt="CVL Logo" loading="lazy">
                     <p class="company-title">
                         <strong>Computer Vision Laboratory, ETH Zurich</strong>
                     </p>
                 </div>
                 <p class="location-time">Zurich, Switzerland (Oct 2018 - Aug 2019)</p>
-                <p class="position-advisors">Research Assistant | Advisors: Prof. Luc Van Gool, Prof. Radu Timofte,
-                    Prof. Shuhang Gu</p>
+                <p class="position-advisors">Research Assistant | Advisors: Prof. Luc Van Gool, Dr. Radu Timofte,
+                    Dr. Shuhang Gu</p>
                 <ul class="project-list alt justified-text">
                     <li><strong>Domain Adaptation:</strong> Improved cross-domain semantic segmentation methods for
                         urban scene images through GAN models, harnessing weak paired information.
@@ -372,7 +390,7 @@
             <button class="filter-btn" data-filter="foundation">Vision Foundation Model</button>
             <button class="filter-btn" data-filter="imperfect">Robust Learning</button>
             <button class="filter-btn" data-filter="others">Others</button>
-            <div id="filter-count" style="margin-top: 10px; color: #7f8c8d; font-size: 12px; font-style: italic;"></div>
+            <div id="filter-count"></div>
         </div>
 
         <ul class="vert pub-list">
@@ -381,11 +399,11 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/SNCE.png" alt="SNCE geometry-aware supervision for scalable discrete image generation"
+                        <img src="./Kangning Liu_files/opt/SNCE.webp" width="1100" height="555" alt="SNCE geometry-aware supervision for scalable discrete image generation"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>SNCE: Geometry-Aware Supervision for Scalable Discrete Image Generation</b></p>
+                        <h3 class="pub-title">SNCE: Geometry-Aware Supervision for Scalable Discrete Image Generation</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2603.15150" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -406,11 +424,11 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/InlineCritic.png" alt="Inline Critic three-stage training pipeline for image editing"
+                        <img src="./Kangning Liu_files/opt/InlineCritic.webp" width="793" height="380" alt="Inline Critic three-stage training pipeline for image editing"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Inline Critic Steers Image Editing</b></p>
+                        <h3 class="pub-title">Inline Critic Steers Image Editing</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2605.12724" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -431,11 +449,11 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/Lavida-R1.png" alt="LaViDa-R1 framework for unified multimodal reasoning with diffusion language models"
+                        <img src="./Kangning Liu_files/opt/Lavida-R1.webp" width="1100" height="436" alt="LaViDa-R1 framework for unified multimodal reasoning with diffusion language models"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>LaViDa-R1: Advancing Reasoning for Unified Multimodal Diffusion Language Models </b></p>
+                        <h3 class="pub-title">LaViDa-R1: Advancing Reasoning for Unified Multimodal Diffusion Language Models</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2602.14147" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -456,16 +474,44 @@
                     </div>
                 </div>
             </li>
+            <li class="publication-item" id="pub-maoam" data-category="mllm foundation">
+                <div class="row">
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <img src="./Kangning Liu_files/opt/MAOAM.webp" width="844" height="343" alt="MAOAM unified object and material selection from text and click prompts"
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <h3 class="pub-title">MAOAM: Unified Object and Material Selection with Vision-Language Models</h3>
+                        <p>
+                            <a href="https://arxiv.org/abs/2606.04880" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://jadenpark0.github.io/project_pages/maoam/" class="pub-link"><i class="fas fa-globe"></i> Project Website</a>
+                            <a href="https://github.com/adobe-research/obj-and-mat-selection" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
+                        </p>
+                        <p>Jaden Park, Valentin Deschaintre, Jason Kuen, <u><b>Kangning Liu</b></u>, Iliyan Georgiev, Krishna Kumar Singh, Yong Jae Lee, Michael Fischer.</p>
+                        <p><span class="venue-badge">SIGGRAPH 2026</span></p>
+                        <p class="pub-tldr"><strong>TL;DR:</strong> A single model that selects both objects and materials from text, clicks, or both &mdash; with emergent gains when the two prompt types are combined at inference.</p>
+                        <button class="abstract-toggle">Show abstract</button>
+                        <div class="abstract-content">
+                        <p class="justified-text">
+                            We present <strong>MAOAM</strong>, a unified selection model that handles both objects and materials under either text- or click-based interaction, pairing a vision-language model with a segmentation decoder to produce pixel-accurate masks from user prompts.
+                            A central obstacle is that existing segmentation datasets are object-centric and offer no text-annotated material data, so we build an automated VLM-based annotation pipeline and collect real and synthetic material data, yielding roughly 190K training samples balanced between material- and object-centric examples.
+                            Training jointly covers click-based selection, text-based selection, and visual question answering.
+                            Although trained only on unimodal prompts, the model shows an emergent ability to combine text and clicks at inference time, improving selection quality and enabling more flexible image-editing workflows.
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
             <li class="publication-item" id="pub-vgent" data-category="mllm">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/crop_vgent_method_v2.png" alt="VGent modular architecture for disentangling reasoning and prediction in visual grounding"
+                        <img src="./Kangning Liu_files/opt/crop_vgent_method_v2.webp" width="1100" height="378" alt="VGent modular architecture for disentangling reasoning and prediction in visual grounding"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>VGent: Visual Grounding via Modular Design for Disentangling Reasoning and Prediction</b></p>
+                        <h3 class="pub-title">VGent: Visual Grounding via Modular Design for Disentangling Reasoning and Prediction</h3>
                         <p>
                             <a href="https://arxiv.org/pdf/2512.11099" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                             <a href="https://mp.weixin.qq.com/s/R_RVJPAqzgfvn65AJYlvnw" class="pub-link"><i class="fas fa-newspaper"></i> Media Coverage by 新智元</a>
@@ -492,11 +538,11 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/Sparse-LaVida.png" alt="Sparse-LaViDa framework for accelerating masked discrete diffusion model sampling"
+                        <img src="./Kangning Liu_files/opt/Sparse-LaVida.webp" width="1100" height="415" alt="Sparse-LaViDa framework for accelerating masked discrete diffusion model sampling"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Sparse-LaViDa: Sparse Multimodal Discrete Diffusion Language Model </b></p>
+                        <h3 class="pub-title">Sparse-LaViDa: Sparse Multimodal Discrete Diffusion Language Model</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2512.14008" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -520,11 +566,11 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/LaViDa-O.png" alt="LaViDa-O elastic masked diffusion model for unified multimodal understanding and generation"
+                        <img src="./Kangning Liu_files/opt/LaViDa-O.webp" width="1100" height="907" alt="LaViDa-O elastic masked diffusion model for unified multimodal understanding and generation"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>LaViDa-O: Elastic Large Masked Diffusion Models for Unified Multimodal Understanding and Generation </b></p>
+                        <h3 class="pub-title">LaViDa-O: Elastic Large Masked Diffusion Models for Unified Multimodal Understanding and Generation</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2509.19244" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                             <a href="https://homepage.jackli.org/projects/lavida_o/index.html" class="pub-link"><i class="fas fa-globe"></i> Project Website</a>
@@ -548,11 +594,11 @@
                 <div class="row">
                     <!-- Publication Details -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/RAS.jpg" alt="RAS framework for referring to segmentation mask groups with vision-language prompts"
+                        <img src="./Kangning Liu_files/opt/RAS.webp" width="1100" height="482" alt="RAS framework for referring to segmentation mask groups with vision-language prompts"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Refer to Any Segmentation Mask Group With Vision-Language Prompts </b></p>
+                        <h3 class="pub-title">Refer to Any Segmentation Mask Group With Vision-Language Prompts</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2506.05342" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                             <a href="https://research.adobe.com/news/adobe-research-breakthroughs-at-iccv-2025/" class="pub-link"><i class="fas fa-video"></i> Featured Demo</a>
@@ -575,11 +621,11 @@
                 <div class="row">
                     <!-- Publication Details -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/SVE.png" alt="SVE sparse vision encoder framework for efficient high-resolution inference"
+                        <img src="./Kangning Liu_files/opt/SVE.webp" width="1100" height="562" alt="SVE sparse vision encoder framework for efficient high-resolution inference"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Leveraging Sparsity for Efficient Inference of High-Resolution Vision Foundation Models. </b></p>
+                        <h3 class="pub-title">Leveraging Sparsity for Efficient Inference of High-Resolution Vision Foundation Models.</h3>
                         <p>
                             <a href="https://bmva-archive.org.uk/bmvc/2025/assets/papers/Paper_661/paper.pdf" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -600,11 +646,11 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/conSAMme.jpg" alt="conSAMme contrastive learning framework for consistent SAM segmentations"
+                        <img src="./Kangning Liu_files/opt/conSAMme.webp" width="1100" height="767" alt="conSAMme contrastive learning framework for consistent SAM segmentations"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>ConSAMmé: Achieving Consistent Segmentations with SAM </b></p>
+                        <h3 class="pub-title">ConSAMmé: Achieving Consistent Segmentations with SAM</h3>
                         <p>
                             <a href="https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/html/Myers-Dean_conSAMme_Achieving_Consistent_Segmentations_with_SAM_CVPRW_2025_paper.html" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -630,11 +676,11 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/SUM_framework.png" alt="SUM uncertainty-aware fine-tuning framework for segmentation foundation models"
+                        <img src="./Kangning Liu_files/opt/SUM_framework.webp" width="1100" height="744" alt="SUM uncertainty-aware fine-tuning framework for segmentation foundation models"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Uncertainty-aware Fine-tuning of Segmentation Foundation Models </b></p>
+                        <h3 class="pub-title">Uncertainty-aware Fine-tuning of Segmentation Foundation Models</h3>
                         <p>
                             <a href="https://openreview.net/pdf?id=qNXRXUC90b" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                             <a href="https://github.com/Kangningthu/SUM.git" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
@@ -667,15 +713,15 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/approach_v3.png" alt="Controllable one-shot face video synthesis approach with semantic aware prior"
+                        <img src="./Kangning Liu_files/opt/approach_v3.webp" width="708" height="368" alt="Controllable one-shot face video synthesis approach with semantic aware prior"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Controllable One-Shot Face Video Synthesis With Semantic Aware Prior </b></p>
+                        <h3 class="pub-title">Controllable One-Shot Face Video Synthesis With Semantic Aware Prior</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2304.14471" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
-                        <p><u><b>Kangning Liu</b></u>, Yu-Chuan Su, Wei(Alex) Hong, Ruijin Cang, Xuhui Jia.</p>
+                        <p><u><b>Kangning Liu</b></u>, Yu-Chuan Su, Wei (Alex) Hong, Carlos Fernandez-Granda, Ruijin Cang, Xuhui Jia.</p>
                         <p><span class="venue-badge">Preprint</span></p>
                         <p class="pub-tldr"><strong>TL;DR:</strong> Single-image face video generation with 7% better geometric accuracy and 15% better expression preservation, plus controllable emotion editing.</p>
                         <button class="abstract-toggle">Show abstract</button>
@@ -697,12 +743,12 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/contrastive_learning_illustration.png" alt="ItS2CLR iterative self-paced supervised contrastive learning for multiple instance learning"
+                        <img src="./Kangning Liu_files/opt/contrastive_learning_illustration.webp" width="1100" height="421" alt="ItS2CLR iterative self-paced supervised contrastive learning for multiple instance learning"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
 
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Multiple Instance Learning via Iterative Self-Paced Supervised Contrastive Learning</b></p>
+                        <h3 class="pub-title">Multiple Instance Learning via Iterative Self-Paced Supervised Contrastive Learning</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2210.09452" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                             <a href="https://github.com/Kangningthu/ItS2CLR" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
@@ -728,11 +774,11 @@
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/ADELE.jpeg" alt="ADELE adaptive early-learning correction for segmentation from noisy annotations"
+                        <img src="./Kangning Liu_files/opt/ADELE.webp" width="1100" height="734" alt="ADELE adaptive early-learning correction for segmentation from noisy annotations"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Adaptive early-learning correction for segmentation from noisy annotations </b></p>
+                        <h3 class="pub-title">Adaptive early-learning correction for segmentation from noisy annotations</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2110.03740" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                             <a href="https://github.com/Kangningthu/ADELE" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
@@ -756,13 +802,13 @@
                 <div class="row">
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/Strokerehab.jpeg" alt="Publication Image for StrokeRehab"
+                        <img src="./Kangning Liu_files/opt/Strokerehab.webp" width="1100" height="378" alt="Publication Image for StrokeRehab"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
-                        <img src="./Kangning Liu_files/StrokeRehab2.jpeg" alt="Publication Image for StrokeRehab"
+                        <img src="./Kangning Liu_files/opt/StrokeRehab2.webp" width="1100" height="299" alt="Publication Image for StrokeRehab"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>StrokeRehab: A Benchmark Dataset for Sub-second Action Identification </b></p>
+                        <h3 class="pub-title">StrokeRehab: A Benchmark Dataset for Sub-second Action Identification</h3>
                         <p>
                             <a href="https://openreview.net/pdf?id=jIIzJaMbfw" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -785,12 +831,12 @@
                 <div class="row">
                     <!-- Image Placeholder -->
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/Equal.jpeg" alt="Publication Image for Neural Collapse"
+                        <img src="./Kangning Liu_files/opt/Equal.webp" width="1100" height="344" alt="Publication Image for Neural Collapse"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
 
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Are All Losses Created Equal: A Neural Collapse Perspective </b></p>
+                        <h3 class="pub-title">Are All Losses Created Equal: A Neural Collapse Perspective</h3>
                         <p>
                             <a href="https://openreview.net/pdf?id=8rfYWE3nyXl" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -812,11 +858,11 @@
             <li class="publication-item" data-category="others">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/MRF.jpeg" alt="Publication Image for Cramér-Rao"
+                        <img src="./Kangning Liu_files/opt/MRF.webp" width="1100" height="734" alt="Publication Image for Cramér-Rao"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Cramér-Rao bound-informed training of neural networks for quantitative MRI </b></p>
+                        <h3 class="pub-title">Cramér-Rao bound-informed training of neural networks for quantitative MRI</h3>
                         <p>
                             <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.29206" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -840,12 +886,12 @@
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
                         <!--<img src="./Kangning Liu_files/Inference_framework.png" alt="Publication Image for Weakly-supervised High-resolution Segmentation" class="img-fluid publication-img" style="width: 100%;" loading="lazy">-->
-                        <img src="./Kangning Liu_files/Visualization_example.png"
+                        <img src="./Kangning Liu_files/opt/Visualization_example.webp" width="1100" height="482"
                              alt="Publication Image for Weakly-supervised High-resolution Segmentation"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Weakly-supervised High-resolution Segmentation of Mammography Images for Breast Cancer Diagnosis </b></p>
+                        <h3 class="pub-title">Weakly-supervised High-resolution Segmentation of Mammography Images for Breast Cancer Diagnosis</h3>
                         <p>
                             <a href="https://arxiv.org/abs/2106.07049" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                             <a href="https://github.com/nyukat/GLAM" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
@@ -874,13 +920,13 @@
             <li class="publication-item" data-category="genai">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/UVIT_HR_multimodal.jpeg"
+                        <img src="./Kangning Liu_files/opt/UVIT_HR_multimodal.webp" width="1100" height="319"
                              alt="Publication Image for Unsupervised Multimodal Video-to-Video Translation"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                         <!--<img src="./Kangning Liu_files/UVIT_overview.png" alt="Publication Image for Unsupervised Multimodal Video-to-Video Translation" class="img-fluid publication-img" style="width: 100%;" loading="lazy">-->
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>Unsupervised Multimodal Video-to-Video Translation via Self-Supervised Learning</b></p>
+                        <h3 class="pub-title">Unsupervised Multimodal Video-to-Video Translation via Self-Supervised Learning</h3>
                         <p>
                             <a href="https://openaccess.thecvf.com/content/WACV2021/papers/Liu_Unsupervised_Multimodal_Video-to-Video_Translation_via_Self-Supervised_Learning_WACV_2021_paper.pdf" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                             <a href="https://uvit.netlify.app" class="pub-link"><i class="fas fa-globe"></i> Project Website</a>
@@ -910,12 +956,12 @@
             <li class="publication-item" data-category="imperfect">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
-                        <img src="./Kangning Liu_files/gmic.jpeg"
+                        <img src="./Kangning Liu_files/opt/gmic.webp" width="1100" height="661"
                              alt="Publication Image for An interpretable classifier for high-resolution breast cancer screening images"
                              class="img-fluid publication-img" style="width: 100%;" loading="lazy">
                     </div>
                     <div class="custom-col-text" style="padding: 10px;">
-                        <p><b>An interpretable classifier for high-resolution breast cancer screening images </b></p>
+                        <h3 class="pub-title">An interpretable classifier for high-resolution breast cancer screening images</h3>
                         <p>
                             <a href="https://www.sciencedirect.com/science/article/pii/S1361841520302723" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
                         </p>
@@ -945,7 +991,7 @@
 
     <section class="col-md-12 fade-in-up">
         <h2 id="teaching">Teaching</h2>
-        <ul class="vert">
+        <ul class="vert vert-plain">
             <li>
                 <div class="info-row">
                     <div class="info-row-icon teaching"><i class="fas fa-chalkboard-teacher"></i></div>
@@ -971,7 +1017,7 @@
 
     <section class="col-md-12 fade-in-up">
         <h2 id="service">Service</h2>
-        <ul class="vert">
+        <ul class="vert vert-plain">
             <li>
                 <div class="info-row">
                     <div class="info-row-icon award"><i class="fas fa-trophy"></i></div>
@@ -1007,11 +1053,8 @@
     <section class="col-md-12 fade-in-up">
         <h2 id="photography">Miscellaneous</h2>
 
-        <ul class="vert">
-            <li>
-                <p>Capturing moments and exploring light with my Sony A7M4.</p>
-            </li>
-        </ul>
+        <p class="section-lede">Capturing moments and exploring light with my Sony A7M4.</p>
+
         <p class="imgGallery-section-title">Visual Fragments</p>
         
         <div class="photo-filter-container" role="toolbar" aria-label="Filter photos by category">
@@ -1027,142 +1070,142 @@
             <!-- California -->
             <div class="imgGallery-column" data-category="california">
                 <a href="./Kangning Liu_files/DSC04444.jpeg" class="lightbox-gallery" title="California">
-                    <img src="./Kangning Liu_files/thumbs/DSC04444.jpeg" alt="California" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC04444.webp" width="600" height="400" alt="California" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="california">
                 <a href="./Kangning Liu_files/DSC04257.jpeg" class="lightbox-gallery" title="California">
-                    <img src="./Kangning Liu_files/thumbs/DSC04257.jpeg" alt="California" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC04257.webp" width="600" height="400" alt="California" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="california">
                 <a href="./Kangning Liu_files/DSC04158-2.jpeg" class="lightbox-gallery" title="California">
-                    <img src="./Kangning Liu_files/thumbs/DSC04158-2.jpeg" alt="California" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC04158-2.webp" width="600" height="400" alt="California" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="california">
                 <a href="./Kangning Liu_files/DSC06188.jpeg" class="lightbox-gallery" title="California">
-                    <img src="./Kangning Liu_files/thumbs/DSC06188.jpeg" alt="California" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC06188.webp" width="600" height="400" alt="California" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="california">
                 <a href="./Kangning Liu_files/DSC03609.jpeg" class="lightbox-gallery" title="California">
-                    <img src="./Kangning Liu_files/thumbs/DSC03609.jpeg" alt="California" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC03609.webp" width="600" height="400" alt="California" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="california">
                 <a href="./Kangning Liu_files/DSC07554-2.jpeg" class="lightbox-gallery" title="California">
-                    <img src="./Kangning Liu_files/thumbs/DSC07554-2.jpeg" alt="California" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC07554-2.webp" width="600" height="400" alt="California" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="california">
                 <a href="./Kangning Liu_files/DSC08122-2.jpeg" class="lightbox-gallery" title="California">
-                    <img src="./Kangning Liu_files/thumbs/DSC08122-2.jpeg" alt="California" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC08122-2.webp" width="600" height="400" alt="California" loading="lazy">
                 </a>
             </div>
 
             <!-- NYC -->
             <div class="imgGallery-column" data-category="nyc">
                 <a href="./Kangning Liu_files/8V4B0383.jpg" class="lightbox-gallery" title="NYC">
-                    <img src="./Kangning Liu_files/thumbs/8V4B0383.jpg" alt="NYC" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/8V4B0383.webp" width="600" height="400" alt="NYC" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nyc">
                 <a href="./Kangning Liu_files/8V4B0444-2.jpg" class="lightbox-gallery" title="NYC">
-                    <img src="./Kangning Liu_files/thumbs/8V4B0444-2.jpg" alt="NYC" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/8V4B0444-2.webp" width="600" height="400" alt="NYC" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nyc">
                 <a href="./Kangning Liu_files/DSC04963-4.jpg" class="lightbox-gallery" title="NYC">
-                    <img src="./Kangning Liu_files/thumbs/DSC04963-4.jpg" alt="NYC" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC04963-4.webp" width="600" height="400" alt="NYC" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nyc">
                 <a href="./Kangning Liu_files/DSC05142.jpeg" class="lightbox-gallery" title="NYC">
-                    <img src="./Kangning Liu_files/thumbs/DSC05142.jpeg" alt="NYC" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC05142.webp" width="600" height="400" alt="NYC" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nyc">
                 <a href="./Kangning Liu_files/DSC07398.jpg" class="lightbox-gallery" title="NYC">
-                    <img src="./Kangning Liu_files/thumbs/DSC07398.jpg" alt="NYC" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC07398.webp" width="600" height="400" alt="NYC" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nyc">
                 <a href="./Kangning Liu_files/DSC07301.jpg" class="lightbox-gallery" title="NYC">
-                    <img src="./Kangning Liu_files/thumbs/DSC07301.jpg" alt="NYC" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC07301.webp" width="600" height="400" alt="NYC" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nyc">
                 <a href="./Kangning Liu_files/DSC08667.jpg" class="lightbox-gallery" title="NYC">
-                    <img src="./Kangning Liu_files/thumbs/DSC08667.jpg" alt="NYC" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC08667.webp" width="600" height="400" alt="NYC" loading="lazy">
                 </a>
             </div>
 
             <!-- Industrial & Night -->
             <div class="imgGallery-column" data-category="night">
                 <a href="./Kangning Liu_files/DSC09256.jpeg" class="lightbox-gallery" title="Night">
-                    <img src="./Kangning Liu_files/thumbs/DSC09256.jpeg" alt="Night" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC09256.webp" width="600" height="400" alt="Night" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="night">
                 <a href="./Kangning Liu_files/DSC09385.jpeg" class="lightbox-gallery" title="Night">
-                    <img src="./Kangning Liu_files/thumbs/DSC09385.jpeg" alt="Night" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC09385.webp" width="600" height="400" alt="Night" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="night">
                 <a href="./Kangning Liu_files/DSC09265.jpeg" class="lightbox-gallery" title="Night">
-                    <img src="./Kangning Liu_files/thumbs/DSC09265.jpeg" alt="Night" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC09265.webp" width="600" height="400" alt="Night" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="industrial">
                 <a href="./Kangning Liu_files/DSC06520-3.jpeg" class="lightbox-gallery" title="SteelRacks">
-                    <img src="./Kangning Liu_files/thumbs/DSC06520-3.jpeg" alt="SteelRacks" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC06520-3.webp" width="600" height="400" alt="SteelRacks" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="industrial">
                 <a href="./Kangning Liu_files/DSC06601-2.jpeg" class="lightbox-gallery" title="SteelRacks">
-                    <img src="./Kangning Liu_files/thumbs/DSC06601-2.jpeg" alt="SteelRacks" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC06601-2.webp" width="600" height="400" alt="SteelRacks" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="industrial">
                 <a href="./Kangning Liu_files/DSC06482-4.jpeg" class="lightbox-gallery" title="SteelRacks">
-                    <img src="./Kangning Liu_files/thumbs/DSC06482-4.jpeg" alt="SteelRacks" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC06482-4.webp" width="600" height="400" alt="SteelRacks" loading="lazy">
                 </a>
             </div>
 
             <!-- Nature & Travels -->
             <div class="imgGallery-column" data-category="nature">
                 <a href="./Kangning Liu_files/DSC05394.jpg" class="lightbox-gallery" title="Vermont">
-                    <img src="./Kangning Liu_files/thumbs/DSC05394.jpg" alt="Vermont" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC05394.webp" width="600" height="400" alt="Vermont" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nature">
                 <a href="./Kangning Liu_files/DSC05554-2.jpg" class="lightbox-gallery" title="Vermont">
-                    <img src="./Kangning Liu_files/thumbs/DSC05554-2.jpg" alt="Vermont" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC05554-2.webp" width="600" height="400" alt="Vermont" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nature">
                 <a href="./Kangning Liu_files/DSC05782.jpg" class="lightbox-gallery" title="Vermont">
-                    <img src="./Kangning Liu_files/thumbs/DSC05782.jpg" alt="Vermont" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC05782.webp" width="600" height="400" alt="Vermont" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nature">
                 <a href="./Kangning Liu_files/DSC05962.jpg" class="lightbox-gallery" title="Oregon">
-                    <img src="./Kangning Liu_files/thumbs/DSC05962.jpg" alt="Oregon" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC05962.webp" width="600" height="400" alt="Oregon" loading="lazy">
                 </a>
             </div>
             <div class="imgGallery-column" data-category="nature">
                 <a href="./Kangning Liu_files/DSC05801.jpg" class="lightbox-gallery" title="Oregon">
-                    <img src="./Kangning Liu_files/thumbs/DSC05801.jpg" alt="Oregon" loading="lazy">
+                    <img src="./Kangning Liu_files/opt/thumbs/DSC05801.webp" width="600" height="400" alt="Oregon" loading="lazy">
                 </a>
             </div>
         </div>
     </section>
 
-    <div id="clustrmaps-widget" style="margin-top: 48px; padding: 24px; background-color: var(--card-bg); border-radius: 6px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center;">
-        <p style="margin-bottom: 12px; color: var(--muted-text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;">Pageviews</p>
-        <div id="clustrmaps-container"
-             data-src="https://clustrmaps.com/map_v2.js?d=nk2suWeO4QvLQb3OSDKbWMWpp_rc2lrGUiGq_rrnFQg&cl=ffffff&w=a"></div>
+    <div id="visitor-map-widget">
+        <p class="visitor-map-label">Visitors</p>
+        <div id="visitor-map-container"
+             data-src="https://mapmyvisitors.com/map.js?d=HTX6Q08etDlEd9UsK-kQC0qnMEeN1xcZCNG_UUh5X-E&amp;cl=ffffff&amp;w=a"></div>
     </div>
 </main>
 
@@ -1182,7 +1225,7 @@
         <a href="https://www.linkedin.com/in/kangning-liu-14600282/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="mailto:kangning.liu@nyu.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
     </div>
-    <p>&copy; 2026 Kangning Liu. Last updated May 2026.</p>
+    <p>&copy; 2026 Kangning Liu. Last updated September 2026.</p>
 </footer>
 
 <!-- Back to Top Button -->
@@ -1296,7 +1339,7 @@
         syncAriaPressed($('.photo-filter-btn'));
 
         // Lightbox Initialization
-        var lightbox = new SimpleLightbox('.imgGallery-row a.lightbox-gallery', { 
+        var lightbox = new SimpleLightbox('.imgGallery-row a.lightbox-gallery', {
             captionsData: 'alt',
             captionDelay: 250,
             animationSpeed: 250,
@@ -1359,13 +1402,9 @@
         const themeIcon = document.getElementById('theme-icon');
         const root = document.documentElement;
 
-        // Check for saved user preference or system preference
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-        root.setAttribute('data-theme', initialTheme);
-        updateIcon(initialTheme);
+        // The theme itself is applied by the inline script in <head> (before first paint);
+        // here we only sync the icon to whatever it decided.
+        updateIcon(root.getAttribute('data-theme'));
 
         themeToggle.addEventListener('click', () => {
             const currentTheme = root.getAttribute('data-theme');
@@ -1386,117 +1425,73 @@
             }
         }
 
-        // Load the visitor map only after the page is usable and the widget is near view.
-        // If ClustrMaps is unreachable, remove the isolated iframe to cancel the attempt.
-        function setupClustrmapsLazyLoad() {
-            var widget = document.getElementById('clustrmaps-widget');
-            var container = document.getElementById('clustrmaps-container');
+        // Visitor map (MapMyVisitors). Injected only once the widget scrolls near view,
+        // using the vendor's own <script id="mapmyvisitors"> tag: map.js inserts the map
+        // right after its script element, and hands back the page's jQuery via noConflict.
+        // If the script fails or never renders, the whole box is hidden.
+        function setupVisitorMapLazyLoad() {
+            var widget = document.getElementById('visitor-map-widget');
+            var container = document.getElementById('visitor-map-container');
             if (!widget || !container) {
                 return;
             }
 
             var scriptSrc = container.getAttribute('data-src');
             var hasAttemptedLoad = false;
-            var loadTimeoutMs = 4000;
+            var renderTimeoutMs = 8000;
 
             function hideWidget() {
                 widget.style.display = 'none';
             }
 
-            function loadClustrmaps() {
+            function loadVisitorMap() {
                 if (hasAttemptedLoad) {
                     return;
                 }
                 hasAttemptedLoad = true;
 
-                var iframe = document.createElement('iframe');
-                iframe.title = 'Pageview map';
-                iframe.loading = 'lazy';
-                iframe.referrerPolicy = 'no-referrer-when-downgrade';
-                iframe.scrolling = 'no';
-                iframe.style.width = '100%';
-                iframe.style.height = '150px';
-                iframe.style.border = '0';
-                iframe.style.overflow = 'hidden';
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.id = 'mapmyvisitors';
+                script.async = true;
+                script.src = scriptSrc;
+                script.onerror = hideWidget;
+                container.appendChild(script);
 
-                var timeoutId = window.setTimeout(function() {
-                    iframe.remove();
-                    hideWidget();
-                }, loadTimeoutMs);
-
-                function handleMessage(event) {
-                    if (event.source !== iframe.contentWindow || !event.data || event.data.source !== 'clustrmaps-loader') {
-                        return;
-                    }
-
-                    window.clearTimeout(timeoutId);
-                    window.removeEventListener('message', handleMessage);
-
-                    if (event.data.status === 'error' || event.data.status === 'timeout') {
-                        iframe.remove();
+                // map.js renders a #mapmyvisitors-widget element; if it hasn't appeared
+                // within the window, treat the service as unavailable.
+                window.setTimeout(function() {
+                    if (!document.getElementById('mapmyvisitors-widget')) {
                         hideWidget();
                     }
-                }
-
-                window.addEventListener('message', handleMessage);
-
-                iframe.srcdoc = [
-                    '<!doctype html>',
-                    '<html>',
-                    '<head>',
-                    '<meta charset="utf-8">',
-                    '<base target="_blank">',
-                    '<style>html,body{margin:0;padding:0;background:transparent;text-align:center;overflow:hidden;}</style>',
-                    '</head>',
-                    '<body>',
-                    '<script>',
-                    '(function(){',
-                    'var done=false;',
-                    'function notify(status){if(done){return;}done=true;parent.postMessage({source:"clustrmaps-loader",status:status},"*");}',
-                    'var timer=setTimeout(function(){notify("timeout");},' + loadTimeoutMs + ');',
-                    'var script=document.createElement("script");',
-                    'script.id="clustrmaps";',
-                    'script.async=true;',
-                    'script.src=' + JSON.stringify(scriptSrc) + ';',
-                    'script.onload=function(){clearTimeout(timer);notify("loaded");};',
-                    'script.onerror=function(){clearTimeout(timer);notify("error");};',
-                    'document.body.appendChild(script);',
-                    '}());',
-                    '<\/script>',
-                    '</body>',
-                    '</html>'
-                ].join('');
-
-                container.appendChild(iframe);
+                }, renderTimeoutMs);
             }
 
             function scheduleLoad() {
                 if ('requestIdleCallback' in window) {
-                    window.requestIdleCallback(loadClustrmaps, { timeout: 1000 });
+                    window.requestIdleCallback(loadVisitorMap, { timeout: 1000 });
                 } else {
-                    window.setTimeout(loadClustrmaps, 250);
+                    window.setTimeout(loadVisitorMap, 250);
                 }
             }
 
-            window.addEventListener('load', function() {
-                if ('IntersectionObserver' in window) {
-                    var observer = new IntersectionObserver(function(entries) {
-                        entries.forEach(function(entry) {
-                            if (entry.isIntersecting) {
-                                observer.disconnect();
-                                scheduleLoad();
-                            }
-                        });
-                    }, { rootMargin: '300px 0px' });
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            observer.disconnect();
+                            scheduleLoad();
+                        }
+                    });
+                }, { rootMargin: '300px 0px' });
 
-                    observer.observe(widget);
-                } else {
-                    window.setTimeout(loadClustrmaps, 1500);
-                }
-            });
+                observer.observe(widget);
+            } else {
+                window.setTimeout(loadVisitorMap, 1500);
+            }
         }
 
-        setupClustrmapsLazyLoad();
+        setupVisitorMapLazyLoad();
     });
 </script>
 
