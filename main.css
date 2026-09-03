@@ -105,6 +105,21 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(10px);
 }
 
+.navbar-brand {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--nav-text) !important;
+    letter-spacing: 0.01em;
+    margin-right: 32px;
+    opacity: 0.95;
+    transition: color 0.2s ease;
+}
+
+.navbar-brand:hover {
+    color: var(--nav-hover) !important;
+}
+
 /* Style for navbar links */
 .navbar-nav .nav-item {
     list-style-type: none;
@@ -132,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Container */
 .container {
-    max-width: 1300px;
+    max-width: 1140px;
     margin: auto;
     padding: 0 20px;
 }
@@ -312,7 +327,6 @@ h1, h2, h3, h4, h5, h6 {
 .project-list {
     font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
     margin-top: 16px;
-    text-align: justify;
     padding-left: 20px;
     line-height: 1.7;
 }
@@ -321,10 +335,15 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 14px;
 }
 
+/* Figures vary wildly in aspect ratio; a fixed frame with `contain` keeps every
+   publication card the same shape without cropping the diagrams. */
 .publication-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    padding: 10px;
     border-radius: 6px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    margin-right: 20px;
     border: 1px solid var(--border-color);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     background-color: #FFFFFF;
@@ -335,8 +354,15 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Two stacked figures in one column (StrokeRehab) need breathing room */
+.custom-col-img .publication-img + .publication-img {
+    margin-top: 12px;
+}
+
+/* Left-aligned rather than justified: justification opens rivers of whitespace
+   at these column widths. Class name kept because the markup uses it widely. */
 .justified-text {
-    text-align: justify;
+    text-align: left;
 }
 
 /* Link Styles */
@@ -396,6 +422,13 @@ a:hover {
     color: #fff;
     border-color: var(--accent);
     box-shadow: 0 2px 8px var(--accent-light);
+}
+
+#filter-count {
+    margin-top: 12px;
+    color: var(--muted-text);
+    font-size: 12px;
+    font-style: italic;
 }
 
 /* Button/Link Badges */
@@ -467,12 +500,15 @@ a:hover {
 }
 
 /* Publication title styling */
-.pub-list .custom-col-text > p:first-child b {
+.pub-title {
     font-family: 'Source Serif 4', 'Georgia', serif;
     font-size: 1.15rem;
     font-weight: 600;
+    line-height: 1.35;
     letter-spacing: 0.01em;
     color: var(--heading-color);
+    text-align: left;
+    margin-bottom: 0.6rem;
 }
 
 /* Default (Mobile First) */
@@ -485,15 +521,14 @@ a:hover {
 /* Wider screens (768px+) */
 @media screen and (min-width: 768px) {
     .custom-col-img {
-        flex: 0 0 45%;
-        max-width: 45%;
+        flex: 0 0 40%;
+        max-width: 40%;
     }
 
     .custom-col-text {
-        flex: 0 0 55%;
-        max-width: 55%;
+        flex: 0 0 60%;
+        max-width: 60%;
         padding-left: 20px;
-        text-align: justify;
     }
 }
 
@@ -508,7 +543,6 @@ a:hover {
     .custom-col-text {
         flex: 0 0 100%;
         max-width: 100%;
-        text-align: justify;
     }
 }
 
@@ -530,9 +564,15 @@ ul.vert > li {
 }
 
 ul.vert > li:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+}
+
+@media (max-width: 767px) {
+    ul.vert > li {
+        padding: 20px 18px;
+        margin-bottom: 18px;
+    }
 }
 
 /* Header Refinements */
@@ -542,10 +582,17 @@ h2 {
     margin-top: 60px;
     margin-bottom: 36px;
     font-weight: 500;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     color: var(--heading-color);
     display: inline-block;
     letter-spacing: 0.02em;
+}
+
+@media (max-width: 767px) {
+    h2 {
+        margin-top: 44px;
+        margin-bottom: 24px;
+    }
 }
 
 p {
@@ -557,49 +604,74 @@ p {
 
 /* Refinements for Profile and Mobile */
 .profile-name {
-    font-size: 1.8rem;
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
     color: var(--heading-color);
     font-family: 'Source Serif 4', 'Georgia', serif;
     font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: 8px;
+    line-height: 1.25;
+    margin-bottom: 10px;
     letter-spacing: 0.01em;
 }
 
-.profile-subtitle {
-    font-size: 13px;
+.profile-name-cn {
+    display: block;
+    font-size: 0.62em;
+    font-weight: 500;
+    color: var(--muted-text);
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+}
+
+.profile-role {
+    font-size: 12px;
     color: var(--muted-text);
     font-family: 'Source Sans 3', 'Helvetica Neue', sans-serif;
-    margin-top: 12px;
     line-height: 1.6;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
+}
+
+.profile-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 14px;
+}
+
+.profile-tag {
+    padding: 4px 11px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background-color: var(--accent-light);
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+    white-space: nowrap;
 }
 
 /* Profile photo styling */
 .profile-photo {
-    max-width: 90%;
+    width: 100%;
+    max-width: 300px;
     height: auto;
-    border-radius: 8px;
-    border: 3px solid var(--border-color);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px var(--border-color), 0 10px 30px rgba(0,0,0,0.10);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    margin-top: 16px;
+    margin-top: 24px;
 }
 
 .profile-photo:hover {
-    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    box-shadow: 0 0 0 1px var(--accent-secondary), 0 14px 36px rgba(0,0,0,0.14);
     transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-    .profile-name {
-        font-size: 1.5rem;
-    }
-
-    .justified-text {
-        text-align: left;
+@media (max-width: 767px) {
+    .profile-photo {
+        max-width: 240px;
+        margin-top: 20px;
     }
 }
 
@@ -636,8 +708,19 @@ p {
 /* Hero Section */
 #about {
     position: relative;
-    padding: 40px 0;
-    margin-bottom: 50px;
+    padding: 48px 0 40px;
+    margin-bottom: 40px;
+}
+
+/* Hairline rule closing the hero, so it reads as its own band without a panel */
+#about::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color) 15%, var(--border-color) 85%, transparent);
 }
 
 .profile-column {
@@ -648,18 +731,23 @@ p {
     padding-left: 30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .bio-column {
         padding-left: 15px;
+    }
+
+    #about {
+        padding: 24px 0 20px;
+        margin-bottom: 20px;
     }
 }
 
 /* Recent Updates Card */
 .updates-card {
-    margin-top: 3%;
+    margin-top: 28px;
     background-color: var(--card-bg);
-    padding: 24px;
-    border-radius: 6px;
+    padding: 24px 26px;
+    border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     border: 1px solid var(--border-color);
     border-left: 3px solid var(--accent-secondary);
@@ -675,25 +763,56 @@ p {
     letter-spacing: 0.02em;
 }
 
-.updates-card ul {
+.updates-list {
     margin-bottom: 0;
-    padding-left: 20px;
+    padding-left: 0;
+    list-style: none;
 }
 
-.updates-card li {
-    margin-bottom: 8px;
+/* Dates in their own aligned column so the entries read as a timeline */
+.updates-list li {
+    display: grid;
+    grid-template-columns: 78px 1fr;
+    gap: 14px;
+    align-items: baseline;
+    margin-bottom: 12px;
+    font-size: 14.5px;
 }
 
-.updates-card li:last-child {
+.updates-list li:last-child {
     margin-bottom: 0;
+}
+
+.update-date {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-secondary);
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .updates-list li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
 }
 
 /* Section Spacing */
+.bio-text:not(:first-child) {
+    margin-top: 20px;
+}
+
 .bio-text {
-    margin-top: 3%;
-    text-align: justify;
-    font-size: 15px;
+    font-size: 15.5px;
     line-height: 1.8;
+}
+
+/* One shared measure for the whole column, so the paragraphs and the
+   Recent Updates card line up on the same right edge. */
+.bio-column > * {
+    max-width: 660px;
 }
 
 .bio-text strong {
@@ -782,6 +901,56 @@ p {
     .imgGallery-masonry {
         columns: 2 150px;
     }
+}
+
+/* ========================================
+   Visitor Map (MapMyVisitors)
+   w=a makes the map fill its container, so cap the container to keep it a widget
+   ======================================== */
+#visitor-map-container {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+#visitor-map-container #mapmyvisitors-widget {
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* ========================================
+   Dark Mode Contrast Corrections
+   In dark mode --accent is a light blue, so white text on it fails contrast.
+   Filled controls use dark ink on the accent instead.
+   ======================================== */
+[data-theme="dark"] .filter-btn.active,
+[data-theme="dark"] .photo-filter-btn.active,
+[data-theme="dark"] .pub-link:hover,
+[data-theme="dark"] #backToTop:hover {
+    color: #0D1117 !important;
+}
+
+[data-theme="dark"] .venue-badge.oral {
+    color: #E0B34D;
+    background-color: rgba(212, 168, 75, 0.15);
+    border-color: rgba(212, 168, 75, 0.3);
+}
+
+[data-theme="dark"] .venue-badge.highlight {
+    color: #C89BF5;
+    background-color: rgba(147, 51, 234, 0.18);
+    border-color: rgba(147, 51, 234, 0.35);
+}
+
+/* Publication figures are mostly light-background diagrams; keep their white
+   plate in dark mode but dim it so it doesn't glare. */
+[data-theme="dark"] .publication-img {
+    background-color: #E8E6E1;
+}
+
+[data-theme="dark"] .company-header img {
+    background-color: #F5F3EF;
+    border-radius: 4px;
+    padding: 3px;
 }
 
 /* ========================================
