@@ -1067,7 +1067,14 @@
             <button class="photo-filter-btn" data-filter="nature">Nature & Travels</button>
         </div>
 
-        <div class="imgGallery-row">
+        <div class="gallery-viewport">
+            <button class="gallery-nav gallery-nav-prev is-hidden" type="button"
+                    aria-controls="photo-gallery-row" aria-label="Scroll photos left">
+                <span aria-hidden="true">&#8249;</span>
+            </button>
+
+            <div class="imgGallery-row" id="photo-gallery-row" role="region" tabindex="0"
+                 aria-label="Photo gallery, scrolls horizontally">
             <!-- California -->
             <div class="imgGallery-column" data-category="california">
                 <a href="./Kangning Liu_files/DSC04444.jpeg" class="lightbox-gallery" title="California">
@@ -1200,7 +1207,15 @@
                     <img src="./Kangning Liu_files/opt/thumbs/DSC05801.webp" width="600" height="400" alt="Oregon" loading="lazy">
                 </a>
             </div>
-        </div>
+            </div><!-- /.imgGallery-row -->
+
+            <button class="gallery-nav gallery-nav-next" type="button"
+                    aria-controls="photo-gallery-row" aria-label="Scroll photos right">
+                <span aria-hidden="true">&#8250;</span>
+            </button>
+        </div><!-- /.gallery-viewport -->
+
+        <p class="gallery-hint">Swipe to see more &#8594;</p>
     </section>
 
     <div id="visitor-map-widget">
@@ -1338,6 +1353,54 @@
             }
         });
         syncAriaPressed($('.photo-filter-btn'));
+
+        // Photo gallery: arrow paging plus edge fades, so it is obvious the
+        // row keeps going past the cropped card on the right.
+        (function setupGalleryNav() {
+            var row = document.getElementById('photo-gallery-row');
+            var viewport = row && row.parentNode;
+            if (!row || !viewport) {
+                return;
+            }
+
+            var prev = viewport.querySelector('.gallery-nav-prev');
+            var next = viewport.querySelector('.gallery-nav-next');
+            var CARD_STEP = 315; // 300px card + 15px gap
+            var EDGE = 4;        // tolerance for sub-pixel scroll positions
+
+            function update() {
+                var max = row.scrollWidth - row.clientWidth;
+                var x = row.scrollLeft;
+                var scrollable = max > EDGE;
+                var atStart = x <= EDGE;
+                var atEnd = x >= max - EDGE;
+
+                viewport.classList.toggle('can-scroll-left', scrollable && !atStart);
+                viewport.classList.toggle('can-scroll-right', scrollable && !atEnd);
+                prev.classList.toggle('is-hidden', !scrollable || atStart);
+                next.classList.toggle('is-hidden', !scrollable || atEnd);
+            }
+
+            function page(direction) {
+                // Advance by a viewport-width, less one card, so the edge
+                // photo carries over and the move stays legible.
+                var step = Math.max(row.clientWidth - CARD_STEP, CARD_STEP);
+                row.scrollBy({ left: direction * step, behavior: 'smooth' });
+            }
+
+            prev.addEventListener('click', function() { page(-1); });
+            next.addEventListener('click', function() { page(1); });
+            row.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+
+            // Filtering changes how many cards are in flow, so re-measure
+            // once the fade finishes.
+            $('.photo-filter-btn').on('click', function() {
+                setTimeout(update, 350);
+            });
+
+            update();
+        })();
 
         // Lightbox Initialization
         var lightbox = new SimpleLightbox('.imgGallery-row a.lightbox-gallery', {

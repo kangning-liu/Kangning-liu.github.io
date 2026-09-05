@@ -40,6 +40,7 @@ html {
     --scrollbar-track: #F5F3EF;
     --scrollbar-thumb: #C8C4BC;
     --scrollbar-thumb-hover: #A8A49C;
+    --bg-fade: rgba(253, 251, 247, 0); /* --bg-color at zero alpha, for edge gradients */
 
     /* Pill geometry — shared by every control; see "Pill System" below */
     --pill-radius: 4px;
@@ -50,6 +51,7 @@ html {
 
 [data-theme="dark"] {
     --bg-color: #0D1117;           /* Deep slate */
+    --bg-fade: rgba(13, 17, 23, 0);
     --text-color: #E6E1D9;         /* Soft warm white */
     --heading-color: #F5F3EF;
     --card-bg: #161B22;
@@ -214,6 +216,104 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     border-color: var(--accent-secondary);
     cursor: pointer;
+}
+
+/* ========================================
+   Horizontal browsing affordance
+
+   The row scrolls sideways, but a half-cropped card on its own does not
+   read as "there is more here". Two cues fix that: arrow buttons for
+   pointer devices, and an edge that fades in only while there is actually
+   something to scroll toward.
+   ======================================== */
+.gallery-viewport {
+    position: relative;
+}
+
+.gallery-viewport::before,
+.gallery-viewport::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 15px; /* leave the scrollbar gutter uncovered */
+    width: 64px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+.gallery-viewport::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-color), var(--bg-fade));
+}
+
+.gallery-viewport::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-color), var(--bg-fade));
+}
+
+.gallery-viewport.can-scroll-left::before,
+.gallery-viewport.can-scroll-right::after {
+    opacity: 1;
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 100px; /* vertical centre of the 200px-tall cards */
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--accent);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition: opacity .25s ease, visibility .25s ease,
+                background-color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.gallery-nav-prev { left: -6px; }
+.gallery-nav-next { right: -6px; }
+
+.gallery-nav:hover {
+    background: var(--btn-hover-bg);
+    border-color: var(--accent-secondary);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.gallery-nav.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* The row is focusable so keyboard users can scroll it with arrow keys */
+.imgGallery-row:focus-visible {
+    outline: 2px solid var(--accent-secondary);
+    outline-offset: 4px;
+}
+
+.gallery-hint {
+    display: none;
+    margin: 10px 0 0;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: var(--pill-tracking);
+    color: var(--muted-text);
+}
+
+/* Touch devices get a worded hint instead of arrows they cannot hover */
+@media (hover: none), (max-width: 767px) {
+    .gallery-nav { display: none; }
+    .gallery-hint { display: block; }
 }
 
 /* Photo Filter Buttons */
