@@ -240,8 +240,10 @@
                 <p class="position-advisors">Senior Research Scientist</p>
 
                 <ul class="project-list alt justified-text">
-                    <li><strong>Multimodal LLMs &amp; Reward Modeling:</strong> Building multimodal LLM-based reward models that judge both image generation and image understanding &mdash; the signal used to align, steer, and evaluate large-scale generative systems, together with the data creation behind it.</li>
-                    <li><strong>Generative AI &amp; Reinforcement Learning:</strong> Reinforcement learning for image-generation foundation models, training against those reward signals to improve generation quality, alignment, and controllability at scale.</li>
+                    <li><strong>LLM Evaluation &amp; Reward Modeling:</strong> Building multimodal LLM-based reward models that judge both image generation and image understanding &mdash; the signal used to align, steer, and evaluate large-scale generative systems, together with the data creation behind it. Studying how LLM judges perceive and prioritize response attributes, and how to steer their preferences.
+                        <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-judgeprofile" class="pub-link"><i class="fas fa-file-alt"></i> JudgeProfile [Preprint]</a></li>
+                    <li><strong>Generative AI, Optimization &amp; Reinforcement Learning:</strong> Reinforcement learning for image-generation foundation models, training against those reward signals to improve generation quality, alignment, and controllability at scale. Efficient optimization for large diffusion transformers through Periodic Row-wise Muon.
+                        <br><span class="related-pubs-label">Related publications:</span> <a href="#pub-scaling-muon" class="pub-link"><i class="fas fa-file-alt"></i> Scaling Muon [Preprint]</a></li>
                 </ul>
             </li>
             <li>
@@ -388,6 +390,7 @@
         <div class="filter-container" role="toolbar" aria-label="Filter publications by category">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="mllm">MLLM</button>
+            <button class="filter-btn" data-filter="evaluation">LLM Evaluation</button>
             <button class="filter-btn" data-filter="genai">Generative AI</button>
             <button class="filter-btn" data-filter="foundation">Vision Foundation Model</button>
             <button class="filter-btn" data-filter="imperfect">Robust Learning</button>
@@ -396,6 +399,54 @@
         </div>
 
         <ul class="vert pub-list">
+            <li class="publication-item" id="pub-judgeprofile" data-category="evaluation">
+                <div class="row">
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <!-- Original Figure 1: https://arxiv.org/html/2609.36705v1#S2.F1 (CC BY 4.0). -->
+                        <img src="./Kangning Liu_files/opt/JudgeProfile.svg" width="820" height="181" alt="JudgeProfile separates LLM judgment into perception of response attributes and prioritization of those attributes"
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <h3 class="pub-title">JudgeProfile: Understanding and Steering Subjectivity in LLM Judges</h3>
+                        <p>
+                            <a href="https://arxiv.org/abs/2609.36705" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                        </p>
+                        <p>Qi Cao, <u><b>Kangning Liu</b></u>, Xuan Kan, Shunwen Tan, Yang Pei, Dake Chen, Yatai Ji, Zixuan Ye, Yuanpeng Tu, Daniel Li, Junbiao Tang, Pengtao Xie, Zihao He</p>
+                        <p><span class="venue-badge">arXiv 2026 &middot; Preprint</span></p>
+                        <p class="pub-tldr"><strong>TL;DR:</strong> Separates what LLM judges perceive from what they prioritize, enabling preference steering through attribute reweighting without updating the language model.</p>
+                        <button class="abstract-toggle">Show abstract</button>
+                        <div class="abstract-content">
+                        <p class="justified-text">
+                            JudgeProfile studies why LLM judges disagree by separating attribute-level perception from the priorities used to choose an overall winner. SubjectiveSet contains 50,013 response pairs from 17 sources, evaluated by 21 judges on 87 attributes. Judges often perceive similar differences but assign them different importance. Learning attribute weights from reference labels raises mean held-out agreement from 66.48% to 71.97%, providing an interpretable way to adapt evaluation preferences while keeping the language model fixed.
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="publication-item" id="pub-scaling-muon" data-category="genai">
+                <div class="row">
+                    <div class="custom-col-img" style="padding: 10px;">
+                        <!-- Original Figure 1(b): https://arxiv.org/html/2608.20818v3#S4.F1.sf2. -->
+                        <img src="./Kangning Liu_files/opt/ScalingMuon.svg" width="1021" height="394" alt="FD-DINO comparisons of AdamW and Muon across diffusion transformer training progress and model scales"
+                             class="img-fluid publication-img" style="width: 100%;" loading="lazy">
+                    </div>
+                    <div class="custom-col-text" style="padding: 10px;">
+                        <h3 class="pub-title">Scaling Muon for Diffusion Transformers</h3>
+                        <p>
+                            <a href="https://arxiv.org/abs/2608.20818" class="pub-link"><i class="fas fa-file-pdf"></i> Paper</a>
+                        </p>
+                        <p>Chenghao Li, Xiao Han, Xinxin Huang, Wei Liu, Boyang Li, Bing Xiao, Heran Zhang, Juanma Perez Rua, Ke Xu, <u><b>Kangning Liu</b></u>, Linjun Kuang, Na Li, Tan Wang, Tian Xie, Wei Peng, Yang Pei, Yifan Xu, Yuanhao Zhai, Yuwei Lin, Zhe Wang, Zihao He, Daniel Li, Junbiao Tang, Ziyang Jiang, Dake Chen</p>
+                        <p><span class="venue-badge">arXiv 2026 &middot; Preprint</span></p>
+                        <p class="pub-tldr"><strong>TL;DR:</strong> Studies Muon on 1.3B&ndash;15B diffusion transformers and introduces Periodic Row-wise Muon to retain its quality advantages with lower training overhead.</p>
+                        <button class="abstract-toggle">Show abstract</button>
+                        <div class="abstract-content">
+                        <p class="justified-text">
+                            Muon's benefits over AdamW persist across diffusion transformers from 1.3B to 15B parameters, but spectral updates and distributed momentum handling add overhead. Periodic Row-wise Muon alternates occasional full spectral updates with cheaper row-wise updates and a distributed implementation using sharded momentum. Compared with vanilla Muon, the reported experiments reduce optimizer time by 46.9&ndash;54.3% and end-to-end step time by 15.7&ndash;24.3%, while retaining or improving the best observed generation quality.
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
             <li class="publication-item" id="pub-snce" data-category="genai">
                 <div class="row">
                     <!-- Publication Details -->
@@ -1242,7 +1293,7 @@
         <a href="https://www.linkedin.com/in/kangning-liu-14600282/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="mailto:kangning.liu@nyu.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
     </div>
-    <p>&copy; 2026 Kangning Liu. Last updated September 2026.</p>
+    <p>&copy; 2026 Kangning Liu. Last updated October 2026.</p>
 </footer>
 
 <!-- Back to Top Button -->
