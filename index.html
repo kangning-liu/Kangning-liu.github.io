@@ -57,6 +57,8 @@
             var saved = localStorage.getItem('theme');
             var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             document.documentElement.setAttribute('data-theme', theme);
+            // Marks JS as available so the publication list can start on "Selected" without a flash
+            document.documentElement.classList.add('js');
         } catch (e) {
             document.documentElement.setAttribute('data-theme', 'light');
         }
@@ -387,7 +389,8 @@
         <p>See also <a href="https://scholar.google.com/citations?user=F3F2qAkAAAAJ&hl=en">Google Scholar</a>.</p>
 
         <div class="filter-container" role="toolbar" aria-label="Filter publications by category">
-            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn active" data-filter="selected">Selected</button>
+            <button class="filter-btn" data-filter="all">All</button>
             <button class="filter-btn" data-filter="mllm">MLLM</button>
             <button class="filter-btn" data-filter="evaluation">LLM Evaluation</button>
             <button class="filter-btn" data-filter="genai">Generative AI</button>
@@ -398,7 +401,7 @@
         </div>
 
         <ul class="vert pub-list">
-            <li class="publication-item" id="pub-judgeprofile" data-category="evaluation">
+            <li class="publication-item" id="pub-judgeprofile" data-category="selected evaluation">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
                         <!-- Original Figure 1: https://arxiv.org/html/2609.36705v1#S2.F1 (CC BY 4.0). -->
@@ -471,7 +474,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" id="pub-inline-critic" data-category="genai">
+            <li class="publication-item" id="pub-inline-critic" data-category="selected genai">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -526,7 +529,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" id="pub-maoam" data-category="mllm foundation">
+            <li class="publication-item" id="pub-maoam" data-category="selected mllm foundation">
                 <div class="row">
                     <div class="custom-col-img" style="padding: 10px;">
                         <img src="./Kangning Liu_files/opt/MAOAM.webp" width="844" height="343" alt="MAOAM unified object and material selection from text and click prompts"
@@ -554,7 +557,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" id="pub-vgent" data-category="mllm">
+            <li class="publication-item" id="pub-vgent" data-category="selected mllm">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -613,7 +616,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" id="pub-lavida-o" data-category="mllm genai">
+            <li class="publication-item" id="pub-lavida-o" data-category="selected mllm genai">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -642,7 +645,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" id="pub-ras" data-category="mllm">
+            <li class="publication-item" id="pub-ras" data-category="selected mllm">
                 <div class="row">
                     <!-- Publication Details -->
                     <div class="custom-col-img" style="padding: 10px;">
@@ -723,7 +726,7 @@
             </li>
 
 
-            <li class="publication-item" id="pub-sum" data-category="foundation imperfect">
+            <li class="publication-item" id="pub-sum" data-category="selected foundation imperfect">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -821,7 +824,7 @@
                     </div>
                 </div>
             </li>
-            <li class="publication-item" data-category="imperfect">
+            <li class="publication-item" id="pub-adele" data-category="selected imperfect">
                 <div class="row">
                     <!-- Publication Details -->
                     <!-- Image Placeholder -->
@@ -1349,8 +1352,19 @@
             }
         });
 
-        // Initialize Publication Counter
+        // Start on "Selected": main.css hides the rest until this runs, so there is no flash
+        $('.publication-item').not('[data-category~="selected"]').hide();
+        $('.pub-list').addClass('filter-ready');
         updateFilterCount();
+
+        // A direct link to a paper outside "Selected" switches to "All" so it is visible
+        if (/^#pub-/.test(location.hash) && $(location.hash).is(':hidden')) {
+            $('.filter-btn').removeClass('active');
+            $('.filter-btn[data-filter="all"]').addClass('active');
+            $('.publication-item').show();
+            updateFilterCount();
+            $(location.hash)[0].scrollIntoView();
+        }
         syncAriaPressed($('.filter-btn'));
 
         // Handle in-page anchor clicks to publication items
