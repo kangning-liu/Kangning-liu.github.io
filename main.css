@@ -1405,3 +1405,8 @@ button:focus-visible,
 .site-footer .footer-social a:hover {
     color: var(--accent-secondary);
 }
+
+/* Publications open on the "Selected" filter; hide the rest before the filter script runs */
+html.js .pub-list:not(.filter-ready) .publication-item:not([data-category~="selected"]) {
+    display: none;
+}
